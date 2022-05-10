@@ -1,19 +1,4 @@
 # ninja log v5
-0	159	6738159010333974	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-160	229	6738159011031950	Simple_Raytracer.exe	9e0da2069c71d45f
-1	152	6738165279597230	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-153	209	6738165280145398	Simple_Raytracer.exe	9e0da2069c71d45f
-1	365	6738514609676917	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-365	577	6738514611780215	Simple_Raytracer.exe	9e0da2069c71d45f
-1	389	6738521468274178	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-389	530	6738521469669512	Simple_Raytracer.exe	9e0da2069c71d45f
-2	185	6738523018892502	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-186	253	6738523019550627	Simple_Raytracer.exe	9e0da2069c71d45f
-1	183	6738523409665370	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-183	240	6738523410223815	Simple_Raytracer.exe	9e0da2069c71d45f
-1	178	6738524841428491	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-178	243	6738524842076690	Simple_Raytracer.exe	9e0da2069c71d45f
-1	190	6738526418546371	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-190	250	6738526419124743	Simple_Raytracer.exe	9e0da2069c71d45f
-2	179	6738526967025380	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	eb3237a533f3e425
-179	238	6738526967613948	Simple_Raytracer.exe	9e0da2069c71d45f
+1	188	6739042178019502	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	5feb15d99e950ce2
+188	266	6739042178787286	Simple_Raytracer.exe	8b62507eefb6ff93
+8	170	6739042177839591	CMakeFiles/Simple_Raytracer.dir/vec3.cpp.obj	95522f87ed626819

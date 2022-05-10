@@ -1,6 +1,9 @@
 #include <iostream>
 #include <fstream>
 
+#include "vec3.h"
+#include "color.h"
+
 int main() {
 
     const int IMAGE_HEIGHT = 256;
@@ -17,15 +20,8 @@ int main() {
     for (int j = IMAGE_HEIGHT - 1; j >= 0; j--) {
         std::cout << "\rScan lines Remaining:" << j << " " << std::flush;
         for (int i = 0; i < IMAGE_WIDTH; i++) {
-            auto r = double(i) / (IMAGE_WIDTH - 1);
-            auto g = double(j) / (IMAGE_HEIGHT - 1);
-            auto b = .25;
-
-            int ir = static_cast<int>(256.999 * r);
-            int ig = static_cast<int>(256.999 * g);
-            int ib = static_cast<int>(256.999 * b);
-
-            file << ir << " " << ig << " " << ib << std::endl;
+            color pixel_color(double(i) / (IMAGE_WIDTH - 1), double(j) / (IMAGE_HEIGHT - 1), .25);
+            write_color(file, pixel_color);
         }
     }
 
