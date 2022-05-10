@@ -113,7 +113,7 @@ CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/Simple_Raytracer
 CMAKE_LINKER:FILEPATH=C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/mingw/bin/ld.exe
 
 //make program
-CMAKE_MAKE_PROGRAM:FILEPATH=C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/bin/ninja/win/ninja.exe
+CMAKE_MAKE_PROGRAM:FILEPATH=C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221508~1.224/bin/ninja/win/ninja.exe
 
 //Flags used by the linker during the creation of modules during
 // all build types.
