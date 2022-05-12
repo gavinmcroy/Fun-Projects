@@ -61,6 +61,24 @@ build CMakeFiles/Simple_Raytracer.dir/ray.cpp.obj: CXX_COMPILER__Simple_Raytrace
   OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
   OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
 
+build CMakeFiles/Simple_Raytracer.dir/sphere.cpp.obj: CXX_COMPILER__Simple_Raytracer_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/sphere.cpp || cmake_object_order_depends_target_Simple_Raytracer
+  DEP_FILE = CMakeFiles\Simple_Raytracer.dir\sphere.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
+  OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
+
+build CMakeFiles/Simple_Raytracer.dir/hittable_list.cpp.obj: CXX_COMPILER__Simple_Raytracer_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/hittable_list.cpp || cmake_object_order_depends_target_Simple_Raytracer
+  DEP_FILE = CMakeFiles\Simple_Raytracer.dir\hittable_list.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
+  OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
+
+build CMakeFiles/Simple_Raytracer.dir/camera.cpp.obj: CXX_COMPILER__Simple_Raytracer_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/camera.cpp || cmake_object_order_depends_target_Simple_Raytracer
+  DEP_FILE = CMakeFiles\Simple_Raytracer.dir\camera.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
+  OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Simple_Raytracer
@@ -69,7 +87,7 @@ build CMakeFiles/Simple_Raytracer.dir/ray.cpp.obj: CXX_COMPILER__Simple_Raytrace
 #############################################
 # Link the executable Simple_Raytracer.exe
 
-build Simple_Raytracer.exe: CXX_EXECUTABLE_LINKER__Simple_Raytracer_Debug CMakeFiles/Simple_Raytracer.dir/main.cpp.obj CMakeFiles/Simple_Raytracer.dir/ray.cpp.obj
+build Simple_Raytracer.exe: CXX_EXECUTABLE_LINKER__Simple_Raytracer_Debug CMakeFiles/Simple_Raytracer.dir/main.cpp.obj CMakeFiles/Simple_Raytracer.dir/ray.cpp.obj CMakeFiles/Simple_Raytracer.dir/sphere.cpp.obj CMakeFiles/Simple_Raytracer.dir/hittable_list.cpp.obj CMakeFiles/Simple_Raytracer.dir/camera.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
