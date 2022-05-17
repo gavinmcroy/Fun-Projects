@@ -1,5 +1,5 @@
 //
-// Created by Gavin T McRoy on 5/10/2022.
+// Created by Gavin T McRoy on 5/17/2022.
 //
 
 #ifndef SIMPLE_RAYTRACER_VEC3_H
@@ -154,3 +154,4 @@ inline vec3 reflect(const vec3 &vec, const vec3 &n){
 }
 
 #endif //SIMPLE_RAYTRACER_VEC3_H
+

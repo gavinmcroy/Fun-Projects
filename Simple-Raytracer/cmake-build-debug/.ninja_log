@@ -1,6 +1,6 @@
 # ninja log v5
 8	225	6744234431219637	CMakeFiles/Simple_Raytracer.dir/sphere.cpp.obj	b9bf4db15719220
 2	354	6740399554357711	CMakeFiles/Simple_Raytracer.dir/main.cpp.obj	5feb15d99e950ce2
-1	113	6744238711054258	build.ninja	1549f3811d48ed43
+1	113	6744658357324386	build.ninja	1549f3811d48ed43
 354	430	6740399555115521	Simple_Raytracer.exe	9107fcb604eadd73
 10	244	6744234431409137	CMakeFiles/Simple_Raytracer.dir/hittable_list.cpp.obj	2e9d4342b607047b

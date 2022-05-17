@@ -1,5 +1,5 @@
 //
-// Created by Gavin T McRoy on 5/10/2022.
+// Created by Gavin T McRoy on 5/17/2022.
 //
 
 #ifndef SIMPLE_RAYTRACER_RAY_H

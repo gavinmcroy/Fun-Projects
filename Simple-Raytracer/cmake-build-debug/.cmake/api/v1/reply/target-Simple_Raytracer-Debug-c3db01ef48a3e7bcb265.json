@@ -172,12 +172,12 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "ray.h",
+			"path" : "vec3.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
-			"path" : "vec3.h",
+			"path" : "ray.h",
 			"sourceGroupIndex" : 1
 		}
 	],
