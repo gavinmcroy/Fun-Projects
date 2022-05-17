@@ -28,6 +28,11 @@ public:
 
     vec3 random_in_unit_sphere();
 
+    bool near_zero() const {
+        const auto s = 1e-8;
+        return (fabs(e[0]) < s) && (fabs(e[1]) < s) && fabs(e[2]) < s)
+    }
+
     double x() const { return e[0]; }
 
     double y() const { return e[1]; }
@@ -142,6 +147,10 @@ inline vec3 random_in_hemisphere(const vec3 &normal) {
     } else {
         return -in_unit_sphere;
     }
+}
+
+inline vec3 reflect(const vec3 &vec, const vec3 &n){
+    return v - 2*dot(v,n)*n;
 }
 
 #endif //SIMPLE_RAYTRACER_VEC3_H

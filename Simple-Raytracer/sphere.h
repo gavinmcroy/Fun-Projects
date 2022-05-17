@@ -6,6 +6,8 @@
 #define SIMPLE_RAYTRACER_SPHERE_H
 
 
+#include <utility>
+
 #include "hittable.h"
 #include "vec3.h"
 
@@ -13,12 +15,15 @@ class sphere : public hittable {
 public:
     point3 center;
     double radius;
+    shared_ptr<material> material_ptr;
 
     sphere() {
 
     }
 
-    sphere(point3 center, double radius) : center(center), radius(radius) {
+    sphere(point3 center, double radius, shared_ptr<material> material) : center(center),
+                                                                          radius(radius),
+                                                                          material_ptr(std::move(material)) {
 
     };
 
