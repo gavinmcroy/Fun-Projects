@@ -13,7 +13,7 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &rec) cons
     auto discriminant = half_b * half_b - a * c;
 
     /* Means there is no solution to the quadratic */
-    if (discriminant < 0) {
+    if (discriminant < 0.0) {
         return false;
     }
 

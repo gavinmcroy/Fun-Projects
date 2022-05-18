@@ -6,6 +6,7 @@
 #define SIMPLE_RAYTRACER_HITTABLE_LIST_H
 
 #include <memory>
+#include <utility>
 #include <vector>
 #include "hittable.h"
 
@@ -22,14 +23,14 @@ public:
     }
 
     hittable_list(shared_ptr<hittable> object) {
-        add(object);
+        add(std::move(object));
     }
 
     void clear() {
         objects.clear();
     }
 
-    void add(shared_ptr<hittable> object) {
+    void add(const shared_ptr<hittable>& object) {
         objects.push_back(object);
     }
 
