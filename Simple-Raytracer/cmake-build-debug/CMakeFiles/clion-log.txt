@@ -1,4 +1,4 @@
-"C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5591.52\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5591.52/bin/ninja/win/ninja.exe" -G Ninja -S "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Simple-Raytracer" -B "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Simple-Raytracer\cmake-build-debug"
+"/Users/gavintaylormcroy/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/212.5080.54/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug
+-- Build files have been written to: /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug

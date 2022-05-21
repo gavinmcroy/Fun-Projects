@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Simple_Raytracer.exe"
-		},
-		{
-			"path" : "Simple_Raytracer.pdb"
+			"path" : "Simple_Raytracer"
 		}
 	],
 	"backtrace" : 1,
@@ -27,7 +24,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 6,
+				"line" : 8,
 				"parent" : 0
 			}
 		]
@@ -38,7 +35,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : " -O2 -Wall -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk"
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -67,22 +64,18 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-O2 -Wall -g",
 				"role" : "flags"
 			},
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "Simple_Raytracer",
-	"nameOnDisk" : "Simple_Raytracer.exe",
+	"nameOnDisk" : "Simple_Raytracer",
 	"paths" : 
 	{
 		"build" : ".",

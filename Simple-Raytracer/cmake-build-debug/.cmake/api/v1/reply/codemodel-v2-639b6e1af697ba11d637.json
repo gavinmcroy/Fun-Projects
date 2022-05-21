@@ -6,10 +6,9 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.21"
+						"string" : "3.20.2"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "Simple_Raytracer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Simple_Raytracer-Debug-22b005b7123711c2b1db.json",
+					"jsonFile" : "target-Simple_Raytracer-Debug-3dabfe0ec7ef133e529e.json",
 					"name" : "Simple_Raytracer",
 					"projectIndex" : 0
 				}
@@ -49,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug",
-		"source" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer"
+		"build" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug",
+		"source" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 2
 	}
 }
