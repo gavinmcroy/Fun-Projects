@@ -30,7 +30,7 @@ public:
         objects.clear();
     }
 
-    void add(const shared_ptr<hittable>& object) {
+    void add(const shared_ptr<hittable> &object) {
         objects.push_back(object);
     }
 
