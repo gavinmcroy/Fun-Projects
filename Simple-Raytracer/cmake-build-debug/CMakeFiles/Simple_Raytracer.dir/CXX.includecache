@@ -24,10 +24,6 @@ ray.h
 rtweekend.h
 /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/rtweekend.h
 
-/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/hittable_list.cpp
-hittable_list.h
-/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/hittable_list.h
-
 /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/hittable_list.h
 memory
 -
@@ -79,10 +75,6 @@ ray.h
 /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/ray.h
 vec3.h
 /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/vec3.h
-
-/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/sphere.cpp
-sphere.h
-/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/sphere.h
 
 /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Simple-Raytracer/sphere.h
 utility

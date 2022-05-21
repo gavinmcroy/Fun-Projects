@@ -29,7 +29,7 @@ public:
     }
 
     point3 at(double t) const {
-        return (t * dir);
+        return orig+(t * dir);
     }
 
 };
