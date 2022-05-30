@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer
+# Install script for directory: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills/Count Odd Numbers in an Interval
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Simple_Raytracer")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Count_Odd_Numbers_in_an_Interval")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills/Count Odd Numbers in an Interval/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

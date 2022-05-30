@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: Simple_Raytracer
+# Project: Count_Odd_Numbers_in_an_Interval
 # Configurations: Debug
 # =============================================================================
 
@@ -39,65 +39,49 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug/
+cmake_ninja_workdir = C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming$ Skills/Count$ Odd$ Numbers$ in$ an$ Interval/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target Simple_Raytracer
+# Object build statements for EXECUTABLE target Count_Odd_Numbers_in_an_Interval
 
 
 #############################################
-# Order-only phony target for Simple_Raytracer
+# Order-only phony target for Count_Odd_Numbers_in_an_Interval
 
-build cmake_object_order_depends_target_Simple_Raytracer: phony || CMakeFiles/Simple_Raytracer.dir
+build cmake_object_order_depends_target_Count_Odd_Numbers_in_an_Interval: phony || CMakeFiles/Count_Odd_Numbers_in_an_Interval.dir
 
-build CMakeFiles/Simple_Raytracer.dir/main.cpp.obj: CXX_COMPILER__Simple_Raytracer_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/main.cpp || cmake_object_order_depends_target_Simple_Raytracer
-  DEP_FILE = CMakeFiles\Simple_Raytracer.dir\main.cpp.obj.d
-  FLAGS = -Ofast -Wall -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
-  OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
-  TARGET_COMPILE_PDB = CMakeFiles\Simple_Raytracer.dir\
-  TARGET_PDB = Simple_Raytracer.pdb
-
-build CMakeFiles/Simple_Raytracer.dir/sphere.cpp.obj: CXX_COMPILER__Simple_Raytracer_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/sphere.cpp || cmake_object_order_depends_target_Simple_Raytracer
-  DEP_FILE = CMakeFiles\Simple_Raytracer.dir\sphere.cpp.obj.d
-  FLAGS = -Ofast -Wall -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
-  OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
-  TARGET_COMPILE_PDB = CMakeFiles\Simple_Raytracer.dir\
-  TARGET_PDB = Simple_Raytracer.pdb
-
-build CMakeFiles/Simple_Raytracer.dir/hittable_list.cpp.obj: CXX_COMPILER__Simple_Raytracer_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/hittable_list.cpp || cmake_object_order_depends_target_Simple_Raytracer
-  DEP_FILE = CMakeFiles\Simple_Raytracer.dir\hittable_list.cpp.obj.d
-  FLAGS = -Ofast -Wall -g -std=gnu++14
-  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
-  OBJECT_FILE_DIR = CMakeFiles\Simple_Raytracer.dir
-  TARGET_COMPILE_PDB = CMakeFiles\Simple_Raytracer.dir\
-  TARGET_PDB = Simple_Raytracer.pdb
+build CMakeFiles/Count_Odd_Numbers_in_an_Interval.dir/main.cpp.obj: CXX_COMPILER__Count_Odd_Numbers_in_an_Interval_Debug C$:/Users/Gavin$ T$ McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming$ Skills/Count$ Odd$ Numbers$ in$ an$ Interval/main.cpp || cmake_object_order_depends_target_Count_Odd_Numbers_in_an_Interval
+  DEP_FILE = CMakeFiles\Count_Odd_Numbers_in_an_Interval.dir\main.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\Count_Odd_Numbers_in_an_Interval.dir
+  OBJECT_FILE_DIR = CMakeFiles\Count_Odd_Numbers_in_an_Interval.dir
+  TARGET_COMPILE_PDB = CMakeFiles\Count_Odd_Numbers_in_an_Interval.dir\
+  TARGET_PDB = Count_Odd_Numbers_in_an_Interval.pdb
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target Simple_Raytracer
+# Link build statements for EXECUTABLE target Count_Odd_Numbers_in_an_Interval
 
 
 #############################################
-# Link the executable Simple_Raytracer.exe
+# Link the executable Count_Odd_Numbers_in_an_Interval.exe
 
-build Simple_Raytracer.exe: CXX_EXECUTABLE_LINKER__Simple_Raytracer_Debug CMakeFiles/Simple_Raytracer.dir/main.cpp.obj CMakeFiles/Simple_Raytracer.dir/sphere.cpp.obj CMakeFiles/Simple_Raytracer.dir/hittable_list.cpp.obj
-  FLAGS = -Ofast -Wall -g
+build Count_Odd_Numbers_in_an_Interval.exe: CXX_EXECUTABLE_LINKER__Count_Odd_Numbers_in_an_Interval_Debug CMakeFiles/Count_Odd_Numbers_in_an_Interval.dir/main.cpp.obj
+  FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\Simple_Raytracer.dir
+  OBJECT_DIR = CMakeFiles\Count_Odd_Numbers_in_an_Interval.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\Simple_Raytracer.dir\
-  TARGET_FILE = Simple_Raytracer.exe
-  TARGET_IMPLIB = libSimple_Raytracer.dll.a
-  TARGET_PDB = Simple_Raytracer.pdb
+  TARGET_COMPILE_PDB = CMakeFiles\Count_Odd_Numbers_in_an_Interval.dir\
+  TARGET_FILE = Count_Odd_Numbers_in_an_Interval.exe
+  TARGET_IMPLIB = libCount_Odd_Numbers_in_an_Interval.dll.a
+  TARGET_PDB = Count_Odd_Numbers_in_an_Interval.pdb
 
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Simple-Raytracer\cmake-build-debug" && "C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5591.52\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Interview-Preparation\Programming Skills\Count Odd Numbers in an Interval\cmake-build-debug" && "C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5591.52\bin\cmake\win\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -108,7 +92,7 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Simple-Raytracer\cmake-build-debug" && "C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5591.52\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Simple-Raytracer" -B"C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Simple-Raytracer\cmake-build-debug""
+  COMMAND = cmd.exe /C "cd /D "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Interview-Preparation\Programming Skills\Count Odd Numbers in an Interval\cmake-build-debug" && "C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5591.52\bin\cmake\win\bin\cmake.exe" --regenerate-during-build -S"C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Interview-Preparation\Programming Skills\Count Odd Numbers in an Interval" -B"C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Interview-Preparation\Programming Skills\Count Odd Numbers in an Interval\cmake-build-debug""
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -118,7 +102,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build Simple_Raytracer: phony Simple_Raytracer.exe
+build Count_Odd_Numbers_in_an_Interval: phony Count_Odd_Numbers_in_an_Interval.exe
 
 # =============================================================================
 # Folder targets.
@@ -126,9 +110,9 @@ build Simple_Raytracer: phony Simple_Raytracer.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Simple-Raytracer/cmake-build-debug
+# Folder: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills/Count Odd Numbers in an Interval/cmake-build-debug
 
-build all: phony Simple_Raytracer.exe
+build all: phony Count_Odd_Numbers_in_an_Interval.exe
 
 # =============================================================================
 # Built-in targets
