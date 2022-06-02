@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Number_of_1_Bits",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Number_of_1_Bits::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Number_of_1_Bits-Debug-9951d30a472486585609.json",
+					"name" : "Number_of_1_Bits",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Number of 1 Bits/cmake-build-debug",
+		"source" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Number of 1 Bits"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

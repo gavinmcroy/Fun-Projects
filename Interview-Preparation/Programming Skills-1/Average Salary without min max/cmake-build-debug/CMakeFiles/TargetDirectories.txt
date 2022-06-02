@@ -1,0 +1,3 @@
+C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Average Salary Excluding the Min and Max Salary/cmake-build-debug/CMakeFiles/Average_Salary_Excluding_the_Min_and_Max_Salary.dir
+C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Average Salary Excluding the Min and Max Salary/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Average Salary Excluding the Min and Max Salary/cmake-build-debug/CMakeFiles/rebuild_cache.dir
