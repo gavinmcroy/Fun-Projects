@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
-#include <limits>
 #include <algorithm>
 
 int largestPerimeter(std::vector<int> &nums);
+
+/* A much better solution */
+int largestPerimeter1(std::vector<int> &nums);
 
 bool formsTriangle(int a, int b, int c) {
     if (a + b > c && a + c > b && b + c > a) {
@@ -18,6 +20,7 @@ int main() {
     std::vector<int> num2 = {1, 2, 1};
     //std::cout << formsTriangle(3, 4, 4) << std::endl;
     std::cout << largestPerimeter(num1) << std::endl;
+    std::cout << largestPerimeter1(num1) << std::endl;
     // largestPerimeter(num1);
     std::cout << "Data Size: " << num1.size();
     return 0;
@@ -42,8 +45,8 @@ int largestPerimeter(std::vector<int> &nums) {
         if (i + 2 > nums.size()) {
             return 0;
         }
-        /* Assumes data is sorted, since the first element is the biggest (i) the other two added together
-        * must be greater than the largest or else it is not a triangle */
+            /* Assumes data is sorted, since the first element is the biggest (i) the other two added together
+            * must be greater than the largest or else it is not a triangle */
         else if (nums[i] > (nums[i + 1] + nums[i + 2])) {
             continue;
         }
@@ -63,4 +66,18 @@ int largestPerimeter(std::vector<int> &nums) {
         }
     }
     return largestPerimeter;
+}
+
+int largestPerimeter1(std::vector<int> &nums) {
+    std::sort(nums.begin(), nums.end(), std::greater<>());
+    for (int i = 0; i < nums.size(); i++) {
+        if (i + 2 > nums.size()) {
+            return 0;
+        } else if (nums[i] > (nums[i + 1] + nums[i + 2])) {
+            continue;
+        } else if (formsTriangle(nums[i], nums[i + 1], nums[i + 2])) {
+            return nums[i] + nums[i + 1] + nums[i + 2];
+        }
+    }
+    return 0;
 }
