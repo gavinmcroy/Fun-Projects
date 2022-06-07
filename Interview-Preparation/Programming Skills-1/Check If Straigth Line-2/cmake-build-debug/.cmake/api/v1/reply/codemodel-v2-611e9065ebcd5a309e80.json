@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "Check_if_straight_line",
+					"name" : "Check_If_Straigth_Line_2",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "Check_if_straight_line::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Check_if_straight_line-Debug-91a35ff309d2f369f032.json",
-					"name" : "Check_if_straight_line",
+					"id" : "Check_If_Straigth_Line_2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Check_If_Straigth_Line_2-Debug-df3ecd280460ac7b7ac8.json",
+					"name" : "Check_If_Straigth_Line_2",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Check if straight line/cmake-build-debug",
-		"source" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Check if straight line"
+		"build" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Check If Straigth Line-2/cmake-build-debug",
+		"source" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Check If Straigth Line-2"
 	},
 	"version" : 
 	{
