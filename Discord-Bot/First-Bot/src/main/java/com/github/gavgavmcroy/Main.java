@@ -6,10 +6,18 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import reactor.core.publisher.Mono;
 
-public class Main {
+import java.io.File;
+import java.util.Scanner;
 
-    public static void main(String[] args) {
-        DiscordClient client = DiscordClient.create("OTg1MjM0NzY5OTAwMTA5OTE0.G7OR6r.IMH_H_YYito3ANrj55155-XLE4rxx1OrFiOFlY");
+public class Main {
+    /* Token needs to come from config file instead of hard coded*/
+    public static void main(String[] args) throws Exception {
+        File file = new File("C:\\Users\\Gavin T McRoy\\ocuments\\GitHub\\Fun-Projects\\Discord-Bot\\First-Bot\\info.cfg");
+        Scanner scanner = new Scanner(file);
+
+        String localToken = scanner.nextLine();
+        
+        DiscordClient client = DiscordClient.create(localToken);
 
         Mono<Void> login = client.withGateway((GatewayDiscordClient gateway) ->
                 gateway.on(MessageCreateEvent.class, event -> {
