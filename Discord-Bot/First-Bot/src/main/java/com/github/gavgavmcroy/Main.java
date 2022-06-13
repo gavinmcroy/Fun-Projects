@@ -11,6 +11,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.channel.VoiceChannel;
+import discord4j.discordjson.json.gateway.MessageCreate;
 import discord4j.voice.AudioProvider;
 
 import java.util.*;
@@ -36,14 +37,13 @@ public class Main {
     }
 
     static {
-        /* Grab the member, if not there return null */
-        /* Creates AudioPlayer instance and translates URLS to AudioTrack instances */
+        /* translates URLS to AudioTrack instances */
         final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
 
-        /* Optimization Strategy */
+        /* Optimization */
         playerManager.getConfiguration().setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
 
-        /* Allow playerManager to parse remote sources like youtube */
+        /* Allow playerManager to parse remote sources like YouTube */
         AudioSourceManagers.registerRemoteSources(playerManager);
 
         /* Create an AudioPlayer so Discord4J can receive audio data */
@@ -54,8 +54,9 @@ public class Main {
                 createMessage("Pong").block());
 
         commands.put("dick", event -> {
+            final int RANDOM_NUMBER_BOUNDS = 100;
             Random random = new Random();
-            int randomNum = random.nextInt(100);
+            int randomNum = random.nextInt(RANDOM_NUMBER_BOUNDS);
             String size = "\u0190";
             for (int i = 0; i < randomNum; i++) {
                 size = size.concat("=");
@@ -66,14 +67,14 @@ public class Main {
         });
 
         commands.put("flip", event -> {
+            final int RANDOM_NUMBER_BOUNDS = 2;
             Random random = new Random();
-            int randomNum = random.nextInt(2);
-            String string = event.getMember().get().getMention();
-            //String string = " ";
+            int randomNum = random.nextInt(RANDOM_NUMBER_BOUNDS);
+            String mentionTag = event.getMember().get().getMention();
             if (randomNum == 0) {
-                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(string + " Heads").block();
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Heads").block();
             } else {
-                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(string + " Tails").block();
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Tails").block();
             }
         });
 
@@ -91,11 +92,33 @@ public class Main {
         });
 
         commands.put("play", event -> {
+            final int EXPECTED_ARGUMENTS = 2;
             final TrackScheduler scheduler = new TrackScheduler(player);
             final String content = event.getMessage().getContent();
+            /* Syntax expected is !play url:, so we parse the entire message splitting it by spaces, the url is expected
+             * to the second command */
             final List<String> command = Arrays.asList(content.split(" "));
-            playerManager.loadItem(command.get(1), scheduler);
+            if (command.size() < EXPECTED_ARGUMENTS) {
+                String mentionTag = event.getMember().get().getMention();
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                        "no url was provided").block();
+            } else {
+                playerManager.loadItem(command.get(1), scheduler);
+            }
+        });
 
+        commands.put("leave", event -> {
+            /* Get person who sent the message */
+            Member member = event.getMember().orElse(null);
+            if (member != null) {
+                VoiceState voiceState = member.getVoiceState().block();
+                if (voiceState != null) {
+                    VoiceChannel channel = voiceState.getChannel().block();
+                    if (channel != null) {
+                        Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
+                    }
+                }
+            }
         });
     }
 }

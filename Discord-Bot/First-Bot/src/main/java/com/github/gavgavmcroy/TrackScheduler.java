@@ -8,7 +8,7 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 
 public class TrackScheduler implements AudioLoadResultHandler {
 
-    private AudioPlayer player;
+    private final AudioPlayer player;
 
     public TrackScheduler(final AudioPlayer player) {
         this.player = player;
