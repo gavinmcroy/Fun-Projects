@@ -4,6 +4,8 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import com.sedmelluq.discord.lavaplayer.track.playback.NonAllocatingAudioFrameBuffer;
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
@@ -87,7 +89,7 @@ public class Main {
                     if (channel != null) {
                         channel.join(spec -> spec.setProvider(provider)).block();
                     }
-                }else{
+                } else {
                     String mentionTag = member.getMention();
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
                             "You are not in a Voice Channel").block();
@@ -115,19 +117,42 @@ public class Main {
             /* Get person who sent the message */
             Member member = event.getMember().orElse(null);
             if (member != null) {
-                VoiceState voiceState = member.getVoiceState().block();
-                if (voiceState != null) {
-                    VoiceChannel channel = voiceState.getChannel().block();
-                    if (channel != null) {
-                        Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
-                    }
-                }
+                String mentionTag = event.getMember().get().getMention();
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Superior " +
+                        "has disconnected").block();
+                Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
             }
         });
 
-        commands.put("stop", event ->{
-           player.stopTrack();
+        commands.put("stop", event -> {
+            AudioTrack track = player.getPlayingTrack();
+            String mentionTag = event.getMember().get().getMention();
+            if (track == null) {
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
+                        " No track is playing").block();
+            } else {
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Song has been " +
+                        "removed from queue").block();
+                player.stopTrack();
+            }
+        });
 
+        /* TODO The current playing track, if one is playing. Assumes one is */
+        commands.put("song", event -> {
+            String mentionTag = event.getMember().get().getMention();
+            AudioTrack track = player.getPlayingTrack();
+            if (track == null) {
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
+                        " No track is playing").block();
+            }
+            AudioTrackInfo info = track.getInfo();
+            if (info == null) {
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("ERROR with " +
+                        "grabbing info").block();
+            } else {
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
+                        "\nTITLE: " + info.title + "\nDURATION: " + info.length / 1000 + " seconds" + "\nCREATOR: " + info.author).block();
+            }
         });
     }
 }
