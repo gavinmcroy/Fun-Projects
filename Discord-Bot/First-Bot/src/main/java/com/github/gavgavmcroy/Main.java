@@ -87,6 +87,10 @@ public class Main {
                     if (channel != null) {
                         channel.join(spec -> spec.setProvider(provider)).block();
                     }
+                }else{
+                    String mentionTag = member.getMention();
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                            "You are not in a Voice Channel").block();
                 }
             }
         });
@@ -119,6 +123,11 @@ public class Main {
                     }
                 }
             }
+        });
+
+        commands.put("stop", event ->{
+           player.stopTrack();
+
         });
     }
 }
