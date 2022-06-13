@@ -98,6 +98,7 @@ public class Main {
         });
 
         commands.put("play", event -> {
+            String mentionTag = event.getMember().get().getMention();
             final int EXPECTED_ARGUMENTS = 2;
             final TrackScheduler scheduler = new TrackScheduler(player);
             final String content = event.getMessage().getContent();
@@ -105,11 +106,17 @@ public class Main {
              * to the second command */
             final List<String> command = Arrays.asList(content.split(" "));
             if (command.size() < EXPECTED_ARGUMENTS) {
-                String mentionTag = event.getMember().get().getMention();
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
-                        "no url was provided").block();
+                        "no url was provided. Make sure there is only one space").block();
             } else {
-                playerManager.loadItem(command.get(1), scheduler);
+                var test = playerManager.loadItem(command.get(1), scheduler);
+                if (test == null) {
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("Error " +
+                            "invalid URL provided\n").block();
+                } else {
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("\nNow playing " +
+                            player.getPlayingTrack().getInfo().title).block();
+                }
             }
         });
 
