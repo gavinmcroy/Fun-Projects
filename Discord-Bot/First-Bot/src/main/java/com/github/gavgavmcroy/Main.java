@@ -55,7 +55,7 @@ public class Main {
 
         commands.put("dick", event -> {
             Random random = new Random();
-            int randomNum = random.nextInt(50);
+            int randomNum = random.nextInt(100);
             String size = "\u0190";
             for (int i = 0; i < randomNum; i++) {
                 size = size.concat("=");
