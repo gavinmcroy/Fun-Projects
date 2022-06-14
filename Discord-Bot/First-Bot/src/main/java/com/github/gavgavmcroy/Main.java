@@ -21,7 +21,6 @@ import java.util.*;
 
 public class Main {
     private static final Map<String, Command> commands = new HashMap<>();
-    private static final BotState botState = new BotState();
 
     public static void main(String[] args) throws Exception {
         GatewayDiscordClient client = DiscordClientBuilder.create(Util.openToken()).build().login().block();
@@ -43,16 +42,15 @@ public class Main {
     static {
         /* translates URLS to AudioTrack instances */
         final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
-
         /* Optimization */
         playerManager.getConfiguration().setFrameBufferFactory(NonAllocatingAudioFrameBuffer::new);
-
         /* Allow playerManager to parse remote sources like YouTube */
         AudioSourceManagers.registerRemoteSources(playerManager);
-
         /* Create an AudioPlayer so Discord4J can receive audio data */
-        final AudioPlayer player = playerManager.createPlayer();
-        AudioProvider provider = new LavaPlayerAudioProvider(player);
+
+        final AudioPlayer audioPlayer = playerManager.createPlayer();
+        AudioProvider provider = new LavaPlayerAudioProvider(audioPlayer);
+
 
         commands.put("ping", event -> Objects.requireNonNull(event.getMessage().getChannel().block()).
                 createMessage("Pong").block());
@@ -85,7 +83,7 @@ public class Main {
         commands.put("play", event -> {
             String mentionTag = event.getMember().get().getMention();
             final int EXPECTED_ARGUMENTS = 2;
-            final TrackScheduler scheduler = new TrackScheduler(player);
+            final TrackScheduler scheduler = new TrackScheduler(audioPlayer);
             final String content = event.getMessage().getContent();
             /* Syntax expected is !play url:, so we parse the entire message splitting it by spaces, the url is expected
              * to the second command */
@@ -94,14 +92,27 @@ public class Main {
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
                         "no url was provided. Make sure there is only one space").block();
             } else {
+                /* TODO odd bug revolving around loadItem taking time to process. So while its loading on another
+                *   thread, scheduler checks the state before its had time to assign the state */
                 playerManager.loadItem(command.get(1), scheduler);
-                //Thread.sleep(3000);
-                AudioTrack isPlaying = player.getPlayingTrack();
-                if (isPlaying == null) {
+                /* Notify that item was loaded */
+                if (scheduler.getState() == TrackState.NO_MATCHES) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
-                            "Something went wrong with playing the given link").block();
+                            "The URL provided did not yield any matches ").block();
+                } else if (scheduler.getState() == TrackState.LOAD_FAILED) {
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                            "There was a load error with the URL. Make sure the URL did not come from " +
+                            "a playlist").block();
+                }else if(scheduler.getState() == TrackState.TRACK_LOADED){
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Success " +
+                            " Song will now play").block();
+                }else if (scheduler.getState() == TrackState.PLAY_LIST_LOADED){
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " " +
+                            "Playlist Successfully Loaded ").block();
+                }else if(scheduler.getState() == TrackState.NO_OPERATION){
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
+                            " No Operation in Status").block();
                 }
-
             }
         });
 
@@ -113,7 +124,7 @@ public class Main {
                     VoiceChannel channel = voiceState.getChannel().block();
                     if (channel != null) {
                         channel.join(spec -> spec.setProvider(provider)).block();
-                        botState.isConnected = true;
+                        BotState.isConnected = true;
                     }
                 } else {
                     String mentionTag = member.getMention();
@@ -129,10 +140,11 @@ public class Main {
             if (member != null) {
                 String mentionTag = event.getMember().get().getMention();
                 /* if not connected, do nothing */
-                if (botState.isConnected) {
+                if (BotState.isConnected) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Superior " +
                             "has disconnected").block();
                     Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
+                    BotState.isConnected = false;
                 } else {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
                             " Not connected ").block();
@@ -141,7 +153,7 @@ public class Main {
         });
 
         commands.put("stop", event -> {
-            AudioTrack track = player.getPlayingTrack();
+            AudioTrack track = audioPlayer.getPlayingTrack();
             String mentionTag = event.getMember().get().getMention();
             if (track == null) {
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
@@ -149,13 +161,13 @@ public class Main {
             } else {
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Song has been " +
                         "removed from queue").block();
-                player.stopTrack();
+                audioPlayer.stopTrack();
             }
         });
 
         commands.put("song", event -> {
             String mentionTag = event.getMember().get().getMention();
-            AudioTrack track = player.getPlayingTrack();
+            AudioTrack track = audioPlayer.getPlayingTrack();
             if (track == null) {
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
                         " No track is playing").block();

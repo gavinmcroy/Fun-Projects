@@ -2,9 +2,10 @@ package com.github.gavgavmcroy;
 
 public class BotState {
 
-    public boolean isConnected;
+    public static boolean isConnected;
 
-    BotState(){
+    BotState() {
         isConnected = false;
     }
+
 }
