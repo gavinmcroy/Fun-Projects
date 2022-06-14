@@ -13,8 +13,9 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.channel.VoiceChannel;
-import discord4j.discordjson.json.gateway.MessageCreate;
 import discord4j.voice.AudioProvider;
+import discord4j.voice.VoiceConnectionRegistry;
+import reactor.core.publisher.Mono;
 
 import java.util.*;
 
@@ -109,14 +110,14 @@ public class Main {
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
                         "no url was provided. Make sure there is only one space").block();
             } else {
-                var test = playerManager.loadItem(command.get(1), scheduler);
-                if (test == null) {
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("Error " +
-                            "invalid URL provided\n").block();
-                } else {
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("\nNow playing " +
-                            player.getPlayingTrack().getInfo().title).block();
+                playerManager.loadItem(command.get(1), scheduler);
+                //Thread.sleep(3000);
+                AudioTrack isPlaying = player.getPlayingTrack();
+                if (isPlaying == null) {
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                            "Something went wrong with playing the given link").block();
                 }
+
             }
         });
 
@@ -124,10 +125,26 @@ public class Main {
             /* Get person who sent the message */
             Member member = event.getMember().orElse(null);
             if (member != null) {
-                String mentionTag = event.getMember().get().getMention();
-                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Superior " +
-                        "has disconnected").block();
-                Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
+                /* if not connected, do nothing */
+                Mono<Boolean> temp = member.getGuild().block().getVoiceConnection().block().isConnected();
+                temp.flatMap(fieldExists -> {
+                    if (fieldExists) {
+                        System.out.println("Connected");
+                    } else {
+                        System.out.println("False");
+                    }
+                    return Mono.empty();
+                });
+
+
+//                if(isConnected){
+//                    String mentionTag = event.getMember().get().getMention();
+//                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Superior " +
+//                            "has disconnected").block();
+//                    Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
+//                }else{
+//                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("Not connected. ").block();
+//                }
             }
         });
 
