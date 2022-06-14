@@ -10,6 +10,6 @@ public class Util {
         File file = new File("C:\\Users\\Gavin T McRoy\\Documents\\GitHub\\Fun-Projects\\" +
                 "Discord-Bot\\First-Bot\\info.cfg");
         Scanner scanner = new Scanner(file);
-       return scanner.nextLine();
+        return scanner.nextLine();
     }
 }

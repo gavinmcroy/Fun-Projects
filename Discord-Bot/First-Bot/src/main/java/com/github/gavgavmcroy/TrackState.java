@@ -1,7 +1,5 @@
 package com.github.gavgavmcroy;
 
-import java.util.ArrayList;
-
 public class TrackState {
 
     public static final int NO_OPERATION = 0;
@@ -12,7 +10,7 @@ public class TrackState {
 
     private static int status;
 
-    TrackState(){
+    TrackState() {
         status = NO_OPERATION;
     }
 
@@ -34,11 +32,11 @@ public class TrackState {
         status = LOAD_FAILED;
     }
 
-    public int getStatus(){
+    public int getStatus() {
         return status;
     }
 
-    public void clearStatus(){
+    public void clearStatus() {
         status = NO_OPERATION;
     }
 

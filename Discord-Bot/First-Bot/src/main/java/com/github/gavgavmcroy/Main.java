@@ -14,30 +14,11 @@ import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
 import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.voice.AudioProvider;
-import discord4j.voice.VoiceConnectionRegistry;
-import reactor.core.publisher.Mono;
 
 import java.util.*;
 
 public class Main {
     private static final Map<String, Command> commands = new HashMap<>();
-
-    public static void main(String[] args) throws Exception {
-        GatewayDiscordClient client = DiscordClientBuilder.create(Util.openToken()).build().login().block();
-
-        /* This is our message listener */
-        Objects.requireNonNull(client).getEventDispatcher().on(MessageCreateEvent.class).subscribe(event -> {
-            final String content = event.getMessage().getContent();
-            for (Map.Entry<String, Command> entry : commands.entrySet()) {
-                if (content.startsWith("!" + entry.getKey())) {
-                    entry.getValue().execute(event);
-                    break;
-                }
-            }
-        });
-
-        client.onDisconnect().block();
-    }
 
     static {
         /* translates URLS to AudioTrack instances */
@@ -93,25 +74,28 @@ public class Main {
                         "no url was provided. Make sure there is only one space").block();
             } else {
                 /* TODO odd bug revolving around loadItem taking time to process. So while its loading on another
-                *   thread, scheduler checks the state before its had time to assign the state */
+                 *   thread, scheduler checks the state before its had time to assign the state */
                 playerManager.loadItem(command.get(1), scheduler);
+                Thread.sleep(2000);
                 /* Notify that item was loaded */
                 if (scheduler.getState() == TrackState.NO_MATCHES) {
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error: " +
                             "The URL provided did not yield any matches ").block();
                 } else if (scheduler.getState() == TrackState.LOAD_FAILED) {
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error: " +
                             "There was a load error with the URL. Make sure the URL did not come from " +
                             "a playlist").block();
-                }else if(scheduler.getState() == TrackState.TRACK_LOADED){
+                } else if (scheduler.getState() == TrackState.TRACK_LOADED) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Success " +
                             " Song will now play").block();
-                }else if (scheduler.getState() == TrackState.PLAY_LIST_LOADED){
+                } else if (scheduler.getState() == TrackState.PLAY_LIST_LOADED) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " " +
                             "Playlist Successfully Loaded ").block();
-                }else if(scheduler.getState() == TrackState.NO_OPERATION){
+                } else if (scheduler.getState() == TrackState.NO_OPERATION) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
-                            " No Operation in Status").block();
+                            " Critical Error: Resetting objects to prevent crash. If you see this " +
+                            "it is likely youtube is under heavy load and or the music player is").block();
+                    audioPlayer.stopTrack();
                 }
             }
         });
@@ -128,7 +112,7 @@ public class Main {
                     }
                 } else {
                     String mentionTag = member.getMention();
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error: " +
                             "You are not in a Voice Channel").block();
                 }
             }
@@ -174,12 +158,33 @@ public class Main {
             }
             AudioTrackInfo info = track.getInfo();
             if (info == null) {
-                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("ERROR with " +
-                        "grabbing info").block();
+                Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("Error: " +
+                        "Unable to grab info").block();
             } else {
                 Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
                         "\nTITLE: " + info.title + "\nDURATION: " + info.length / 1000 + " seconds" + "\nCREATOR: " + info.author).block();
             }
         });
+    }
+
+    public static void main(String[] args) throws Exception {
+        GatewayDiscordClient client = DiscordClientBuilder.create(Util.openToken()).build().login().block();
+
+        /* This is our message listener */
+        Objects.requireNonNull(client).getEventDispatcher().on(MessageCreateEvent.class).subscribe(event -> {
+            final String content = event.getMessage().getContent();
+            for (Map.Entry<String, Command> entry : commands.entrySet()) {
+                if (content.startsWith("!" + entry.getKey())) {
+                    try {
+                        entry.getValue().execute(event);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+            }
+        });
+
+        client.onDisconnect().block();
     }
 }

@@ -38,14 +38,14 @@ public class TrackScheduler implements AudioLoadResultHandler {
     }
 
     /* Once a state has been grabbed, the track will no longer remain in that state. For example
-    *  If you want to check if a track loaded, and it failed, handle it. The state wouldn't need to remain
-    *  in an inoperable state. The class checking the state should not have to reset it. It is assumed once a state is
-    *  requested the client side will properly handle it*/
-    public int getState(){
+     *  If you want to check if a track loaded, and it failed, handle it. The state wouldn't need to remain
+     *  in an inoperable state. The class checking the state should not have to reset it. It is assumed once a state is
+     *  requested the client side will properly handle it*/
+    public int getState() {
         return trackState.getStatus();
     }
 
-    public void clearStatus(){
+    public void clearStatus() {
         trackState.clearStatus();
     }
 
