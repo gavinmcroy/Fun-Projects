@@ -21,6 +21,7 @@ import java.util.*;
 
 public class Main {
     private static final Map<String, Command> commands = new HashMap<>();
+    private static final BotState botState = new BotState();
 
     public static void main(String[] args) throws Exception {
         GatewayDiscordClient client = DiscordClientBuilder.create(Util.openToken()).build().login().block();
@@ -81,23 +82,6 @@ public class Main {
             }
         });
 
-        commands.put("join", event -> {
-            Member member = event.getMember().orElse(null);
-            if (member != null) {
-                VoiceState voiceState = member.getVoiceState().block();
-                if (voiceState != null) {
-                    VoiceChannel channel = voiceState.getChannel().block();
-                    if (channel != null) {
-                        channel.join(spec -> spec.setProvider(provider)).block();
-                    }
-                } else {
-                    String mentionTag = member.getMention();
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
-                            "You are not in a Voice Channel").block();
-                }
-            }
-        });
-
         commands.put("play", event -> {
             String mentionTag = event.getMember().get().getMention();
             final int EXPECTED_ARGUMENTS = 2;
@@ -121,30 +105,38 @@ public class Main {
             }
         });
 
+        commands.put("join", event -> {
+            Member member = event.getMember().orElse(null);
+            if (member != null) {
+                VoiceState voiceState = member.getVoiceState().block();
+                if (voiceState != null) {
+                    VoiceChannel channel = voiceState.getChannel().block();
+                    if (channel != null) {
+                        channel.join(spec -> spec.setProvider(provider)).block();
+                        botState.isConnected = true;
+                    }
+                } else {
+                    String mentionTag = member.getMention();
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Error " +
+                            "You are not in a Voice Channel").block();
+                }
+            }
+        });
+
         commands.put("leave", event -> {
             /* Get person who sent the message */
             Member member = event.getMember().orElse(null);
             if (member != null) {
+                String mentionTag = event.getMember().get().getMention();
                 /* if not connected, do nothing */
-                Mono<Boolean> temp = member.getGuild().block().getVoiceConnection().block().isConnected();
-                temp.flatMap(fieldExists -> {
-                    if (fieldExists) {
-                        System.out.println("Connected");
-                    } else {
-                        System.out.println("False");
-                    }
-                    return Mono.empty();
-                });
-
-
-//                if(isConnected){
-//                    String mentionTag = event.getMember().get().getMention();
-//                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Superior " +
-//                            "has disconnected").block();
-//                    Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
-//                }else{
-//                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage("Not connected. ").block();
-//                }
+                if (botState.isConnected) {
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Superior " +
+                            "has disconnected").block();
+                    Objects.requireNonNull(member.getGuild().block()).getVoiceConnection().block().disconnect().block();
+                } else {
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag +
+                            " Not connected ").block();
+                }
             }
         });
 
@@ -161,7 +153,6 @@ public class Main {
             }
         });
 
-        /* TODO The current playing track, if one is playing. Assumes one is */
         commands.put("song", event -> {
             String mentionTag = event.getMember().get().getMention();
             AudioTrack track = player.getPlayingTrack();
