@@ -20,6 +20,27 @@ import java.util.*;
 public class Main {
     private static final Map<String, Command> commands = new HashMap<>();
 
+    public static void main(String[] args) throws Exception {
+        GatewayDiscordClient client = DiscordClientBuilder.create(Util.openToken()).build().login().block();
+
+        /* This is our message listener */
+        Objects.requireNonNull(client).getEventDispatcher().on(MessageCreateEvent.class).subscribe(event -> {
+            final String content = event.getMessage().getContent();
+            for (Map.Entry<String, Command> entry : commands.entrySet()) {
+                if (content.startsWith("!" + entry.getKey())) {
+                    try {
+                        entry.getValue().execute(event);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+            }
+        });
+
+        client.onDisconnect().block();
+    }
+
     static {
         /* translates URLS to AudioTrack instances */
         final AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
@@ -165,26 +186,5 @@ public class Main {
                         "\nTITLE: " + info.title + "\nDURATION: " + info.length / 1000 + " seconds" + "\nCREATOR: " + info.author).block();
             }
         });
-    }
-
-    public static void main(String[] args) throws Exception {
-        GatewayDiscordClient client = DiscordClientBuilder.create(Util.openToken()).build().login().block();
-
-        /* This is our message listener */
-        Objects.requireNonNull(client).getEventDispatcher().on(MessageCreateEvent.class).subscribe(event -> {
-            final String content = event.getMessage().getContent();
-            for (Map.Entry<String, Command> entry : commands.entrySet()) {
-                if (content.startsWith("!" + entry.getKey())) {
-                    try {
-                        entry.getValue().execute(event);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    break;
-                }
-            }
-        });
-
-        client.onDisconnect().block();
     }
 }
