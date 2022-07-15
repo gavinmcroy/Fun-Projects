@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <sstream>
 
 #include "rtweekend.h"
 #include "color.h"
