@@ -28,14 +28,14 @@ void read_file(std::string file_name)
 }
 
 // find the average of a vector of numbers
-double average(std::vector<double> data)
+double average(std::vector<double> numbers)
 {
     double sum = 0;
-    for (int i = 0; i < data.size(); i++)
+    for (int i = 0; i < numbers.size(); i++)
     {
-        sum += data[i];
+        sum += numbers[i];
     }
-    return sum / data.size();
+    return sum / numbers.size();
 }
 
 // add up all values in a vector
