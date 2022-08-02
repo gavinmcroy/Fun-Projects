@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Move_Zeros",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Move_Zeros::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Move_Zeros-Debug-a85e7fb57beb8e9927fc.json",
+					"name" : "Move_Zeros",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Array/Move-Zeros/cmake-build-debug",
+		"source" : "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Array/Move-Zeros"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

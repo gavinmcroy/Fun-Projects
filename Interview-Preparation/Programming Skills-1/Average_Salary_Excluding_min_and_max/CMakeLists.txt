@@ -1,6 +1,0 @@
-cmake_minimum_required(VERSION 3.22)
-project(Average_Salary_Excluding_the_Min_and_Max_Salary)
-
-set(CMAKE_CXX_STANDARD 14)
-
-add_executable(Average_Salary_Excluding_the_Min_and_Max_Salary main.cpp)

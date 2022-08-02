@@ -1,4 +1,4 @@
-"C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5787.29\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/ninja/win/ninja.exe" -G Ninja -S "C:\Users\Gavin T McRoy\Desktop\MBR-test" -B "C:\Users\Gavin T McRoy\Desktop\MBR-test\cmake-build-debug"
+"C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\221.5787.29\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/ninja/win/ninja.exe" -G Ninja -S "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\MBR-test" -B "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\MBR-test\cmake-build-debug"
 -- The C compiler identification is GNU 11.2.0
 -- The CXX compiler identification is GNU 11.2.0
 -- Detecting C compiler ABI info
@@ -13,4 +13,4 @@
 -- Detecting CXX compile features - done
 -- Configuring done
 -- Generating done
--- Build files have been written to: C:/Users/Gavin T McRoy/Desktop/MBR-test/cmake-build-debug
+-- Build files have been written to: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/MBR-test/cmake-build-debug
