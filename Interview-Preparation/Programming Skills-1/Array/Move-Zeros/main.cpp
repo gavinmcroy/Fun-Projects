@@ -42,8 +42,15 @@ void moveZeroes(vector<int> &nums) {
         return;
     }
 
-
     //find a 0, check if all other remaining numbers are 0, if not swap until end of list.
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] == 0) {
+            //Swap 0 with i + 1 until the rest of the remaining list is 0.
+
+        }
+    }
+
+
 
 
 }
