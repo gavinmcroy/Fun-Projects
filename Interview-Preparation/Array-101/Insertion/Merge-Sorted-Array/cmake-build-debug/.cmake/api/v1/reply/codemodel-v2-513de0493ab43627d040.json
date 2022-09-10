@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.20"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Merge_Sorted_Array",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Merge_Sorted_Array::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Merge_Sorted_Array-Debug-b41fed65742a2cd10cbd.json",
+					"name" : "Merge_Sorted_Array",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/Leet-Code/Array-101/Insertion/Merge-Sorted-Array/cmake-build-debug",
+		"source" : "C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/Leet-Code/Array-101/Insertion/Merge-Sorted-Array"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
