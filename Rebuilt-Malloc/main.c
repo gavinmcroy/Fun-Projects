@@ -2,6 +2,7 @@
 #include "allocator.h"
 
 int main() {
-    printf("Hello, World!\n");
+    char * test = (char*)malloc(sizeof(char) * 10);
+    printf("TEST %c\n",test[1]);
     return 0;
 }
