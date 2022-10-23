@@ -1,0 +1,11 @@
+# ninja log v5
+0	314	6882393847820888	CMakeFiles/Matrix_Diagonal_Sum.dir/main.cpp.obj	51d33ceebfdba44a
+315	363	6882393848300884	Matrix_Diagonal_Sum.exe	e511347aa351bda7
+2	324	6882422330398837	CMakeFiles/Matrix_Diagonal_Sum.dir/main.cpp.obj	51d33ceebfdba44a
+324	419	6882422331323834	Matrix_Diagonal_Sum.exe	e511347aa351bda7
+2	303	6882423419120687	CMakeFiles/Matrix_Diagonal_Sum.dir/main.cpp.obj	51d33ceebfdba44a
+303	353	6882423419610687	Matrix_Diagonal_Sum.exe	e511347aa351bda7
+2	305	6882424848705232	CMakeFiles/Matrix_Diagonal_Sum.dir/main.cpp.obj	51d33ceebfdba44a
+305	354	6882424849185232	Matrix_Diagonal_Sum.exe	e511347aa351bda7
+2	312	6882425099063537	CMakeFiles/Matrix_Diagonal_Sum.dir/main.cpp.obj	51d33ceebfdba44a
+312	362	6882425099548538	Matrix_Diagonal_Sum.exe	e511347aa351bda7
