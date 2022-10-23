@@ -7,7 +7,7 @@ using namespace std;
 // must be done in place
 void moveZeroes(vector<int> &nums);
 
-bool isAllZero(std::vector<int> &elements, int index);
+bool isAllZero(std::vector<int> &elements);
 
 //print vector
 void printVector(vector<int> &nums) {
@@ -20,13 +20,13 @@ void printVector(vector<int> &nums) {
 int main() {
     std::vector<int> list = {0, 1};
     std::vector<int> list2 = {0, 1, 3, 0, 0};
-    std::vector<int> list3 = {1,2,3,5,6,0,0,0,0};
-    //moveZeroes(list2);
+    std::vector<int> list3 = {0,0,1};
+    std::vector<int> list4 = {1,1,1,1,1,1,1,1,1,1,1,0};
+    moveZeroes(list3);
 
+    //std::cout<<isAllZero(list4)<<std::endl;
 
-   // std::cout<<isAllZero(list3,5)<<std::endl;
-   std::cout<<"Hi"<<std::endl;
-    //printVector(list2);
+    printVector(list3);
     return 0;
 }
 
@@ -50,7 +50,23 @@ void moveZeroes(vector<int> &nums) {
         return;
     }
 
-    for(int i = 0; i < nums.size(); i++){
+    /* Loop until all elements at the end contain 0, each time we encounter a 0 that isn't
+     * in the correct place, swap until it is, then restart the index */
+    int index = 0;
+    while (!isAllZero(nums)) {
+        /* Need a special case for when 0 is already at the end */
+
+        /* if we find a 0 and the remaining list is NOT all 0, swap */
+        if (nums[index] == 0) {
+            //swap until we reach the last element
+            int anotherIndex = index;
+            while (anotherIndex < nums.size()-1) {
+                swap(nums[anotherIndex], nums[anotherIndex + 1]);
+                anotherIndex++;
+            }
+        }else{
+            index++;
+        }
 
     }
 
@@ -58,11 +74,16 @@ void moveZeroes(vector<int> &nums) {
 }
 
 /* Uses zero based indices meaning if indices 0 then 0 is accessing arr[0] */
-bool isAllZero(std::vector<int> &elements, int index){
-    for(int i = index; i < elements.size(); i++){
-        /* Means all elements are not 0 */
-        if(elements[i] != 0){
+bool isAllZero(std::vector<int> &elements) {
+    bool allZero = false;
+    for (int i = 0; i < elements.size(); i++) {
+        /* Means all elements are not 0, after the first 0 */
+        if(allZero && elements[i] !=0 ){
             return false;
+        }
+
+        if (elements[i] == 0) {
+            allZero = true;
         }
     }
     return true;

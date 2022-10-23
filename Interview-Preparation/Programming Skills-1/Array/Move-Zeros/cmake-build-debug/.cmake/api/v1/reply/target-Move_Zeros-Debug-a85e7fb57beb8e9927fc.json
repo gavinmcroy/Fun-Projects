@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Move_Zeros"
+			"path" : "Move_Zeros.exe"
+		},
+		{
+			"path" : "Move_Zeros.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,7 +38,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk"
+					"fragment" : "-g"
 				},
 				{
 					"fragment" : "-std=gnu++14"
@@ -68,12 +71,16 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "Move_Zeros",
-	"nameOnDisk" : "Move_Zeros",
+	"nameOnDisk" : "Move_Zeros.exe",
 	"paths" : 
 	{
 		"build" : ".",
