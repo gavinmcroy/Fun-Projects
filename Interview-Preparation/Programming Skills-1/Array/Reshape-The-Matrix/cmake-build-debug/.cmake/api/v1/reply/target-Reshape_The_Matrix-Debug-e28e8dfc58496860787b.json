@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Reshape_The_Matrix.exe"
-		},
-		{
-			"path" : "Reshape_The_Matrix.pdb"
+			"path" : "Reshape_The_Matrix"
 		}
 	],
 	"backtrace" : 1,
@@ -38,10 +35,10 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g"
+					"fragment" : "-g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk"
 				},
 				{
-					"fragment" : "-std=gnu++23"
+					"fragment" : "-std=gnu++2a"
 				}
 			],
 			"language" : "CXX",
@@ -71,16 +68,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "Reshape_The_Matrix",
-	"nameOnDisk" : "Reshape_The_Matrix.exe",
+	"nameOnDisk" : "Reshape_The_Matrix",
 	"paths" : 
 	{
 		"build" : ".",
