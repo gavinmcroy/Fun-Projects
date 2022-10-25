@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "To_Lower_Case",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "To_Lower_Case::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-To_Lower_Case-Debug-bc6b70016deb9942335c.json",
+					"name" : "To_Lower_Case",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/String/To-Lower-Case/cmake-build-debug",
+		"source" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/String/To-Lower-Case"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
