@@ -1,0 +1,14 @@
+# ninja log v5
+367	415	6885246948132190	Sort_By_1_Bits.exe	12dcc987c4e6fadd
+1	366	6885246947687184	CMakeFiles/Sort_By_1_Bits.dir/main.cpp.obj	66cddc6daccc10f4
+2	153	6885249137901972	build.ninja	3bd4ca12bb42825d
+2	448	6885249142780947	CMakeFiles/Sort_By_1_Bits.dir/main.cpp.obj	66cddc6daccc10f4
+448	501	6885249143290950	Sort_By_1_Bits.exe	12dcc987c4e6fadd
+1	737	6885249294513172	CMakeFiles/Sort_By_1_Bits.dir/main.cpp.obj	66cddc6daccc10f4
+737	830	6885249295428173	Sort_By_1_Bits.exe	12dcc987c4e6fadd
+1	517	6885255275508804	CMakeFiles/Sort_By_1_Bits.dir/main.cpp.obj	66cddc6daccc10f4
+517	571	6885255276038804	Sort_By_1_Bits.exe	12dcc987c4e6fadd
+1	410	6885257320562867	CMakeFiles/Sort_By_1_Bits.dir/main.cpp.obj	66cddc6daccc10f4
+410	465	6885257321102871	Sort_By_1_Bits.exe	12dcc987c4e6fadd
+1	403	6885258553293515	CMakeFiles/Sort_By_1_Bits.dir/main.cpp.obj	66cddc6daccc10f4
+404	455	6885258553788513	Sort_By_1_Bits.exe	12dcc987c4e6fadd
