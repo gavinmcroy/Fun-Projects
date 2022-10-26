@@ -1,0 +1,27 @@
+# ninja log v5
+1	288	6885012566916544	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	8ad1fee85b11aef6
+289	348	6885012567491540	Convert_Binary_Number.exe	7730ca0509699ee9
+1	285	6885014005165868	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+286	346	6885014005755864	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	288	6885014063930687	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+288	334	6885014064380686	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	291	6885014426915478	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+291	347	6885014427480479	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	282	6885014481238985	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+283	329	6885014481688986	Convert_Binary_Number.exe	dd56b45c3aab70fd
+1	289	6885014537765204	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+289	336	6885014538215201	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	285	6885014597452299	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+285	330	6885014597882297	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	287	6885014674220312	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+287	332	6885014674660306	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	286	6885014944183142	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+286	331	6885014944618139	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	286	6885014986396657	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+286	331	6885014986831657	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	341	6885015927129967	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+341	391	6885015927629964	Convert_Binary_Number.exe	dd56b45c3aab70fd
+2	333	6885015984796460	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+333	380	6885015985236459	Convert_Binary_Number.exe	dd56b45c3aab70fd
+1	327	6885016098459514	CMakeFiles/Convert_Binary_Number.dir/main.cpp.obj	7da60187f113d1d6
+327	375	6885016098924519	Convert_Binary_Number.exe	dd56b45c3aab70fd
