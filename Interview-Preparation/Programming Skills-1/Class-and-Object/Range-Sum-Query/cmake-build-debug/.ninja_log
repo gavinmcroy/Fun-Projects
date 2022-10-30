@@ -1,0 +1,8 @@
+# ninja log v5
+0	112	6888685268253194	CMakeFiles/Range_Sum_Query.dir/NumArray.cpp.obj	d225d971a2cd6da4
+3	309	6888685270223194	CMakeFiles/Range_Sum_Query.dir/main.cpp.obj	4f7ff568c499d218
+310	359	6888685270698191	Range_Sum_Query.exe	f5b762b568d6a1d3
+2	304	6888685359178174	CMakeFiles/Range_Sum_Query.dir/main.cpp.obj	4f7ff568c499d218
+304	353	6888685359643174	Range_Sum_Query.exe	f5b762b568d6a1d3
+2	308	6888685442216972	CMakeFiles/Range_Sum_Query.dir/main.cpp.obj	4f7ff568c499d218
+308	358	6888685442691972	Range_Sum_Query.exe	f5b762b568d6a1d3

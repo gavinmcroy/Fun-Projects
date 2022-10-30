@@ -1,0 +1,4 @@
+"C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/222.4345.21/bin/ninja/win/ninja.exe" -G Ninja -S "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Interview-Preparation\Programming Skills-1\Class-and-Object\Range-Sum-Query" -B "C:\Users\Gavin T McRoy\Documents\GitHub\Fun-Projects\Interview-Preparation\Programming Skills-1\Class-and-Object\Range-Sum-Query\cmake-build-debug"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Programming Skills-1/Class-and-Object/Range-Sum-Query/cmake-build-debug
