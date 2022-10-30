@@ -3,4 +3,4 @@ project(Implement_Queue_Stack)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Implement_Queue_Stack main.cpp)
+add_executable(Implement_Queue_Stack main.cpp MyQueue.cpp MyQueue.h)

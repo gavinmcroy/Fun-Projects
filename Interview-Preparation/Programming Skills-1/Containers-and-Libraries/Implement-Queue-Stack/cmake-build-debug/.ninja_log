@@ -1,0 +1,27 @@
+# ninja log v5
+0	167	6888602320248969	build.ninja	8e4e73300401b26f
+5	304	6888652908577937	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+411	475	6888652910267935	Implement_Queue_Stack.exe	36642857764ab15
+2	410	6888652909632936	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+1	300	6888653033353538	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+4	415	6888653034503541	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+416	482	6888653035138541	Implement_Queue_Stack.exe	36642857764ab15
+4	305	6888654336741433	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+1	424	6888654337931431	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+424	491	6888654338581435	Implement_Queue_Stack.exe	36642857764ab15
+5	302	6888654789001839	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+1	422	6888654790201837	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+423	490	6888654790861841	Implement_Queue_Stack.exe	36642857764ab15
+4	302	6888655228645805	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+1	423	6888655229844200	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+423	490	6888655230499204	Implement_Queue_Stack.exe	36642857764ab15
+4	306	6888655630178845	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+1	421	6888655631318844	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+421	487	6888655631958841	Implement_Queue_Stack.exe	36642857764ab15
+1	411	6888656011379448	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+411	482	6888656012074447	Implement_Queue_Stack.exe	36642857764ab15
+2	302	6888656387309388	CMakeFiles/Implement_Queue_Stack.dir/MyQueue.cpp.obj	1a47324df6887b0f
+5	424	6888656388524387	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+424	491	6888656389170233	Implement_Queue_Stack.exe	36642857764ab15
+1	410	6888656510100541	CMakeFiles/Implement_Queue_Stack.dir/main.cpp.obj	afbfdda991cf442e
+410	476	6888656510755541	Implement_Queue_Stack.exe	36642857764ab15
