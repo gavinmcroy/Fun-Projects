@@ -9,15 +9,17 @@ string largestSubString(string s);
 
 bool smallestSubString(string s);
 
+bool fasterRunTime(string s);
+
 int main() {
     string value = "abaabaa";
     string value2 = "abababab";
     string value3 = "ababababab";
     string value4 = "aabaab";
-    //std::cout << largestSubString(value3);
-    std::cout << repeatedSubstringPattern(value);
-    std::cout << smallestSubString(value);
-    //std::cout << value.substr(0,2);
+//    std::cout << repeatedSubstringPattern(value);
+//    std::cout << smallestSubString(value);
+
+    std::cout << fasterRunTime("abcd");
     return 0;
 }
 
@@ -151,3 +153,45 @@ bool smallestSubString(string s) {
     }
     return false;
 }
+
+bool fasterRunTime(string s) {
+    /* check if all the letters are the same */
+    if (s.size() < 2) {
+        return false;
+    }
+
+    char firstLetter = s[0];
+    bool allSame = true;
+    for (int i = 0; i < s.size(); i++) {
+        if (firstLetter != s[i]) {
+            allSame = false;
+        }
+    }
+    if (allSame) {
+        return false;
+    }
+
+
+    /* if there are two substrings it should be found before the half way mark */
+    std::cout << s << std::endl;
+    char temp1, temp2;
+    for (int i = 0; i < s.size() / 2; i++) {
+        char lastLetter = s[s.size() - 1];
+        temp2 = s[0];
+        for (int j = 0; j < s.size() - 1; j++) {
+            temp1 = s[j + 1];
+            s[j + 1] = temp2;
+            temp2 = temp1;
+        }
+        s[0] = lastLetter;
+        std::cout << s << std::endl;
+    }
+}
+
+
+
+
+
+
+
+
