@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Plus_One",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Plus_One::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Plus_One-Debug-1ed7c0c2db6296e94e17.json",
+					"name" : "Plus_One",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-3/Plus-One/cmake-build-debug",
+		"source" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-3/Plus-One"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
