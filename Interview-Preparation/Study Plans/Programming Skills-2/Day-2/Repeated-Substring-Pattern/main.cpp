@@ -5,14 +5,20 @@ using namespace std;
 
 bool repeatedSubstringPattern(string s);
 
+string largestSubString(string s);
+
 int main() {
-    string value = "abab";
-    std::cout << repeatedSubstringPattern("abaabaa");
+    string value = "abaabaa";
+    string value2 = "abababab";
+    string value3 = "ababababab";
+    string value4 = "aabaaba";
+    std::cout << largestSubString(value3);
     //std::cout << value.substr(0,2);
     return 0;
 }
 
 bool repeatedSubstringPattern(string s) {
+    string possibleSol;
     if (s.size() < 2) {
         return false;
     }
@@ -29,6 +35,34 @@ bool repeatedSubstringPattern(string s) {
         return true;
     }
 
+    possibleSol = largestSubString(s);
+    if (possibleSol.empty()) {
+        return false;
+    }
+
+
+    /* breaks on abaabaa*/
+    std::cout<<possibleSol<<std::endl;
+
+    /* Take our possible substr and see if it can be appended to create the start string letter by letter */
+    string check;
+    int incr = 0;
+    for(int i = 0; i < s.size(); i++ ){
+        if(incr >= possibleSol.size()){
+            incr = 0;
+        }
+        check += possibleSol[incr];
+        incr++;
+    }
+
+    if (s != check) {
+        return false;
+    }
+
+    return true;
+}
+
+string largestSubString(string s){
     /* Our substring must be at least 2 letters, so start with the first two letters */
     string possibleSol;
     int startingSize = 2;
@@ -56,28 +90,6 @@ bool repeatedSubstringPattern(string s) {
         }
         startingSize++;
     }
-
-    if (possibleSol.empty()) {
-        return false;
-    }
-
-
-    /* breaks on abaabaa*/
-
-    /* Take our possible substr and see if it can be appended to create the start string letter by letter */
-    string check;
-    int incr = 0;
-    for(int i = 0; i < s.size(); i++ ){
-        if(incr >= possibleSol.size()){
-            incr = 0;
-        }
-        check += possibleSol[incr];
-        incr++;
-    }
-
-    if (s != check) {
-        return false;
-    }
-
-    return true;
+    std::cout<<possibleSol<<std::endl;
+    return possibleSol;
 }
