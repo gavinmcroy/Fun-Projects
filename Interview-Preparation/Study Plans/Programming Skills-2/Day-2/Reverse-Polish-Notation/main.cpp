@@ -2,6 +2,7 @@
 #include <string>
 #include <stack>
 #include <vector>
+#include <limits>
 
 using namespace std;
 
@@ -11,7 +12,9 @@ std::pair<int, int> extractor(stack<int> &st);
 
 int main() {
     vector<string> data = {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
+    vector<string> data1 = {"-128","-128","*","-128","*","-128","*","8","*","-1","*"};
     std::cout << evalRPN(data);
+   // std::cout << std::numeric_limits<int>::min()<<std::endl;
     return 0;
 }
 
@@ -34,7 +37,12 @@ int evalRPN(vector<string> &tokens) {
             answer.push(operation);
         } else if (tokens[i] == "*") {
             pair<int, int> values = extractor(answer);
-            int operation = values.second * values.first;
+            int operation = 0;
+            if (values.second > 0 && values.first > INT_MAX / values.second){
+                return INT_MIN;
+            }else{
+                operation = values.second * values.first;
+            }
             answer.push(operation);
         } else if (tokens[i] == "/") {
             pair<int, int> values = extractor(answer);
