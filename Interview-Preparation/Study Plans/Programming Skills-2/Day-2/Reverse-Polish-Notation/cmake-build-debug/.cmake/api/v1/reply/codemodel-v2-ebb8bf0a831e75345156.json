@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Reverse_Polish_Notation",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Reverse_Polish_Notation::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Reverse_Polish_Notation-Debug-8302ffaffc8c58b6ef03.json",
+					"name" : "Reverse_Polish_Notation",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-2/Reverse-Polish-Notation/cmake-build-debug",
+		"source" : "/Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-2/Reverse-Polish-Notation"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
