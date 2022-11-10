@@ -1,0 +1,3 @@
+"C:\Users\Gavin T McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\222.4345.21\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Plus_One.dir/objects.a
+C:\Users\GAVINT~1\AppData\Local\JETBRA~1\Toolbox\apps\CLion\ch-0\222434~1.21\bin\mingw\bin\ar.exe qc CMakeFiles\Plus_One.dir/objects.a @CMakeFiles\Plus_One.dir\objects1.rsp
+C:\Users\GAVINT~1\AppData\Local\JETBRA~1\Toolbox\apps\CLion\ch-0\222434~1.21\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\Plus_One.dir/objects.a -Wl,--no-whole-archive -o Plus_One.exe -Wl,--out-implib,libPlus_One.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Plus_One.dir\linklibs.rsp
