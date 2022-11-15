@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-4/Multiply-Strings
+# Install script for directory: C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-5/Add-Array-Int
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Multiply_Strings")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Add_Array_Int")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-4/Multiply-Strings/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Interview-Preparation/Study Plans/Programming Skills-2/Day-5/Add-Array-Int/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
