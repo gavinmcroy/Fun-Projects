@@ -7,6 +7,19 @@ using namespace std;
 
 string add(string num1, string num2);
 
+vector<int> addToArrayForm2(vector<int> A, int K) {
+    for (int i = A.size() - 1; i >= 0 && K > 0; --i) {
+        A[i] += K;
+        K = A[i] / 10;
+        A[i] %= 10;
+    }
+    while (K > 0) {
+        A.insert(A.begin(), K % 10);
+        K /= 10;
+    }
+    return A;
+}
+
 vector<int> addToArrayForm(vector<int> &num, int k) {
     string num2 = to_string(k);
     string num1;
@@ -26,7 +39,7 @@ vector<int> addToArrayForm(vector<int> &num, int k) {
             num1.insert(num1.begin(), '0');
         }
     } else if (num2.size() < num1.size()) {
-        while(num2.size() < num1.size()){
+        while (num2.size() < num1.size()) {
             num2.insert(num2.begin(), '0');
         }
     }
@@ -80,25 +93,25 @@ vector<int> addToArrayForm(vector<int> &num, int k) {
 }
 
 int main() {
-    std::vector<int> vec1 = {1,2,0,0};
+    std::vector<int> vec1 = {1, 2, 0, 0};
     int k = 34;
-    std::vector<int> solution = addToArrayForm(vec1, k);
+    std::vector<int> solution = addToArrayForm2(vec1, k);
     for (int x: solution) {
         std::cout << x;
     }
     std::cout << std::endl;
-    std::cout << add("34", "1200");
+    //std::cout << add("34", "1200");
     return 0;
 }
 
 string add(string num1, string num2) {
     /* Step 1 would be to insert 0's in front of num1 until its equal to num2 */
-    if(num1.size() < num2.size()){
+    if (num1.size() < num2.size()) {
         while (num1.size() < num2.size()) {
             num1.insert(num1.begin(), '0');
         }
-    }else if(num2.size() < num1.size()){
-        while(num2.size() < num1.size()){
+    } else if (num2.size() < num1.size()) {
+        while (num2.size() < num1.size()) {
             num2.insert(num2.begin(), '0');
         }
     }
