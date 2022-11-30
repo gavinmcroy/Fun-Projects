@@ -12,7 +12,6 @@ import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.VoiceState;
 import discord4j.core.object.entity.Member;
-import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.channel.VoiceChannel;
 import discord4j.voice.AudioProvider;
 
@@ -59,7 +58,6 @@ public class Main {
                 createMessage("Pong").block());
 
         commands.put("dick", event -> {
-            System.out.println("Hit");
             final int RANDOM_NUMBER_BOUNDS = 100;
             Random random = new Random();
             int randomNum = random.nextInt(RANDOM_NUMBER_BOUNDS);
@@ -109,7 +107,7 @@ public class Main {
                             "There was a load error with the URL. Make sure the URL did not come from " +
                             "a playlist").block();
                 } else if (scheduler.getState() == TrackState.TRACK_LOADED) {
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Success " +
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + "Success " +
                             " Song will now play").block();
                 } else if (scheduler.getState() == TrackState.PLAY_LIST_LOADED) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " " +
@@ -188,7 +186,5 @@ public class Main {
                         "\nTITLE: " + info.title + "\nDURATION: " + info.length / 1000 + " seconds" + "\nCREATOR: " + info.author).block();
             }
         });
-
-        System.out.println("Hello2");
     }
 }
