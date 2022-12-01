@@ -24,18 +24,6 @@ string multiply(string num1, string num2) {
 
 /* PRE: num1 < num2 in arithmetic sense */
 string add(string num1, string num2) {
-    int hangingDigit = 0;
-    const int OFFSET = 48;
-    int num = 0;
-    for (int i = num1.size(); i >= 0; i--) {
-        if(num1[i] == '0'){
-            num = (int) (num1[i]);
-        }else{
-            num = (int) (num1[i]-OFFSET);
-        }
-        break;
-    }
-    std::cout<<num<<std::endl;
     string tmp;
     return tmp;
 }
