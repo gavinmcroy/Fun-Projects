@@ -107,7 +107,7 @@ public class Main {
                             "There was a load error with the URL. Make sure the URL did not come from " +
                             "a playlist").block();
                 } else if (scheduler.getState() == TrackState.TRACK_LOADED) {
-                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " Success " +
+                    Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + "Success " +
                             " Song will now play").block();
                 } else if (scheduler.getState() == TrackState.PLAY_LIST_LOADED) {
                     Objects.requireNonNull(event.getMessage().getChannel().block()).createMessage(mentionTag + " " +
