@@ -38,6 +38,12 @@
 			{
 				"command" : 1,
 				"file" : 0,
+				"line" : 13,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
 				"line" : 14,
 				"parent" : 0
 			},
@@ -49,39 +55,39 @@
 			},
 			{
 				"file" : 3,
-				"parent" : 3
+				"parent" : 4
 			},
 			{
 				"command" : 3,
 				"file" : 3,
 				"line" : 594,
-				"parent" : 4
+				"parent" : 5
 			},
 			{
 				"file" : 2,
-				"parent" : 5
+				"parent" : 6
 			},
 			{
 				"command" : 4,
 				"file" : 2,
 				"line" : 262,
-				"parent" : 6
+				"parent" : 7
 			},
 			{
 				"command" : 3,
 				"file" : 2,
 				"line" : 141,
-				"parent" : 7
+				"parent" : 8
 			},
 			{
 				"file" : 1,
-				"parent" : 8
+				"parent" : 9
 			},
 			{
 				"command" : 2,
 				"file" : 1,
 				"line" : 103,
-				"parent" : 9
+				"parent" : 10
 			},
 			{
 				"command" : 5,
@@ -106,34 +112,34 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
 					"define" : "BOOST_ATOMIC_DYN_LINK"
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
 					"define" : "BOOST_ATOMIC_NO_LIB"
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
 					"define" : "BOOST_FILESYSTEM_DYN_LINK"
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
 					"define" : "BOOST_FILESYSTEM_NO_LIB"
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
 					"define" : "BOOST_SYSTEM_DYN_LINK"
 				},
 				{
-					"backtrace" : 2,
+					"backtrace" : 3,
 					"define" : "BOOST_SYSTEM_NO_LIB"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 11,
+					"backtrace" : 12,
 					"isSystem" : true,
 					"path" : "/home/linuxbrew/.linuxbrew/include"
 				}
@@ -168,21 +174,26 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-Wl,-rpath,/home/linuxbrew/.linuxbrew/lib",
+				"fragment" : "-Wl,-rpath,/home/linuxbrew/.linuxbrew/Cellar/openimageio/2.4.6.0/lib:/home/linuxbrew/.linuxbrew/lib",
 				"role" : "libraries"
 			},
 			{
 				"backtrace" : 2,
+				"fragment" : "/home/linuxbrew/.linuxbrew/Cellar/openimageio/2.4.6.0/lib/libOpenImageIO.so.2.4.6",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
 				"fragment" : "/home/linuxbrew/.linuxbrew/lib/libboost_filesystem-mt.so.1.80.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 2,
+				"backtrace" : 3,
 				"fragment" : "/home/linuxbrew/.linuxbrew/lib/libboost_system-mt.so.1.80.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 10,
+				"backtrace" : 11,
 				"fragment" : "/home/linuxbrew/.linuxbrew/lib/libboost_atomic-mt.so.1.80.0",
 				"role" : "libraries"
 			}
