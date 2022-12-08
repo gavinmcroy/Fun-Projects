@@ -38,13 +38,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 12,
-				"parent" : 0
-			},
-			{
-				"command" : 1,
-				"file" : 0,
-				"line" : 13,
+				"line" : 14,
 				"parent" : 0
 			},
 			{
@@ -55,39 +49,39 @@
 			},
 			{
 				"file" : 3,
-				"parent" : 4
+				"parent" : 3
 			},
 			{
 				"command" : 3,
 				"file" : 3,
 				"line" : 594,
-				"parent" : 5
+				"parent" : 4
 			},
 			{
 				"file" : 2,
-				"parent" : 6
+				"parent" : 5
 			},
 			{
 				"command" : 4,
 				"file" : 2,
 				"line" : 262,
-				"parent" : 7
+				"parent" : 6
 			},
 			{
 				"command" : 3,
 				"file" : 2,
 				"line" : 141,
-				"parent" : 8
+				"parent" : 7
 			},
 			{
 				"file" : 1,
-				"parent" : 9
+				"parent" : 8
 			},
 			{
 				"command" : 2,
 				"file" : 1,
 				"line" : 103,
-				"parent" : 10
+				"parent" : 9
 			},
 			{
 				"command" : 5,
@@ -112,34 +106,34 @@
 			"defines" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "BOOST_ATOMIC_DYN_LINK"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "BOOST_ATOMIC_NO_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "BOOST_FILESYSTEM_DYN_LINK"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "BOOST_FILESYSTEM_NO_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "BOOST_SYSTEM_DYN_LINK"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 2,
 					"define" : "BOOST_SYSTEM_NO_LIB"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 12,
+					"backtrace" : 11,
 					"isSystem" : true,
 					"path" : "/home/linuxbrew/.linuxbrew/include"
 				}
@@ -179,21 +173,16 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "/usr/local/Cellar/openimageio/2.2.18.0/lib/libOpenImageIO.2.2.18.dylib",
-				"role" : "libraries"
-			},
-			{
-				"backtrace" : 3,
 				"fragment" : "/home/linuxbrew/.linuxbrew/lib/libboost_filesystem-mt.so.1.80.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 3,
+				"backtrace" : 2,
 				"fragment" : "/home/linuxbrew/.linuxbrew/lib/libboost_system-mt.so.1.80.0",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 11,
+				"backtrace" : 10,
 				"fragment" : "/home/linuxbrew/.linuxbrew/lib/libboost_atomic-mt.so.1.80.0",
 				"role" : "libraries"
 			}
