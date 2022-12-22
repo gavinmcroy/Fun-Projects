@@ -199,6 +199,10 @@ CMakeFiles/Beier_Neely_Algorithm.dir/LineSegment.cpp.o: ../LineSegment.cpp \
   /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
   /usr/include/c++/11/bits/fstream.tcc
 
+CMakeFiles/Beier_Neely_Algorithm.dir/Utility.cpp.o: ../Utility.cpp \
+  /usr/include/stdc-predef.h \
+  ../Utility.h
+
 CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
   /usr/include/stdc-predef.h \
   /usr/include/c++/11/iostream \
@@ -711,6 +715,12 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512bitalgintrin.h:
 
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h:
+
+/usr/include/c++/11/bits/streambuf.tcc:
+
 /usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/popcntintrin.h:
@@ -722,8 +732,6 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
 /usr/include/wctype.h:
-
-/usr/include/c++/11/bits/streambuf.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
@@ -762,12 +770,6 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vbmi2vlintrin.h:
 
 /usr/include/c++/11/bits/ranges_base.h:
-
-../main.cpp:
-
-/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/11/include/waitpkgintrin.h:
 
 /usr/include/c++/11/bits/alloc_traits.h:
 
@@ -852,6 +854,12 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+../main.cpp:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/waitpkgintrin.h:
 
 /usr/include/c++/11/bits/move.h:
 
@@ -997,8 +1005,6 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/mm_malloc.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vpopcntdqvlintrin.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
@@ -1131,8 +1137,6 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/refwrap.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vnnivlintrin.h:
-
 /usr/include/c++/11/bits/char_traits.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++allocator.h:
@@ -1234,6 +1238,8 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
 /usr/include/c++/11/exception:
+
+../Utility.h:
 
 /usr/include/pthread.h:
 
@@ -1550,6 +1556,8 @@ CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o: ../main.cpp \
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512dqintrin.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/avx512vldqintrin.h:
+
+../Utility.cpp:
 
 /usr/include/unistd.h:
 

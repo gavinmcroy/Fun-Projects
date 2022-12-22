@@ -81,12 +81,12 @@ clean: CMakeFiles/Beier_Neely_Algorithm.dir/clean
 CMakeFiles/Beier_Neely_Algorithm.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Beier_Neely_Algorithm.dir/build.make CMakeFiles/Beier_Neely_Algorithm.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Beier_Neely_Algorithm.dir/build.make CMakeFiles/Beier_Neely_Algorithm.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/cmake-build-debug/CMakeFiles --progress-num=1,2,3 "Built target Beier_Neely_Algorithm"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target Beier_Neely_Algorithm"
 .PHONY : CMakeFiles/Beier_Neely_Algorithm.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Beier_Neely_Algorithm.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/cmake-build-debug/CMakeFiles 3
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/cmake-build-debug/CMakeFiles 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Beier_Neely_Algorithm.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/Beier_Neely_Algorithm.dir/rule

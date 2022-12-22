@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "Beier_Neely_Algorithm.pdb"
   "CMakeFiles/Beier_Neely_Algorithm.dir/LineSegment.cpp.o"
   "CMakeFiles/Beier_Neely_Algorithm.dir/LineSegment.cpp.o.d"
+  "CMakeFiles/Beier_Neely_Algorithm.dir/Utility.cpp.o"
+  "CMakeFiles/Beier_Neely_Algorithm.dir/Utility.cpp.o.d"
   "CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o"
   "CMakeFiles/Beier_Neely_Algorithm.dir/main.cpp.o.d"
 )

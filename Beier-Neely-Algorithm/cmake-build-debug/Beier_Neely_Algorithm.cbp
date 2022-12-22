@@ -102,6 +102,12 @@
 		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/LineSegment.h">
 			<Option target="Beier_Neely_Algorithm"/>
 		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/Utility.cpp">
+			<Option target="Beier_Neely_Algorithm"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/Utility.h">
+			<Option target="Beier_Neely_Algorithm"/>
+		</Unit>
 		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Beier-Neely-Algorithm/main.cpp">
 			<Option target="Beier_Neely_Algorithm"/>
 		</Unit>

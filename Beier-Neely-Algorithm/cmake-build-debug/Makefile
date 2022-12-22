@@ -153,6 +153,30 @@ LineSegment.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Beier_Neely_Algorithm.dir/build.make CMakeFiles/Beier_Neely_Algorithm.dir/LineSegment.cpp.s
 .PHONY : LineSegment.cpp.s
 
+Utility.o: Utility.cpp.o
+.PHONY : Utility.o
+
+# target to build an object file
+Utility.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Beier_Neely_Algorithm.dir/build.make CMakeFiles/Beier_Neely_Algorithm.dir/Utility.cpp.o
+.PHONY : Utility.cpp.o
+
+Utility.i: Utility.cpp.i
+.PHONY : Utility.i
+
+# target to preprocess a source file
+Utility.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Beier_Neely_Algorithm.dir/build.make CMakeFiles/Beier_Neely_Algorithm.dir/Utility.cpp.i
+.PHONY : Utility.cpp.i
+
+Utility.s: Utility.cpp.s
+.PHONY : Utility.s
+
+# target to generate assembly for a file
+Utility.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Beier_Neely_Algorithm.dir/build.make CMakeFiles/Beier_Neely_Algorithm.dir/Utility.cpp.s
+.PHONY : Utility.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -189,6 +213,9 @@ help:
 	@echo "... LineSegment.o"
 	@echo "... LineSegment.i"
 	@echo "... LineSegment.s"
+	@echo "... Utility.o"
+	@echo "... Utility.i"
+	@echo "... Utility.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
