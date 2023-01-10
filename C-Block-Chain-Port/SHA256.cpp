@@ -32,20 +32,43 @@ std::string SHA256::convertStringToBinary(std::string &input) {
 }
 
 std::string SHA256::sha256(std::string &input) {
+    /* fractional parts of the square roots of the first 8 primes */
+    const int H0 = 0x6a09e667;
+    const int H1 = 0xbb67ae85;
+    const int H2 = 0x3c6ef372;
+    const int H3 = 0xa54ff53a;
+    const int H4 = 0x510e527f;
+    const int H5 = 0x9b05688c;
+    const int H6 = 0x1f83d9ab;
+    const int H7 = 0x5be0cd19;
+
     /* Pre-processing */
-    std::string val = convertStringToBinary(input);
-    std::string originalSizeBinary = convertDigitToBinary(val.size());
-    val += "1";
+    std::string hash = convertStringToBinary(input);
+    std::string originalSizeInBinary = convertDigitToBinary(hash.size());
+    hash += "1";
     int padding = 512 - 64;
     /* data must a multiple of 512 so append 0's to allow it to be
      * Save 64 bits for integer at the end which is length of binary string */
-    while (val.size() % padding != 0) {
-        val += "0";
+    while (hash.size() % padding != 0) {
+        hash += "0";
+    }
+    std::string zeros;
+    for (int i = originalSizeInBinary.size(); i < 64; i++) {
+        zeros.append("0");
+    }
+    zeros += originalSizeInBinary;
+
+
+    if (zeros.size() != 64) {
+        std::cerr << "Fatal error: in converting size to binary ";
+    }
+    if ((zeros.size() + hash.size()) % 512 != 0) {
+        std::cerr << "Fatal error: hash is not a multiple of 512";
     }
 
-    for (int i = originalSizeBinary.size(); i < 64; i++) {
 
-    }
+    hash += zeros;
+
 
     return " ";
 }
