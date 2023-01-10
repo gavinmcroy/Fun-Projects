@@ -33,6 +33,8 @@ std::string SHA256::convertStringToBinary(std::string &input) {
 }
 
 std::string SHA256::sha256(std::string &input) {
+    /* Operation specific */
+    std::vector<std::string> messageSchedule;
     /* useful constants */
     const int MULTIPLE = 512;
     const int STRING_BIT_SIZE = 64;
@@ -66,7 +68,7 @@ std::string SHA256::sha256(std::string &input) {
                                                 0xbef9a3f7, 0xc67178f2};
 
     /* Pre-processing */
-    std::string zeros;
+    std::string zerosToAppend;
     std::string hash = convertStringToBinary(input);
     std::string originalSizeInBinary = convertDigitToBinary(hash.size());
     hash += "1";
@@ -80,21 +82,40 @@ std::string SHA256::sha256(std::string &input) {
 
     /* fill empty space with 0's until there is 64 bits */
     for (int i = originalSizeInBinary.size(); i < 64; i++) {
-        zeros.append("0");
+        zerosToAppend.append("0");
     }
-    zeros += originalSizeInBinary;
+    zerosToAppend += originalSizeInBinary;
 
-    if (zeros.size() != 64) {
+    if (zerosToAppend.size() != 64) {
         std::cerr << "Fatal error: in converting size to binary ";
     }
-    if ((zeros.size() + hash.size()) % 512 != 0) {
+    if ((zerosToAppend.size() + hash.size()) % 512 != 0) {
         std::cerr << "Fatal error: hash is not a multiple of 512";
     }
-    hash += zeros;
-
-    
+    hash += zerosToAppend;
 
 
+    /* Create Message Schedule */
+    int tempCounter = 0;
+    for (int i = 0; i < 64; i++) {
+        std::string word;
+        for (int j = 0; j < 32; j++) {
+            /* since hash size is a multiple of 512 this condition should hit when j == 0 */
+            if (tempCounter > hash.size()) {
+                word = "00000000000000000000000000000000";
+                break;
+            } else {
+                word += hash[tempCounter];
+                tempCounter++;
+            }
+        }
+        messageSchedule.emplace_back(word);
+    }
+
+    /* Modify our 0'd out indices so if our hash is 512. 512 / 32 = 16, the beginning of the 0 filled words */
+    for (int i = hash.size() / 32; i < 64; i++) {
+       // unsigned int s0 = messageSchedule[i - 15]
+    }
 
 
     return " ";
