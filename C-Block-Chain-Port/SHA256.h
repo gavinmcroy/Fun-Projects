@@ -7,10 +7,12 @@
 
 #include <string>
 #include <iostream>
+#include <bitset>
+#include <intrin.h>
 
 class SHA256 {
 private:
-
+    bool debug;
 
 public:
     std::string sha256(std::string &input);

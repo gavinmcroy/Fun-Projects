@@ -14,6 +14,7 @@ unsigned int SHA256::rightShift(unsigned int in, unsigned int rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
+    debug = true;
     /* how many bits is our string */
     unsigned long long int size = input.size() * 8;
     std::vector<unsigned char> preProcess;
@@ -61,13 +62,21 @@ std::string SHA256::sha256(std::string &input) {
         preProcess.push_back(0);
     }
 
-    /* TODO this could be the source of a bug. I am not adding the last 64 bits in big endian order.
-     * TODO Although its reversed */
-    auto *p = (unsigned char *) &size;
-    p += 7;
-    for (int i = 7; i >= 0; i--) {
+    /* TODO This could be a bug, but I am manually changing endianness of final value */
+    unsigned long long int test = size;
+    test = _byteswap_uint64(size);
+    auto *p = (unsigned char *) &test;
+    for (int i = 0; i < 8; i++) {
         preProcess.push_back(*p);
-        p -= 1;
+        p += 1;
+    }
+
+    if(debug){
+        std::cout << " PRE PROCESS " << std::endl;
+        for (int i = 0; i < preProcess.size(); i++) {
+            std::cout << "BYTE: "<< i<<" " << std::bitset<8>(preProcess[i]).to_string() << " NUMBER: " << preProcess[i] << std::endl;
+        }
+        std::cout << "CREATION OF MESSAGE SCHEDULE: " << std::endl;
     }
 
     if ((preProcess.size() * 8) % 512 != 0) {
@@ -75,18 +84,25 @@ std::string SHA256::sha256(std::string &input) {
         exit(1);
     }
 
-    /* Create Message Schedule */
+    /* TODO error in the message creation: Create Message Schedule */
+
+
     std::vector<unsigned int> w;
     int increment = 0;
     for (int i = 0; i < 64; i++) {
-        unsigned int word;
-        auto *byte = (unsigned char *) &word;
+        /* We are within our 512 bit junk (64 byte) */
         if (increment < preProcess.size()) {
-            *(byte + 0) = preProcess[increment + 0];
-            *(byte + 1) = preProcess[increment + 1];
-            *(byte + 2) = preProcess[increment + 2];
-            *(byte + 3) = preProcess[increment + 3];
+            unsigned int word;
+            auto *sliceIntoWord = (unsigned char *) &word;
+            for (int j = 0; j < 4; j++) {
+                *sliceIntoWord = preProcess[j + increment];
+                sliceIntoWord++;
+            }
             w.push_back(word);
+            if(debug){
+                std::string temp = std::bitset<32>(word).to_string();
+                std::cout << "BITS " << temp.size() << " : " << temp << " NUMBER: " << word << std::endl;
+            }
             increment += 4;
         } else {
             w.push_back(0);
@@ -98,14 +114,16 @@ std::string SHA256::sha256(std::string &input) {
 //        s0 = (w[i-15] rightrotate 7) xor (w[i-15] rightrotate 18) xor (w[i-15] rightshift 3)
 //        s1 = (w[i- 2] rightrotate 17) xor (w[i- 2] rightrotate 19) xor (w[i- 2] rightshift 10)
 //        w[i] = w[i-16] + s0 + w[i-7] + s1
-        unsigned int s0 = (rightShift(w[i - 15], 7)) xor (rightShift(w[i - 15], 18))
-                          xor rightShift(w[i - 15], 3);
-        unsigned int s1 = (rightShift(w[i - 2], 17)) xor (rightShift(w[i - 2], 19))
-                          xor rightShift(w[i - 2], 10);
+        unsigned int s0 = (rightShift(w[i - 15], 7)) ^ (rightShift(w[i - 15], 18))
+                          ^ rightShift(w[i - 15], 3);
+        unsigned int s1 = (rightShift(w[i - 2], 17)) ^ (rightShift(w[i - 2], 19))
+                          ^ rightShift(w[i - 2], 10);
         w[i] = w[i - 16] + s0 + w[i - 7] + s1;
 
-        std::string binary = std::bitset<32>(w[i]).to_string();
-        std::cout << binary << std::endl;
+//        std::string binary = std::bitset<32>(w[i]).to_string();
+//        std::string binary2 = std::bitset<32>(s0).to_string();
+//        std::cout << binary << std::endl;
+//        std::cout << binary2 << std::endl;
         break;
     }
     return " ";
