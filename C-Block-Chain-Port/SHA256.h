@@ -10,12 +10,12 @@
 
 class SHA256 {
 private:
-    //std::string convertDigitToBinary(unsigned int digit);
+
 
 public:
-    //std::string convertStringToBinary(std::string &input);
-
     std::string sha256(std::string &input);
+
+    unsigned int rightShift(unsigned int in, unsigned int rotateAmount);
 
 };
 

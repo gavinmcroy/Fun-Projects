@@ -7,30 +7,11 @@
 #include <utility>
 #include <vector>
 
-//std::string SHA256::convertDigitToBinary(unsigned int digit) {
-//    std::string binary;
-//    int start = 128;
-//    while (start > 0) {
-//        if (digit < start) {
-//            binary.append("0");
-//        } else {
-//            digit -= start;
-//            binary.append("1");
-//        }
-//        start = start >> 1;
-//    }
-//    return binary;
-//}
+unsigned int SHA256::rightShift(unsigned int in, unsigned int rotateAmount) {
+    const int INT_BITS = 32;
+    return (in >> rotateAmount) | (in << (32 - rotateAmount));
 
-//std::string SHA256::convertStringToBinary(std::string &input) {
-//    std::vector<unsigned char> decimal;
-//    for (int i = 0; i < input.size(); i++) {
-//        unsigned int val = (unsigned char) input[i];
-//        std::cout<<(val)<<std::endl;
-//    }
-//
-//    return decimal;
-//}
+}
 
 std::string SHA256::sha256(std::string &input) {
     /* how many bits is our string */
@@ -94,13 +75,8 @@ std::string SHA256::sha256(std::string &input) {
         exit(1);
     }
 
-//    for (int i = 0; i < preProcess.size(); i++) {
-//        std::string binary = std::bitset<8>(preProcess[i]).to_string();
-//        std::cout << binary << std::endl;
-//    }
-
     /* Create Message Schedule */
-    std::vector<unsigned int> messageSchedule;
+    std::vector<unsigned int> w;
     int increment = 0;
     for (int i = 0; i < 64; i++) {
         unsigned int word;
@@ -110,14 +86,29 @@ std::string SHA256::sha256(std::string &input) {
             *(byte + 1) = preProcess[increment + 1];
             *(byte + 2) = preProcess[increment + 2];
             *(byte + 3) = preProcess[increment + 3];
-            messageSchedule.push_back(*byte);
+            w.push_back(word);
             increment += 4;
         } else {
-            messageSchedule.push_back(0);
+            w.push_back(0);
         }
     }
 
+    /* Modify 0 indices at the end of the array */
+    for (int i = 16; i < 64; i++) {
+//        s0 = (w[i-15] rightrotate 7) xor (w[i-15] rightrotate 18) xor (w[i-15] rightshift 3)
+//        s1 = (w[i- 2] rightrotate 17) xor (w[i- 2] rightrotate 19) xor (w[i- 2] rightshift 10)
+//        w[i] = w[i-16] + s0 + w[i-7] + s1
+        unsigned int s0 = (rightShift(w[i - 15], 7)) xor (rightShift(w[i - 15], 18))
+                          xor rightShift(w[i - 15], 3);
+        unsigned int s1 = (rightShift(w[i - 2], 17)) xor (rightShift(w[i - 2], 19))
+                          xor rightShift(w[i - 2], 10);
+        w[i] = w[i - 16] + s0 + w[i - 7] + s1;
 
+        std::string binary = std::bitset<32>(w[i]).to_string();
+        std::cout << binary << std::endl;
+        break;
+    }
     return " ";
 }
+
 
