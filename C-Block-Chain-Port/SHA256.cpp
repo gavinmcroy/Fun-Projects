@@ -7,44 +7,44 @@
 #include <utility>
 #include <vector>
 
-std::string SHA256::convertDigitToBinary(unsigned int digit) {
-    std::string binary;
-    int start = 128;
-    while (start > 0) {
-        if (digit < start) {
-            binary.append("0");
-        } else {
-            digit -= start;
-            binary.append("1");
-        }
-        start = start >> 1;
-    }
-    return binary;
-}
+//std::string SHA256::convertDigitToBinary(unsigned int digit) {
+//    std::string binary;
+//    int start = 128;
+//    while (start > 0) {
+//        if (digit < start) {
+//            binary.append("0");
+//        } else {
+//            digit -= start;
+//            binary.append("1");
+//        }
+//        start = start >> 1;
+//    }
+//    return binary;
+//}
 
-std::string SHA256::convertStringToBinary(std::string &input) {
-    std::string binary;
-    for (int i = 0; i < input.size(); i++) {
-        unsigned int val = (int) input[i];
-        binary += convertDigitToBinary(val);
-    }
-
-    return binary;
-}
+//std::string SHA256::convertStringToBinary(std::string &input) {
+//    std::vector<unsigned char> decimal;
+//    for (int i = 0; i < input.size(); i++) {
+//        unsigned int val = (unsigned char) input[i];
+//        std::cout<<(val)<<std::endl;
+//    }
+//
+//    return decimal;
+//}
 
 std::string SHA256::sha256(std::string &input) {
-    /* useful constants */
-    const int MULTIPLE = 512;
-    const int STRING_BIT_SIZE = 64;
-    /* hash value: fractional parts of the square roots of the first 8 primes */
-    const int H0 = 0x6a09e667;
-    const int H1 = 0xbb67ae85;
-    const int H2 = 0x3c6ef372;
-    const int H3 = 0xa54ff53a;
-    const int H4 = 0x510e527f;
-    const int H5 = 0x9b05688c;
-    const int H6 = 0x1f83d9ab;
-    const int H7 = 0x5be0cd19;
+    /* how many bits is our string */
+    unsigned long long int size = input.size() * 8;
+    std::vector<unsigned char> preProcess;
+    /* preProcess word: fractional parts of the square roots of the first 8 primes */
+    const unsigned int H0 = 0x6a09e667;
+    const unsigned int H1 = 0xbb67ae85;
+    const unsigned int H2 = 0x3c6ef372;
+    const unsigned int H3 = 0xa54ff53a;
+    const unsigned int H4 = 0x510e527f;
+    const unsigned int H5 = 0x9b05688c;
+    const unsigned int H6 = 0x1f83d9ab;
+    const unsigned int H7 = 0x5be0cd19;
 
     /* first 32 bits of the fractional parts of the cube root of the first 2-311 prime */
     std::vector<unsigned int> roundConstants = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
@@ -65,36 +65,57 @@ std::string SHA256::sha256(std::string &input) {
                                                 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
                                                 0xbef9a3f7, 0xc67178f2};
 
-    /* Pre-processing */
-    std::string zeros;
-    std::string hash = convertStringToBinary(input);
-    std::string originalSizeInBinary = convertDigitToBinary(hash.size());
-    hash += "1";
-
-    /* Save 64 bits for integer at the end which is length of binary string */
-    const int PADDING = MULTIPLE - STRING_BIT_SIZE;
-    /* data must a multiple of 512 so append 0's to allow it to be */
-    while (hash.size() % PADDING != 0) {
-        hash += "0";
+    /* Convert input to unsigned char */
+    for (int i = 0; i < input.size(); i++) {
+        auto val = (unsigned char) input[i];
+        preProcess.push_back(val);
     }
 
-    /* fill empty space with 0's until there is 64 bits */
-    for (int i = originalSizeInBinary.size(); i < 64; i++) {
-        zeros.append("0");
+    /* Beginning of pre-processing: 128 is the same as adding 1 to the end padded with 0s */
+    unsigned char temp = 128;
+    preProcess.push_back(temp);
+
+    /* fill in rest of the space with 0's. TODO message size is limited right now to 448 bits */
+    while (preProcess.size() * 8 < (512 - 64)) {
+        preProcess.push_back(0);
     }
-    zeros += originalSizeInBinary;
 
-    if (zeros.size() != 64) {
-        std::cerr << "Fatal error: in converting size to binary ";
+    /* TODO this could be the source of a bug. I am not adding the last 64 bits in big endian order.
+     * TODO Although its reversed */
+    auto *p = (unsigned char *) &size;
+    p += 7;
+    for (int i = 7; i >= 0; i--) {
+        preProcess.push_back(*p);
+        p -= 1;
     }
-    if ((zeros.size() + hash.size()) % 512 != 0) {
-        std::cerr << "Fatal error: hash is not a multiple of 512";
+
+    if ((preProcess.size() * 8) % 512 != 0) {
+        std::cerr << "Error: chunk is not of size 512";
+        exit(1);
     }
-    hash += zeros;
 
-    
+//    for (int i = 0; i < preProcess.size(); i++) {
+//        std::string binary = std::bitset<8>(preProcess[i]).to_string();
+//        std::cout << binary << std::endl;
+//    }
 
-
+    /* Create Message Schedule */
+    std::vector<unsigned int> messageSchedule;
+    int increment = 0;
+    for (int i = 0; i < 64; i++) {
+        unsigned int word;
+        auto *byte = (unsigned char *) &word;
+        if (increment < preProcess.size()) {
+            *(byte + 0) = preProcess[increment + 0];
+            *(byte + 1) = preProcess[increment + 1];
+            *(byte + 2) = preProcess[increment + 2];
+            *(byte + 3) = preProcess[increment + 3];
+            messageSchedule.push_back(*byte);
+            increment += 4;
+        } else {
+            messageSchedule.push_back(0);
+        }
+    }
 
 
     return " ";
