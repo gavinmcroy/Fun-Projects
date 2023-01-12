@@ -71,10 +71,11 @@ std::string SHA256::sha256(std::string &input) {
         p += 1;
     }
 
-    if(debug){
+    if (debug) {
         std::cout << " PRE PROCESS " << std::endl;
         for (int i = 0; i < preProcess.size(); i++) {
-            std::cout << "BYTE: "<< i<<" " << std::bitset<8>(preProcess[i]).to_string() << " NUMBER: " << preProcess[i] << std::endl;
+            std::cout << "BYTE: " << i << " " << std::bitset<8>(preProcess[i]).to_string() << " NUMBER: "
+                      << preProcess[i] << std::endl;
         }
         std::cout << "CREATION OF MESSAGE SCHEDULE: " << std::endl;
     }
@@ -85,8 +86,6 @@ std::string SHA256::sha256(std::string &input) {
     }
 
     /* TODO error in the message creation: Create Message Schedule */
-
-
     std::vector<unsigned int> w;
     int increment = 0;
     for (int i = 0; i < 64; i++) {
@@ -95,14 +94,18 @@ std::string SHA256::sha256(std::string &input) {
             unsigned int word;
             auto *sliceIntoWord = (unsigned char *) &word;
             for (int j = 0; j < 4; j++) {
-                *sliceIntoWord = preProcess[j + increment];
+                *sliceIntoWord = (unsigned char) preProcess[j + increment];
                 sliceIntoWord++;
             }
-            w.push_back(word);
-            if(debug){
+
+            word = _byteswap_ulong(word);
+
+            if (debug) {
                 std::string temp = std::bitset<32>(word).to_string();
                 std::cout << "BITS " << temp.size() << " : " << temp << " NUMBER: " << word << std::endl;
             }
+
+            w.push_back(word);
             increment += 4;
         } else {
             w.push_back(0);
