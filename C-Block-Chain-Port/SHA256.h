@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <bitset>
+#include <iomanip>
 #include <intrin.h>
 
 class SHA256 {
@@ -17,7 +18,7 @@ private:
 public:
     std::string sha256(std::string &input);
 
-    unsigned int rightShift(unsigned int in, unsigned int rotateAmount);
+    uint32_t rightShift(uint32_t in, uint32_t rotateAmount);
 
 };
 
