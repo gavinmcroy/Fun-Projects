@@ -19,10 +19,13 @@ uint32_t SHA256::rightShift(uint32_t in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = true;
+    debug = false;
     /* how many bits is our string */
     uint64_t size = input.size() * 8;
     std::vector<uint8_t> preProcess;
+    std::vector<std::bitset<8>> preProcessNew;
+    std::vector<std::bitset<512>> chunk;
+    chunk.emplace_back(0);
     /* preProcess word: fractional parts of the square roots of the first 8 primes */
     uint32_t h0 = 0x6a09e667;
     uint32_t h1 = 0xbb67ae85;
@@ -52,20 +55,31 @@ std::string SHA256::sha256(std::string &input) {
                                0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
                                0xbef9a3f7, 0xc67178f2};
 
-    /* Convert input to unsigned char */
+    /* Pre-processing stage */
+    int iterator = chunk[0].size() - 1;
     for (int i = 0; i < input.size(); i++) {
-        auto val = (uint8_t) input[i];
-        preProcess.push_back(val);
+        auto temp = (uint8_t) input[i];
+        std::bitset<8> bitValue(temp);
+        //std::cout<<bitValue.to_string()<<std::endl;
+        for (int j = 7; j >= 0; j--) {
+            chunk[0][iterator] = bitValue[j];
+            iterator--;
+        }
     }
 
-    /* Beginning of pre-processing: 128 is the same as adding 1 to the end padded with 0s */
-    uint8_t temp = 128;
-    preProcess.push_back(temp);
 
-    /* fill in rest of the space with 0's. TODO message size is limited right now to 448 bits. There is no chunk loop */
-    while (preProcess.size() * 8 < (512 - 64)) {
-        preProcess.push_back(0);
-    }
+    /* Beginning of pre-processing: Turn on a 1 bit at the end of the message that just got turned to binary */
+    chunk[0].set(iterator, true);
+    std::cout << chunk[0].to_string() << std::endl;
+    /* Message has already been appended with 0's */
+
+//    for (int i = 0; i < chunk[0].size(); i++) {
+//        if (i % 8 == 0) {
+//            std::cout << std::endl;
+//        }
+//        std::cout << chunk[0][i];
+//    }
+
 
     /* TODO This could be a bug, but I am manually changing endianness of final value */
     uint64_t test = size;
@@ -104,7 +118,7 @@ std::string SHA256::sha256(std::string &input) {
                 *sliceIntoWord = (uint8_t) preProcess[j + increment];
                 sliceIntoWord++;
             }
-           // word = _byteswap_ulong(word);
+            // word = _byteswap_ulong(word);
 
             if (debug) {
                 std::string stringTemp = std::bitset<32>(word).to_string();
@@ -165,7 +179,7 @@ std::string SHA256::sha256(std::string &input) {
     std::string answer;
 
     std::stringstream stream;
-     h0 = _byteswap_ulong(h0);
+    h0 = _byteswap_ulong(h0);
     stream << std::hex << h7;
     std::string result(stream.str());
     //45a5ddc2
