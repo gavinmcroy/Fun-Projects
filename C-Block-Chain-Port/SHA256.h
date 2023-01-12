@@ -6,10 +6,12 @@
 #define C_BLOCK_CHAIN_PORT_SHA256_H
 
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <bitset>
 #include <iomanip>
 #include <intrin.h>
+#include <cstdlib>
 
 class SHA256 {
 private:

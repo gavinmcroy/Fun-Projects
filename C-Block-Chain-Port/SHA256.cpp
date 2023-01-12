@@ -69,7 +69,7 @@ std::string SHA256::sha256(std::string &input) {
 
     /* TODO This could be a bug, but I am manually changing endianness of final value */
     uint64_t test = size;
-    test = _byteswap_uint64(size);
+    //test = _byteswap_uint64(size);
     auto *p = (uint8_t *) &test;
     for (int i = 0; i < 8; i++) {
         preProcess.push_back(*p);
@@ -90,7 +90,9 @@ std::string SHA256::sha256(std::string &input) {
         exit(1);
     }
 
-    /* Create Message Schedule */
+    /* TODO possible bug in grabbing data. Data must be looked at byte by byte
+     * TODO rather than being casted to a int since that effects original order of bits (endian)
+     * TODO Create Message Schedule */
     std::vector<uint32_t> w;
     int increment = 0;
     for (int i = 0; i < 64; i++) {
@@ -102,7 +104,7 @@ std::string SHA256::sha256(std::string &input) {
                 *sliceIntoWord = (uint8_t) preProcess[j + increment];
                 sliceIntoWord++;
             }
-            word = _byteswap_ulong(word);
+           // word = _byteswap_ulong(word);
 
             if (debug) {
                 std::string stringTemp = std::bitset<32>(word).to_string();
@@ -163,7 +165,7 @@ std::string SHA256::sha256(std::string &input) {
     std::string answer;
 
     std::stringstream stream;
-    // h0 = _byteswap_ulong(h0);
+     h0 = _byteswap_ulong(h0);
     stream << std::hex << h7;
     std::string result(stream.str());
     //45a5ddc2
