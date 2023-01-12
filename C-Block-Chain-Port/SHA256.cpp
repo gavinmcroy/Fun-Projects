@@ -19,9 +19,12 @@ uint32_t SHA256::rightShift(uint32_t in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = false;
+    debug = true;
     /* how many bits is our string */
     uint64_t size = input.size() * 8;
+    if (size > 512) {
+        std::cerr << "There is no support for message greater then 512 bits currently " << std::endl;
+    }
     std::vector<uint8_t> preProcess;
     std::vector<std::bitset<8>> preProcessNew;
     std::vector<std::bitset<512>> chunk;
@@ -55,49 +58,58 @@ std::string SHA256::sha256(std::string &input) {
                                0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
                                0xbef9a3f7, 0xc67178f2};
 
-    /* Pre-processing stage */
-    int iterator = chunk[0].size() - 1;
+    /*  Beginning of Pre-processing stage */
+    int iterator = 0;
     for (int i = 0; i < input.size(); i++) {
         auto temp = (uint8_t) input[i];
         std::bitset<8> bitValue(temp);
-        //std::cout<<bitValue.to_string()<<std::endl;
+        /* Bits will be backwards if done 0-size, must be copied in reverse */
         for (int j = 7; j >= 0; j--) {
             chunk[0][iterator] = bitValue[j];
-            iterator--;
+            iterator++;
         }
+    }
+    chunk[0].set(iterator, true);
+
+    if (debug) {
+        std::string testing = chunk[0].to_string();
+        std::reverse(testing.begin(), testing.end());
+        std::cout << testing << std::endl;
     }
 
 
-    /* Beginning of pre-processing: Turn on a 1 bit at the end of the message that just got turned to binary */
-    chunk[0].set(iterator, true);
-    std::cout << chunk[0].to_string() << std::endl;
-    /* Message has already been appended with 0's */
 
-//    for (int i = 0; i < chunk[0].size(); i++) {
-//        if (i % 8 == 0) {
-//            std::cout << std::endl;
-//        }
-//        std::cout << chunk[0][i];
-//    }
+    /* Append 64 Bits to the end in big endian format */
+    std::bitset<64> endingInt(size);
+    std::cout << endingInt.to_string()<<std::endl;
 
-
-    /* TODO This could be a bug, but I am manually changing endianness of final value */
-    uint64_t test = size;
-    //test = _byteswap_uint64(size);
-    auto *p = (uint8_t *) &test;
-    for (int i = 0; i < 8; i++) {
-        preProcess.push_back(*p);
-        p += 1;
+    /* TODO bug located here */
+    int tempIter = endingInt.size()-1;
+    for(int i = chunk[0].size()-64-1; i < chunk[0].size(); i++){
+        if(tempIter < 0){
+            break;
+        }
+        chunk[0][i] = endingInt[tempIter];
+        tempIter--;
     }
 
     if (debug) {
-        std::cout << " PRE PROCESS " << std::endl;
-        for (int i = 0; i < preProcess.size(); i++) {
-            std::cout << "BYTE: " << i << " " << std::bitset<8>(preProcess[i]).to_string() << " NUMBER: "
-                      << (unsigned int) preProcess[i] << std::endl;
-        }
-        std::cout << "CREATION OF MESSAGE SCHEDULE: " << std::endl;
+        std::cout<<"TEST :"<<std::endl;
+        std::string testing = chunk[0].to_string();
+        std::reverse(testing.begin(), testing.end());
+        std::cout << testing << std::endl;
     }
+
+
+
+//    if (debug) {
+//        std::cout << " PRE PROCESS " << std::endl;
+//        for (int i = 0; i < preProcess.size(); i++) {
+//            std::cout << "BYTE: " << i << " " << std::bitset<8>(preProcess[i]).to_string() << " NUMBER: "
+//                      << (unsigned int) preProcess[i] << std::endl;
+//        }
+//        std::cout << "CREATION OF MESSAGE SCHEDULE: " << std::endl;
+//    }
 
     if ((preProcess.size() * 8) % 512 != 0) {
         std::cerr << "Error: chunk is not of size 512";
@@ -120,10 +132,10 @@ std::string SHA256::sha256(std::string &input) {
             }
             // word = _byteswap_ulong(word);
 
-            if (debug) {
-                std::string stringTemp = std::bitset<32>(word).to_string();
-                std::cout << "BITS " << stringTemp.size() << " : " << stringTemp << " NUMBER: " << word << std::endl;
-            }
+//            if (debug) {
+//                std::string stringTemp = std::bitset<32>(word).to_string();
+//                std::cout << "BITS " << stringTemp.size() << " : " << stringTemp << " NUMBER: " << word << std::endl;
+//            }
 
             w.push_back(word);
             increment += 4;
