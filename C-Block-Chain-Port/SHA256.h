@@ -20,7 +20,7 @@ private:
 public:
     std::string sha256(std::string &input);
 
-    uint32_t rightShift(uint32_t in, uint32_t rotateAmount);
+    std::bitset<32> rightShift(std::bitset<32> in, uint32_t rotateAmount);
 
 };
 
