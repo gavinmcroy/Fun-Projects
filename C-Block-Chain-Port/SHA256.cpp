@@ -71,132 +71,148 @@ std::string SHA256::sha256(std::string &input) {
     }
     chunk[0].set(iterator, true);
 
-    if (debug) {
-        std::string testing = chunk[0].to_string();
-        std::reverse(testing.begin(), testing.end());
-        std::cout << testing << std::endl;
-    }
-
-
+//    if (debug) {
+//        std::string testing = chunk[0].to_string();
+//        std::reverse(testing.begin(), testing.end());
+//        std::cout << testing << std::endl;
+//    }
 
     /* Append 64 Bits to the end in big endian format */
     std::bitset<64> endingInt(size);
-    std::cout << endingInt.to_string()<<std::endl;
+    //std::cout << endingInt.to_string() << std::endl;
 
     /* TODO bug located here */
-    int tempIter = endingInt.size()-1;
-    for(int i = chunk[0].size()-64-1; i < chunk[0].size(); i++){
-        if(tempIter < 0){
+    int tempIter = endingInt.size() - 1;
+    for (int i = chunk[0].size() - 64; i < chunk[0].size(); i++) {
+        if (tempIter < 0) {
             break;
         }
         chunk[0][i] = endingInt[tempIter];
         tempIter--;
     }
 
-    if (debug) {
-        std::cout<<"TEST :"<<std::endl;
-        std::string testing = chunk[0].to_string();
-        std::reverse(testing.begin(), testing.end());
-        std::cout << testing << std::endl;
-    }
-
-
-
 //    if (debug) {
-//        std::cout << " PRE PROCESS " << std::endl;
-//        for (int i = 0; i < preProcess.size(); i++) {
-//            std::cout << "BYTE: " << i << " " << std::bitset<8>(preProcess[i]).to_string() << " NUMBER: "
-//                      << (unsigned int) preProcess[i] << std::endl;
-//        }
-//        std::cout << "CREATION OF MESSAGE SCHEDULE: " << std::endl;
+//        std::cout << "TEST :" << std::endl;
+//        std::string testing = chunk[0].to_string();
+//        std::reverse(testing.begin(), testing.end());
+//        std::cout << testing << std::endl;
 //    }
 
-    if ((preProcess.size() * 8) % 512 != 0) {
-        std::cerr << "Error: chunk is not of size 512";
-        exit(1);
-    }
 
-    /* TODO possible bug in grabbing data. Data must be looked at byte by byte
-     * TODO rather than being casted to a int since that effects original order of bits (endian)
-     * TODO Create Message Schedule */
-    std::vector<uint32_t> w;
-    int increment = 0;
-    for (int i = 0; i < 64; i++) {
-        /* We are within our 512 bit junk (64 byte) */
-        if (increment < preProcess.size()) {
-            uint32_t word;
-            auto *sliceIntoWord = (uint8_t *) &word;
-            for (int j = 0; j < 4; j++) {
-                *sliceIntoWord = (uint8_t) preProcess[j + increment];
-                sliceIntoWord++;
+    /* Create message schedule */
+    std::vector<std::bitset<32>> messageSchedule;
+    for (int i = 0; i < chunk.size(); i++) {
+        int chunkIter = 0;
+        for (int j = 0; j < chunk[i].size() / 32; j++) {
+            std::bitset<32> word;
+            for (int z = word.size() - 1; z >= 0; z--) {
+                word[z] = chunk[i][chunkIter];
+                chunkIter++;
             }
-            // word = _byteswap_ulong(word);
-
-//            if (debug) {
-//                std::string stringTemp = std::bitset<32>(word).to_string();
-//                std::cout << "BITS " << stringTemp.size() << " : " << stringTemp << " NUMBER: " << word << std::endl;
-//            }
-
-            w.push_back(word);
-            increment += 4;
-        } else {
-            w.push_back(0);
+            messageSchedule.push_back(word);
         }
+        for (int j = 16; j < 64; j++) {
+            std::bitset<32> word;
+            word.reset();
+            messageSchedule.push_back(word);
+        }
+        if (messageSchedule.size() < 64) {
+            std::cerr << " Message schedule generated wrong length";
+        }
+
+        for (int j = 0; j < messageSchedule.size(); j++) {
+            std::cout << messageSchedule[j].to_string() << std::endl;
+        }
+
+        /* TODO This needs to be done */
+        //messageSchedule.clear();
     }
 
-    /* TODO There is a bug in this part of the SHA-256 Creation */
-    for (int i = 16; i < 64; i++) {
-//        s0 = (w[i-15] rightrotate 7) xor (w[i-15] rightrotate 18) xor (w[i-15] rightshift 3)
-//        s1 = (w[i- 2] rightrotate 17) xor (w[i- 2] rightrotate 19) xor (w[i- 2] rightshift 10)
-//        w[i] = w[i-16] + s0 + w[i-7] + s1
 
 
-        uint32_t s0 = (rightShift(w[i - 15], 7)) ^ (rightShift(w[i - 15], 18))
-                      ^ rightShift(w[i - 15], 3);
 
-        uint32_t s1 = (rightShift(w[i - 2], 17)) ^ (rightShift(w[i - 2], 19))
-                      ^ rightShift(w[i - 2], 10);
-
-        w[i] = w[i - 16] + s0 + w[i - 7] + s1;
-
-    }
-
-    /* Compression */
-    uint32_t a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
-    for (int i = 0; i < 64; i++) {
-        uint32_t s1 = rightShift(e, 6) ^ rightShift(e, 11) ^ rightShift(e, 25);
-        uint32_t ch = (e & f) ^ ((!e) & g);
-        uint32_t temp1 = h + s1 + ch + k[i] + w[i];
-        uint32_t s0 = rightShift(a, 2) ^ rightShift(a, 13) ^ rightShift(a, 22);
-        uint32_t maj = (a & b) ^ (a & c) ^ (b & c);
-        uint32_t temp2 = s0 + maj;
-        h = g;
-        g = f;
-        f = e;
-        e = d + temp1;
-        d = c;
-        c = b;
-        b = a;
-        a = temp1 + temp2;
-    }
-
-    h0 += a;
-    h1 += b;
-    h2 += c;
-    h3 += d;
-    h4 += e;
-    h5 += f;
-    h6 += g;
-    h7 += h;
-    std::string answer;
-
-    std::stringstream stream;
-    h0 = _byteswap_ulong(h0);
-    stream << std::hex << h7;
-    std::string result(stream.str());
-    //45a5ddc2
-    //9ed47ddc
-    std::cout << result;
+//    /* TODO possible bug in grabbing data. Data must be looked at byte by byte
+//     * TODO rather than being casted to a int since that effects original order of bits (endian)
+//     * TODO Create Message Schedule */
+//    std::vector<uint32_t> w;
+//    int increment = 0;
+//    for (int i = 0; i < 64; i++) {
+//        /* We are within our 512 bit junk (64 byte) */
+//        if (increment < preProcess.size()) {
+//            uint32_t word;
+//            auto *sliceIntoWord = (uint8_t *) &word;
+//            for (int j = 0; j < 4; j++) {
+//                *sliceIntoWord = (uint8_t) preProcess[j + increment];
+//                sliceIntoWord++;
+//            }
+//            // word = _byteswap_ulong(word);
+//
+////            if (debug) {
+////                std::string stringTemp = std::bitset<32>(word).to_string();
+////                std::cout << "BITS " << stringTemp.size() << " : " << stringTemp << " NUMBER: " << word << std::endl;
+////            }
+//
+//            w.push_back(word);
+//            increment += 4;
+//        } else {
+//            w.push_back(0);
+//        }
+//    }
+//
+//    /* TODO There is a bug in this part of the SHA-256 Creation */
+//    for (int i = 16; i < 64; i++) {
+////        s0 = (w[i-15] rightrotate 7) xor (w[i-15] rightrotate 18) xor (w[i-15] rightshift 3)
+////        s1 = (w[i- 2] rightrotate 17) xor (w[i- 2] rightrotate 19) xor (w[i- 2] rightshift 10)
+////        w[i] = w[i-16] + s0 + w[i-7] + s1
+//
+//
+//        uint32_t s0 = (rightShift(w[i - 15], 7)) ^ (rightShift(w[i - 15], 18))
+//                      ^ rightShift(w[i - 15], 3);
+//
+//        uint32_t s1 = (rightShift(w[i - 2], 17)) ^ (rightShift(w[i - 2], 19))
+//                      ^ rightShift(w[i - 2], 10);
+//
+//        w[i] = w[i - 16] + s0 + w[i - 7] + s1;
+//
+//    }
+//
+//    /* Compression */
+//    uint32_t a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
+//    for (int i = 0; i < 64; i++) {
+//        uint32_t s1 = rightShift(e, 6) ^ rightShift(e, 11) ^ rightShift(e, 25);
+//        uint32_t ch = (e & f) ^ ((!e) & g);
+//        uint32_t temp1 = h + s1 + ch + k[i] + w[i];
+//        uint32_t s0 = rightShift(a, 2) ^ rightShift(a, 13) ^ rightShift(a, 22);
+//        uint32_t maj = (a & b) ^ (a & c) ^ (b & c);
+//        uint32_t temp2 = s0 + maj;
+//        h = g;
+//        g = f;
+//        f = e;
+//        e = d + temp1;
+//        d = c;
+//        c = b;
+//        b = a;
+//        a = temp1 + temp2;
+//    }
+//
+//    h0 += a;
+//    h1 += b;
+//    h2 += c;
+//    h3 += d;
+//    h4 += e;
+//    h5 += f;
+//    h6 += g;
+//    h7 += h;
+//    std::string answer;
+//
+//    std::stringstream stream;
+//    h0 = _byteswap_ulong(h0);
+//    stream << std::hex << h7;
+//    std::string result(stream.str());
+//    //45a5ddc2
+//    //9ed47ddc
+//    std::cout << result;
+//    return " ";
     return " ";
 }
 
