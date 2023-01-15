@@ -7,7 +7,7 @@
 #include <utility>
 #include <vector>
 
-std::bitset<32> SHA256::rightShift(std::bitset<32> in, uint32_t rotateAmount) {
+std::bitset<32> SHA256::rightRotate(std::bitset<32> in, uint32_t rotateAmount) {
 //    const uint32_t INT_BITS = 32;
 //    return (in >> rotateAmount) | (in << (INT_BITS - rotateAmount));
 //    const uint32_t mask = (CHAR_BIT * sizeof(in) - 1);  // assumes width is a power of 2.
@@ -19,8 +19,9 @@ std::bitset<32> SHA256::rightShift(std::bitset<32> in, uint32_t rotateAmount) {
 
 }
 
+
 std::string SHA256::sha256(std::string &input) {
-    debug = true;
+    debug = false;
     /* how many bits is our string */
     uint64_t size = input.size() * 8;
     if (size > 512) {
@@ -84,7 +85,7 @@ std::string SHA256::sha256(std::string &input) {
         tempIter--;
     }
 
-    /* Our bits are actually backwards so we go ahead and reverse them */
+    /* Our bits are actually backwards, so we go ahead and reverse them */
     int tempIncr = chunk[0].size() - 1;
     std::bitset<512> temp;
     for (int i = 0; i < 512; i++) {
@@ -92,20 +93,23 @@ std::string SHA256::sha256(std::string &input) {
         tempIncr--;
     }
     chunk[0] = temp;
+
+
 //    if (debug) {
 //        std::cout << chunk[0].to_string() << std::endl;
 //    }
 
 
     /* Create message schedule */
-    std::vector<std::bitset<32>> w;
+    const int WORD_SIZE = 32;
+    std::vector<std::bitset<WORD_SIZE>> w;
     for (int i = 0; i < chunk.size(); i++) {
-        int chunkIter = 0;
-        for (int j = 0; j < chunk[i].size() / 32; j++) {
-            std::bitset<32> word;
+        int chunkIter = chunk[0].size() - 1;
+        for (int j = 0; j < chunk[i].size() / WORD_SIZE; j++) {
+            std::bitset<WORD_SIZE> word;
             for (int z = word.size() - 1; z >= 0; z--) {
                 word[z] = chunk[i][chunkIter];
-                chunkIter++;
+                chunkIter--;
             }
             w.push_back(word);
         }
@@ -131,31 +135,41 @@ std::string SHA256::sha256(std::string &input) {
             std::bitset<32> temp1;
             std::bitset<32> temp2;
             std::bitset<32> temp3;
-            temp1 = (rightShift(w[j - 15], 7));
-            temp2 = (rightShift(w[j - 15], 18));
-            /* TODO For some reason this operation is causing unexpected behavior */
-            temp3 = (rightShift(w[j - 15], 3));
+
+            temp1 = (rightRotate(w[j - 15], 7));
+            temp2 = (rightRotate(w[j - 15], 18));
+            temp3 = w[j-15] >> 3;
+
             s0 = temp1 ^ temp2 ^ temp3;
-            s1 = (rightShift(w[j - 2], 17)) ^ (rightShift(w[j - 2], 19)) ^ rightShift(w[j - 2], 10);
+            s1 = (rightRotate(w[j - 2], 17)) ^ (rightRotate(w[j - 2], 19)) ^ (w[j-2]>>10);
             /* TODO this sequence could also be bug prone */
             w[j] = ((w[j - 16]).to_ulong() + s0.to_ulong() + (w[j - 7]).to_ulong() + s1.to_ulong());
+            // if (debug) {
+            std::cout << "UN-SHIFTED: " << w[1].to_string() << std::endl;
+            std::cout << "T1 ANSWER:  " << temp1.to_string() << std::endl;
+            std::cout << "T2 ANSWER:  " << temp2.to_string() << std::endl;
+            std::cout << "T3 ANSWER:  " << temp3.to_string() << std::endl;
 
+            std::cout << "S0 ANSWER:  " << s0.to_string() << std::endl;
+            std::cout << w[j].to_string() << std::endl;
+            //  }
+            //233049837
+            break;
         }
 
-//        std::cout << "T1 ANSWER:  " << temp1.to_string() << std::endl;
-//        std::cout << "T2 ANSWER:  " << temp2.to_string() << std::endl;
-//        std::cout << "T3 ANSWER:  " << temp3.to_string() << std::endl;
-//        std::cout << "S0 ANSWER:  " << s0.to_string() << std::endl;
-//        std::cout << "UN-SHIFTED: " << w[1].to_string() << std::endl;
-//        std::cout << "SHIFTED:    " << rightShift(w[1], 32 - 7);
+        if (debug) {
+            for (int j = 0; j < 64; j++) {
+                std::cout << w[j].to_string() << std::endl;
+            }
+        }
 
         /* Compression loop */
         std::bitset<32> a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
         for (int j = 0; j < 64; j++) {
-            std::bitset<32> s1 = rightShift(e, 6) ^ rightShift(e, 11) ^ rightShift(e, 25);
+            std::bitset<32> s1 = rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25);
             std::bitset<32> ch = (e & f) ^ ((~e) & g);
             std::bitset<32> temp1 = (h.to_ulong() + s1.to_ulong() + ch.to_ulong() + k[i].to_ulong() + w[i].to_ulong());
-            std::bitset<32> s0 = (rightShift(a, 2)) ^ (rightShift(a, 13)) ^ rightShift(a, 22);
+            std::bitset<32> s0 = (rightRotate(a, 2)) ^ (rightRotate(a, 13)) ^ rightRotate(a, 22);
             std::bitset<32> maj = (a & b) ^ (a & c) ^ (b & c);
             std::bitset<32> temp2 = s0.to_ulong() + maj.to_ulong();
             h = g;
@@ -177,12 +191,14 @@ std::string SHA256::sha256(std::string &input) {
         h6 = h6.to_ulong() + g.to_ulong();
         h7 = h7.to_ulong() + h.to_ulong();
 
-//        std::stringstream stream;
+        std::stringstream stream;
 //
-//        stream << std::hex << h0.to_ulong();
-//        std::string result(stream.str());
-//        std::cout << "HASH: " << result << std::endl;
-        //    std::stringstream stream;
+        stream << std::hex << h0.to_ulong() << h1.to_ulong() + h2.to_ulong() +
+                                               h3.to_ulong() + h4.to_ulong() + h5.to_ulong() + h6.to_ulong() +
+                                               h7.to_ulong();
+        std::string result(stream.str());
+        std::cout << "HASH: " << result << std::endl;
+//            std::stringstream stream;
 //    h0 = _byteswap_ulong(h0);
 //    stream << std::hex << h7;
 //    std::string result(stream.str());
@@ -232,11 +248,11 @@ std::string SHA256::sha256(std::string &input) {
 ////        w[i] = w[i-16] + s0 + w[i-7] + s1
 //
 //
-//        uint32_t s0 = (rightShift(w[i - 15], 7)) ^ (rightShift(w[i - 15], 18))
-//                      ^ rightShift(w[i - 15], 3);
+//        uint32_t s0 = (rightShift(w[i - 15], 7)) ^ (rightRotate(w[i - 15], 18))
+//                      ^ rightRotate(w[i - 15], 3);
 //
-//        uint32_t s1 = (rightShift(w[i - 2], 17)) ^ (rightShift(w[i - 2], 19))
-//                      ^ rightShift(w[i - 2], 10);
+//        uint32_t s1 = (rightRotate(w[i - 2], 17)) ^ (rightShift(w[i - 2], 19))
+//                      ^ rightRotate(w[i - 2], 10);
 //
 //        w[i] = w[i - 16] + s0 + w[i - 7] + s1;
 //
@@ -245,10 +261,10 @@ std::string SHA256::sha256(std::string &input) {
 //    /* Compression */
 //    uint32_t a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
 //    for (int i = 0; i < 64; i++) {
-//        uint32_t s1 = rightShift(e, 6) ^ rightShift(e, 11) ^ rightShift(e, 25);
+//        uint32_t s1 = rightShift(e, 6) ^ rightShift(e, 11) ^ rightRotate(e, 25);
 //        uint32_t ch = (e & f) ^ ((!e) & g);
 //        uint32_t temp1 = h + s1 + ch + k[i] + w[i];
-//        uint32_t s0 = rightShift(a, 2) ^ rightShift(a, 13) ^ rightShift(a, 22);
+//        uint32_t s0 = rightShift(a, 2) ^ rightShift(a, 13) ^ rightRotate(a, 22);
 //        uint32_t maj = (a & b) ^ (a & c) ^ (b & c);
 //        uint32_t temp2 = s0 + maj;
 //        h = g;
