@@ -10,61 +10,82 @@ std::bitset<32> SHA256::rightRotate(std::bitset<32> in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = false;
+    debug = true;
+    const int CHUNK_SIZE = 512;
+    const int BYTE_SIZE = 8;
+    const int WORD_SIZE = 32;
 
     /* how many bits is our string */
-    uint64_t size = input.size() * 8;
-    if (size > 512) {
-        std::cerr << "There is no support for message greater then 512 bits currently " << std::endl;
-    }
+    const uint64_t size = input.size() * 8;
     std::vector<uint8_t> preProcess;
-    std::vector<std::bitset<8>> preProcessNew;
-    std::vector<std::bitset<512>> chunk;
-    /* Must start with at least 1 chunk completely 0'd out */
-    chunk.emplace_back(0);
+    std::vector<std::bitset<BYTE_SIZE>> preProcessNew;
+    std::vector<std::bitset<CHUNK_SIZE>> chunk;
+
+
+    /* Add the appropriate total of chunks. We need room for a single bit + 64 bits for message length */
+    for (int i = 0; i < ((size + 64 + 1) / 512) + 1; i++) {
+        chunk.emplace_back(0);
+    }
+    std::cout << "CHUNK SIZE: " << chunk.size() << std::endl;
 
     /* preProcess word: fractional parts of the square roots of the first 8 primes */
-    std::bitset<32> h0 = 0x6a09e667;
-    std::bitset<32> h1 = 0xbb67ae85;
-    std::bitset<32> h2 = 0x3c6ef372;
-    std::bitset<32> h3 = 0xa54ff53a;
-    std::bitset<32> h4 = 0x510e527f;
-    std::bitset<32> h5 = 0x9b05688c;
-    std::bitset<32> h6 = 0x1f83d9ab;
-    std::bitset<32> h7 = 0x5be0cd19;
+    std::bitset<WORD_SIZE> h0 = 0x6a09e667;
+    std::bitset<WORD_SIZE> h1 = 0xbb67ae85;
+    std::bitset<WORD_SIZE> h2 = 0x3c6ef372;
+    std::bitset<WORD_SIZE> h3 = 0xa54ff53a;
+    std::bitset<WORD_SIZE> h4 = 0x510e527f;
+    std::bitset<WORD_SIZE> h5 = 0x9b05688c;
+    std::bitset<WORD_SIZE> h6 = 0x1f83d9ab;
+    std::bitset<WORD_SIZE> h7 = 0x5be0cd19;
 
     /* first 32 bits of the fractional parts of the cube root of the first 2-311 prime */
-    std::vector<std::bitset<32>> k = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
-                                      0x923f82a4,
-                                      0xab1c5ed5,
-                                      0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe,
-                                      0x9bdc06a7, 0xc19bf174,
-                                      0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa,
-                                      0x5cb0a9dc, 0x76f988da,
-                                      0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147,
-                                      0x06ca6351, 0x14292967,
-                                      0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb,
-                                      0x81c2c92e, 0x92722c85,
-                                      0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624,
-                                      0xf40e3585, 0x106aa070,
-                                      0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a,
-                                      0x5b9cca4f, 0x682e6ff3,
-                                      0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
-                                      0xbef9a3f7, 0xc67178f2};
+    std::vector<std::bitset<WORD_SIZE>> k = {0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1,
+                                             0x923f82a4,
+                                             0xab1c5ed5,
+                                             0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe,
+                                             0x9bdc06a7, 0xc19bf174,
+                                             0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa,
+                                             0x5cb0a9dc, 0x76f988da,
+                                             0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147,
+                                             0x06ca6351, 0x14292967,
+                                             0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb,
+                                             0x81c2c92e, 0x92722c85,
+                                             0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624,
+                                             0xf40e3585, 0x106aa070,
+                                             0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a,
+                                             0x5b9cca4f, 0x682e6ff3,
+                                             0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
+                                             0xbef9a3f7, 0xc67178f2};
 
-    /*  Beginning of Pre-processing stage, convert input into binary */
-    int iterator = 0;
+    /*  Beginning of Pre-processing stage, convert input into binary, and assign our chunks */
+    int bitIterator = 0;
+    int chunkIterator = 0;
     for (int i = 0; i < input.size(); i++) {
         auto temp = (uint8_t) input[i];
-        std::bitset<8> bitValue(temp);
+        std::bitset<BYTE_SIZE> bitValue(temp);
         /* Bits will be backwards if done 0-size, must be copied in reverse */
         for (int j = 7; j >= 0; j--) {
-            chunk[0][iterator] = bitValue[j];
-            iterator++;
+            /* input.size() can exceed 512, so when it does move to another chunk */
+            if (bitIterator > CHUNK_SIZE) {
+                chunkIterator++;
+                bitIterator = 0;
+                chunk[chunkIterator][bitIterator] = bitValue[j];
+            } else {
+                chunk[chunkIterator][bitIterator] = bitValue[j];
+                bitIterator++;
+            }
         }
     }
-    /* Add single bit */
-    chunk[0].set(iterator, true);
+    /* Add single bit plus our Big Endian int. If this current chunk doesn't have the room for it,
+     * move it to a new chunk */
+    if (bitIterator > (512 - 1 - 64)) {
+        chunkIterator++;
+        bitIterator = 0;
+        chunk[chunkIterator].set(bitIterator, true);
+    } else {
+        chunk[chunkIterator].set(bitIterator, true);
+    }
+
 
     /* Append 64 Bits to the end in big endian format */
     std::bitset<64> endingInt(size);
@@ -73,30 +94,36 @@ std::string SHA256::sha256(std::string &input) {
         if (tempIter < 0) {
             break;
         }
-        chunk[0][i] = endingInt[tempIter];
+        chunk[chunkIterator][i] = endingInt[tempIter];
         tempIter--;
     }
 
-    /* Our bits are actually backwards, so we go ahead and reverse them */
-    int tempIncr = chunk[0].size() - 1;
-    std::bitset<512> temp;
-    for (int i = 0; i < 512; i++) {
-        temp[tempIncr] = chunk[0][i];
-        tempIncr--;
-    }
-    chunk[0] = temp;
-
-
-    if (debug) {
-        std::cout << "CHUNK BITS: " << chunk[0].to_string() << std::endl;
-    }
-
-
-    /* Create message schedule */
-    const int WORD_SIZE = 32;
-    std::vector<std::bitset<WORD_SIZE>> w;
+    /* Our bits are actually backwards, so we go ahead and reverse them for each chunk */
     for (int i = 0; i < chunk.size(); i++) {
-        int chunkIter = chunk[0].size() - 1;
+        int tempIncr = chunk[0].size() - 1;
+        std::bitset<CHUNK_SIZE> temp;
+        for (int j = 0; j < CHUNK_SIZE; j++) {
+            temp[tempIncr] = chunk[i][j];
+            tempIncr--;
+        }
+        chunk[i] = temp;
+    }
+
+    for (int i = 0; i < chunk.size(); i++) {
+        std::cout << "CHUNK: " << chunk[i].to_string() << std::endl;
+    }
+   // exit(1);
+
+//    if (debug) {
+//        for (int i = 0; i < chunk.size(); i++) {
+//            std::cout << "CHUNK BITS: " << chunk[i].to_string() << std::endl;
+//        }
+//    }
+
+    /* TODO Bug is here Create message schedule */
+    for (int i = 0; i < chunk.size(); i++) {
+        std::vector<std::bitset<WORD_SIZE>> w;
+        int chunkIter = chunk[i].size() - 1;
         for (int j = 0; j < chunk[i].size() / WORD_SIZE; j++) {
             std::bitset<WORD_SIZE> word;
             for (int z = word.size() - 1; z >= 0; z--) {
@@ -106,7 +133,7 @@ std::string SHA256::sha256(std::string &input) {
             w.push_back(word);
         }
         for (int j = 16; j < 64; j++) {
-            std::bitset<32> word;
+            std::bitset<WORD_SIZE> word;
             word.reset();
             w.push_back(word);
         }
@@ -120,13 +147,15 @@ std::string SHA256::sha256(std::string &input) {
             }
         }
 
+        exit(1);
+
         /* First round processing */
         for (int j = 16; j < 64; j++) {
-            std::bitset<32> s0;
-            std::bitset<32> s1;
-            std::bitset<32> temp1;
-            std::bitset<32> temp2;
-            std::bitset<32> temp3;
+            std::bitset<WORD_SIZE> s0;
+            std::bitset<WORD_SIZE> s1;
+            std::bitset<WORD_SIZE> temp1;
+            std::bitset<WORD_SIZE> temp2;
+            std::bitset<WORD_SIZE> temp3;
 
             temp1 = (rightRotate(w[j - 15], 7));
             temp2 = (rightRotate(w[j - 15], 18));
@@ -156,15 +185,16 @@ std::string SHA256::sha256(std::string &input) {
 
 
         /* Compression loop */
-        std::bitset<32> a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
+        std::bitset<WORD_SIZE> a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
         for (int j = 0; j < 64; j++) {
-            std::bitset<32> s1 = rightRotate(e, 6) ^ rightRotate(e, 11) ^
-                                 rightRotate(e, 25);
-            std::bitset<32> ch = (e & f) ^ ((~e) & g);
-            std::bitset<32> temp1 = (h.to_ulong() + s1.to_ulong() + ch.to_ulong() + k[j].to_ulong() + w[j].to_ulong());
-            std::bitset<32> s0 = (rightRotate(a, 2)) ^ (rightRotate(a, 13)) ^ rightRotate(a, 22);
-            std::bitset<32> maj = (a & b) ^ (a & c) ^ (b & c);
-            std::bitset<32> temp2 = s0.to_ulong() + maj.to_ulong();
+            std::bitset<WORD_SIZE> s1 = rightRotate(e, 6) ^ rightRotate(e, 11) ^
+                                        rightRotate(e, 25);
+            std::bitset<WORD_SIZE> ch = (e & f) ^ ((~e) & g);
+            std::bitset<WORD_SIZE> temp1 = (h.to_ulong() + s1.to_ulong() + ch.to_ulong() + k[j].to_ulong() +
+                                            w[j].to_ulong());
+            std::bitset<WORD_SIZE> s0 = (rightRotate(a, 2)) ^ (rightRotate(a, 13)) ^ rightRotate(a, 22);
+            std::bitset<WORD_SIZE> maj = (a & b) ^ (a & c) ^ (b & c);
+            std::bitset<WORD_SIZE> temp2 = s0.to_ulong() + maj.to_ulong();
             h = g;
             g = f;
             f = e;
@@ -196,13 +226,13 @@ std::string SHA256::sha256(std::string &input) {
             std::cout << h6.to_string() << std::endl;
             std::cout << h7.to_string() << std::endl;
         }
-
-        std::stringstream stream;
-        stream << std::hex << h0.to_ulong() << h1.to_ulong() << h2.to_ulong() << h3.to_ulong() << h4.to_ulong()
-               << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
-        std::string result(stream.str());
-        return result;
     }
+    std::stringstream stream;
+    stream << std::hex << h0.to_ulong() << h1.to_ulong() << h2.to_ulong() << h3.to_ulong() << h4.to_ulong()
+           << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
+    std::string result(stream.str());
+    return result;
+
 }
 
 

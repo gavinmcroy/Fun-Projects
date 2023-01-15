@@ -7,8 +7,18 @@
 
 int main() {
     SHA256 sha256{};
-    std::string val = "abc";
-    std::string binary = sha256.sha256(val);
-    std::cout<<binary<<std::endl;
+    std::string val2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    std::string val = "A long text A long text A long text A long text A long text "
+                      "A long text A long text A long text A long text A long text A "
+                      "long text A long text A long text A long text A long text A long "
+                      "text A long text A long text A long text A long text A long text A "
+                      "long text A long text A long text A long text A long text A long text A "
+                      "long text A long text A long text A long text A long text A long text A "
+                      "long text A long text A long text A long text A long text A long text A "
+                      "long text A long text A long text A long text A long text A long text A "
+                      "long text A long text A long text ";
+    std::cout<<val2.size()<<std::endl;
+    std::string binary = sha256.sha256(val2);
+    std::cout << binary << std::endl;
     return 0;
 }
