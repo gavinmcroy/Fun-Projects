@@ -20,7 +20,7 @@ std::bitset<32> SHA256::rightShift(std::bitset<32> in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = false;
+    debug = true;
     /* how many bits is our string */
     uint64_t size = input.size() * 8;
     if (size > 512) {
@@ -70,19 +70,11 @@ std::string SHA256::sha256(std::string &input) {
             iterator++;
         }
     }
+    /* Add single bit */
     chunk[0].set(iterator, true);
-
-//    if (debug) {
-//        std::string testing = chunk[0].to_string();
-//        std::reverse(testing.begin(), testing.end());
-//        std::cout << testing << std::endl;
-//    }
 
     /* Append 64 Bits to the end in big endian format */
     std::bitset<64> endingInt(size);
-    //std::cout << endingInt.to_string() << std::endl;
-
-    /* TODO bug located here */
     int tempIter = endingInt.size() - 1;
     for (int i = chunk[0].size() - 64; i < chunk[0].size(); i++) {
         if (tempIter < 0) {
@@ -92,11 +84,16 @@ std::string SHA256::sha256(std::string &input) {
         tempIter--;
     }
 
+    /* Our bits are actually backwards so we go ahead and reverse them */
+    int tempIncr = chunk[0].size() - 1;
+    std::bitset<512> temp;
+    for (int i = 0; i < 512; i++) {
+        temp[tempIncr] = chunk[0][i];
+        tempIncr--;
+    }
+    chunk[0] = temp;
 //    if (debug) {
-//        std::cout << "TEST :" << std::endl;
-//        std::string testing = chunk[0].to_string();
-//        std::reverse(testing.begin(), testing.end());
-//        std::cout << testing << std::endl;
+//        std::cout << chunk[0].to_string() << std::endl;
 //    }
 
 
@@ -180,11 +177,11 @@ std::string SHA256::sha256(std::string &input) {
         h6 = h6.to_ulong() + g.to_ulong();
         h7 = h7.to_ulong() + h.to_ulong();
 
-        std::stringstream stream;
-
-        stream << std::hex << h0.to_ulong();
-        std::string result(stream.str());
-        std::cout << "HASH: " << result << std::endl;
+//        std::stringstream stream;
+//
+//        stream << std::hex << h0.to_ulong();
+//        std::string result(stream.str());
+//        std::cout << "HASH: " << result << std::endl;
         //    std::stringstream stream;
 //    h0 = _byteswap_ulong(h0);
 //    stream << std::hex << h7;
