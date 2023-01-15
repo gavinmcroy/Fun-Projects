@@ -7,7 +7,7 @@
 
 int main() {
     SHA256 sha256{};
-    std::string val2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    std::string val2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     std::string val = "A long text A long text A long text A long text A long text "
                       "A long text A long text A long text A long text A long text A "
                       "long text A long text A long text A long text A long text A long "

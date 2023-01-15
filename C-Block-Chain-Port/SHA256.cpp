@@ -10,7 +10,7 @@ std::bitset<32> SHA256::rightRotate(std::bitset<32> in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = true;
+    debug = false;
     const int CHUNK_SIZE = 512;
     const int BYTE_SIZE = 8;
     const int WORD_SIZE = 32;
@@ -21,12 +21,15 @@ std::string SHA256::sha256(std::string &input) {
     std::vector<std::bitset<BYTE_SIZE>> preProcessNew;
     std::vector<std::bitset<CHUNK_SIZE>> chunk;
 
-
-    /* Add the appropriate total of chunks. We need room for a single bit + 64 bits for message length */
+    /* Add the appropriate total of chunks. We need room for a single bit + 64 bits for message length. The extra + 1
+     * is just for integer truncation (2/3 filled = 0, when we still need a chunk to allow it to be filled */
     for (int i = 0; i < ((size + 64 + 1) / 512) + 1; i++) {
         chunk.emplace_back(0);
     }
-    std::cout << "CHUNK SIZE: " << chunk.size() << std::endl;
+
+    if (debug) {
+        std::cout << "CHUNK SIZE: " << chunk.size() << std::endl;
+    }
 
     /* preProcess word: fractional parts of the square roots of the first 8 primes */
     std::bitset<WORD_SIZE> h0 = 0x6a09e667;
@@ -58,43 +61,52 @@ std::string SHA256::sha256(std::string &input) {
                                              0xbef9a3f7, 0xc67178f2};
 
     /*  Beginning of Pre-processing stage, convert input into binary, and assign our chunks */
-    int bitIterator = 0;
-    int chunkIterator = 0;
+    int currentBit = 0;
+    int currentChunk = 0;
     for (int i = 0; i < input.size(); i++) {
         auto temp = (uint8_t) input[i];
         std::bitset<BYTE_SIZE> bitValue(temp);
         /* Bits will be backwards if done 0-size, must be copied in reverse */
         for (int j = 7; j >= 0; j--) {
             /* input.size() can exceed 512, so when it does move to another chunk */
-            if (bitIterator > CHUNK_SIZE) {
-                chunkIterator++;
-                bitIterator = 0;
-                chunk[chunkIterator][bitIterator] = bitValue[j];
+            if (currentBit > CHUNK_SIZE) {
+                currentChunk++;
+                currentBit = 0;
+                chunk[currentChunk][currentBit] = bitValue[j];
             } else {
-                chunk[chunkIterator][bitIterator] = bitValue[j];
-                bitIterator++;
+                chunk[currentChunk][currentBit] = bitValue[j];
+                currentBit++;
             }
         }
     }
-    /* Add single bit plus our Big Endian int. If this current chunk doesn't have the room for it,
+    /* Add single bit If this current chunk doesn't have the room for it,
      * move it to a new chunk */
-    if (bitIterator > (512 - 1 - 64)) {
-        chunkIterator++;
-        bitIterator = 0;
-        chunk[chunkIterator].set(bitIterator, true);
-    } else {
-        chunk[chunkIterator].set(bitIterator, true);
-    }
+    if (currentBit > (512 - 1 - 64)) {
+        /* Edge case when the chunk has no room for a 1 to be appended */
+        if (currentBit > 512 - 8) {
+            currentBit = 0;
+            currentChunk++;
+            chunk[currentChunk].set(currentBit, true);
 
+        }
+            /* There is still room for a 1 to be appended towards the end but not enough room for 64 bits */
+        else {
+            chunk[currentChunk].set(currentBit, true);
+            currentChunk++;
+        }
+    } /* There is enough room for 64 bits plus the one bit */
+    else {
+        chunk[currentChunk].set(currentBit, true);
+    }
 
     /* Append 64 Bits to the end in big endian format */
     std::bitset<64> endingInt(size);
     int tempIter = endingInt.size() - 1;
-    for (int i = chunk[0].size() - 64; i < chunk[0].size(); i++) {
+    for (int i = CHUNK_SIZE - 64; i < CHUNK_SIZE; i++) {
         if (tempIter < 0) {
             break;
         }
-        chunk[chunkIterator][i] = endingInt[tempIter];
+        chunk[currentChunk][i] = endingInt[tempIter];
         tempIter--;
     }
 
@@ -112,15 +124,7 @@ std::string SHA256::sha256(std::string &input) {
     for (int i = 0; i < chunk.size(); i++) {
         std::cout << "CHUNK: " << chunk[i].to_string() << std::endl;
     }
-   // exit(1);
 
-//    if (debug) {
-//        for (int i = 0; i < chunk.size(); i++) {
-//            std::cout << "CHUNK BITS: " << chunk[i].to_string() << std::endl;
-//        }
-//    }
-
-    /* TODO Bug is here Create message schedule */
     for (int i = 0; i < chunk.size(); i++) {
         std::vector<std::bitset<WORD_SIZE>> w;
         int chunkIter = chunk[i].size() - 1;
@@ -146,8 +150,6 @@ std::string SHA256::sha256(std::string &input) {
                 std::cout << "MESSAGE SCHEDULE: " << w[j].to_string() << std::endl;
             }
         }
-
-        exit(1);
 
         /* First round processing */
         for (int j = 16; j < 64; j++) {
@@ -183,7 +185,6 @@ std::string SHA256::sha256(std::string &input) {
             }
         }
 
-
         /* Compression loop */
         std::bitset<WORD_SIZE> a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
         for (int j = 0; j < 64; j++) {
@@ -204,7 +205,6 @@ std::string SHA256::sha256(std::string &input) {
             b = a;
             a = temp1.to_ulong() + temp2.to_ulong();
         }
-
 
         h0 = h0.to_ulong() + a.to_ulong();
         h1 = h1.to_ulong() + b.to_ulong();
@@ -232,7 +232,6 @@ std::string SHA256::sha256(std::string &input) {
            << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
     std::string result(stream.str());
     return result;
-
 }
 
 
