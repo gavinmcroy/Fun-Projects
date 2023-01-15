@@ -7,16 +7,8 @@
 
 int main() {
     SHA256 sha256{};
-    std::string val = "hello world";
+    std::string val = "abc";
     std::string binary = sha256.sha256(val);
     std::cout<<binary<<std::endl;
-//    std::bitset<32> value(21);
-//    value[31] = 1;
-//    std::cout<<value.to_string()<<std::endl;
-//    for(int i = 0; i < 32; i++){
-//        std::cout<<value[i];
-//    }
-//    std::cout<<binary<<std::endl;
-
     return 0;
 }

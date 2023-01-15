@@ -3,25 +3,15 @@
 //
 
 #include "SHA256.h"
-
-#include <utility>
 #include <vector>
 
 std::bitset<32> SHA256::rightRotate(std::bitset<32> in, uint32_t rotateAmount) {
-//    const uint32_t INT_BITS = 32;
-//    return (in >> rotateAmount) | (in << (INT_BITS - rotateAmount));
-//    const uint32_t mask = (CHAR_BIT * sizeof(in) - 1);  // assumes width is a power of 2.
-//
-//    // assert ( (c<=mask) &&"rotate by type width or more");
-//    rotateAmount &= mask;
-//    return (in << rotateAmount) | (in >> ((-rotateAmount) & mask));
     return in >> rotateAmount | in << (32 - rotateAmount);
-
 }
 
-
 std::string SHA256::sha256(std::string &input) {
-    debug = true;
+    debug = false;
+
     /* how many bits is our string */
     uint64_t size = input.size() * 8;
     if (size > 512) {
@@ -30,7 +20,9 @@ std::string SHA256::sha256(std::string &input) {
     std::vector<uint8_t> preProcess;
     std::vector<std::bitset<8>> preProcessNew;
     std::vector<std::bitset<512>> chunk;
+    /* Must start with at least 1 chunk completely 0'd out */
     chunk.emplace_back(0);
+
     /* preProcess word: fractional parts of the square roots of the first 8 primes */
     std::bitset<32> h0 = 0x6a09e667;
     std::bitset<32> h1 = 0xbb67ae85;
@@ -60,7 +52,7 @@ std::string SHA256::sha256(std::string &input) {
                                       0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb,
                                       0xbef9a3f7, 0xc67178f2};
 
-    /*  Beginning of Pre-processing stage */
+    /*  Beginning of Pre-processing stage, convert input into binary */
     int iterator = 0;
     for (int i = 0; i < input.size(); i++) {
         auto temp = (uint8_t) input[i];
@@ -95,9 +87,9 @@ std::string SHA256::sha256(std::string &input) {
     chunk[0] = temp;
 
 
-//    if (debug) {
-//        std::cout << chunk[0].to_string() << std::endl;
-//    }
+    if (debug) {
+        std::cout << "CHUNK BITS: " << chunk[0].to_string() << std::endl;
+    }
 
 
     /* Create message schedule */
@@ -122,11 +114,11 @@ std::string SHA256::sha256(std::string &input) {
             std::cerr << " Message schedule generated wrong length";
         }
 
-//        if (debug) {
-//            for (int j = 0; j < w.size(); j++) {
-//                std::cout << w[j].to_string() << std::endl;
-//            }
-//        }
+        if (debug) {
+            for (int j = 0; j < w.size(); j++) {
+                std::cout << "MESSAGE SCHEDULE: " << w[j].to_string() << std::endl;
+            }
+        }
 
         /* First round processing */
         for (int j = 16; j < 64; j++) {
@@ -144,37 +136,27 @@ std::string SHA256::sha256(std::string &input) {
             s1 = (rightRotate(w[j - 2], 17)) ^ (rightRotate(w[j - 2], 19)) ^ (w[j - 2] >> 10);
             w[j] = ((w[j - 16]).to_ulong() + s0.to_ulong() + (w[j - 7]).to_ulong() + s1.to_ulong());
 
-//            if (debug) {
-//                std::cout << "UN-SHIFTED: " << w[1].to_string() << std::endl;
-//                std::cout << "T1 ANSWER:  " << temp1.to_string() << std::endl;
-//                std::cout << "T2 ANSWER:  " << temp2.to_string() << std::endl;
-//                std::cout << "T3 ANSWER:  " << temp3.to_string() << std::endl;
-//
-//                std::cout << "S0 ANSWER:  " << s0.to_string() << std::endl;
-//                std::cout << w[j].to_string() << std::endl;
-//            }
+            if (debug) {
+                std::cout << "UN-SHIFTED: " << w[1].to_string() << std::endl;
+                std::cout << "T1 ANSWER:  " << temp1.to_string() << std::endl;
+                std::cout << "T2 ANSWER:  " << temp2.to_string() << std::endl;
+                std::cout << "T3 ANSWER:  " << temp3.to_string() << std::endl;
+
+                std::cout << "S0 ANSWER:  " << s0.to_string() << std::endl;
+                std::cout << w[j].to_string() << std::endl;
+            }
 
         }
 
         if (debug) {
             for (int j = 0; j < 64; j++) {
-                std::cout << w[j].to_string() << std::endl;
+                std::cout << "BEFORE COMPRESSION: " << w[j].to_string() << std::endl;
             }
         }
 
 
         /* Compression loop */
         std::bitset<32> a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
-        std::cout << "HASH BITS" << std::endl;
-        std::cout << a.to_string() << std::endl;
-        std::cout << b.to_string() << std::endl;
-        std::cout << c.to_string() << std::endl;
-        std::cout << d.to_string() << std::endl;
-        std::cout << e.to_string() << std::endl;
-        std::cout << f.to_string() << std::endl;
-        std::cout << g.to_string() << std::endl;
-        std::cout << h.to_string() << std::endl;
-
         for (int j = 0; j < 64; j++) {
             std::bitset<32> s1 = rightRotate(e, 6) ^ rightRotate(e, 11) ^
                                  rightRotate(e, 25);
@@ -203,28 +185,24 @@ std::string SHA256::sha256(std::string &input) {
         h6 = h6.to_ulong() + g.to_ulong();
         h7 = h7.to_ulong() + h.to_ulong();
 
-        std::cout << "HASH BITS FINAL " << std::endl;
-        std::cout << h0.to_string() << std::endl;
-        std::cout << h1.to_string() << std::endl;
-        std::cout << h2.to_string() << std::endl;
-        std::cout << h3.to_string() << std::endl;
-        std::cout << h4.to_string() << std::endl;
-        std::cout << h5.to_string() << std::endl;
-        std::cout << h6.to_string() << std::endl;
-        std::cout << h7.to_string() << std::endl;
-
+        if (debug) {
+            std::cout << "AFTER COMPRESSION " << std::endl;
+            std::cout << h0.to_string() << std::endl;
+            std::cout << h1.to_string() << std::endl;
+            std::cout << h2.to_string() << std::endl;
+            std::cout << h3.to_string() << std::endl;
+            std::cout << h4.to_string() << std::endl;
+            std::cout << h5.to_string() << std::endl;
+            std::cout << h6.to_string() << std::endl;
+            std::cout << h7.to_string() << std::endl;
+        }
 
         std::stringstream stream;
         stream << std::hex << h0.to_ulong() << h1.to_ulong() << h2.to_ulong() << h3.to_ulong() << h4.to_ulong()
                << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
         std::string result(stream.str());
-
         return result;
-
-        /* TODO This needs to be done */
-        //w.clear();
     }
-
 }
 
 

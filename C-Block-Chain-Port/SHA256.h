@@ -22,8 +22,6 @@ public:
 
     std::bitset<32> rightRotate(std::bitset<32> in, uint32_t rotateAmount);
 
-    std::bitset<32> rightShiftNoCarry(std::bitset<32> in, uint32_t rotateAmount);
-
 };
 
 
