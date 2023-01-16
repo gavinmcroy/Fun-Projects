@@ -10,7 +10,7 @@ std::bitset<32> SHA256::rightRotate(std::bitset<32> in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = true;
+    debug = false;
     const int CHUNK_SIZE_BITS = 512;
     const int BYTE_SIZE_BITS = 8;
     const int WORD_SIZE_BITS = 32;
@@ -18,7 +18,7 @@ std::string SHA256::sha256(std::string &input) {
 
     /* how many bits is our string */
     const uint64_t size = input.size() * BYTE_SIZE_BITS;
-    std::vector<std::bitset<8>> dataToBinary;
+    std::vector<std::bitset<BYTE_SIZE_BITS>> dataToBinary;
     std::vector<uint8_t> preProcess;
     std::vector<std::bitset<BYTE_SIZE_BITS>> preProcessNew;
     std::vector<std::bitset<CHUNK_SIZE_BITS>> chunk;
@@ -132,17 +132,17 @@ std::string SHA256::sha256(std::string &input) {
         chunk[i] = temp;
     }
 
-//    if (debug) {
-    for (int i = 0; i < chunk.size(); i++) {
-        std::string value = chunk[i].to_string();
-        for (int j = 0; j < value.size(); j++) {
-            if (j % 8 == 0) {
-                std::cout << std::endl;
+    if (debug) {
+        for (int i = 0; i < chunk.size(); i++) {
+            std::string value = chunk[i].to_string();
+            for (int j = 0; j < value.size(); j++) {
+                if (j % 8 == 0) {
+                    std::cout << std::endl;
+                }
+                std::cout << value[j];
             }
-            std::cout << value[j];
         }
     }
-//    }
 
 
     for (int i = 0; i < chunk.size(); i++) {

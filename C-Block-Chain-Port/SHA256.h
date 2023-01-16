@@ -17,6 +17,8 @@ class SHA256 {
 private:
     bool debug;
 
+
+
 public:
     std::string sha256(std::string &input);
 
