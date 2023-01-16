@@ -8,7 +8,7 @@ using namespace std::chrono;
 
 int main() {
     SHA256 sha256{};
-    std::string val2 = "===========================================================================================================================";
+    std::string val2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     std::string val = "A long text A long text A long text A long text A long text "
                       "A long text A long text A long text A long text A long text A "
                       "long text A long text A long text A long text A long text A long "

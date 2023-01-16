@@ -79,7 +79,7 @@ std::string SHA256::sha256(std::string &input) {
         /* Bits will be backwards if done 0-size, must be copied in reverse */
         for (int j = BYTE_SIZE_BITS - 1; j >= 0; j--) {
             /* input.size() can exceed 512, so when it does move to another chunk */
-            if (currentBit > CHUNK_SIZE_BITS-1) {
+            if (currentBit > CHUNK_SIZE_BITS - 1) {
                 currentChunk++;
                 currentBit = 0;
                 chunk[currentChunk][currentBit] = bitValue[j];
@@ -92,7 +92,7 @@ std::string SHA256::sha256(std::string &input) {
     }
     /* Add single bit If this current chunk doesn't have the room for it,
      * move it to a new chunk */
-    if (currentBit > (CHUNK_SIZE_BITS - BYTE_SIZE_BITS- MSG_LENGTH_BITS)) {
+    if (currentBit > (CHUNK_SIZE_BITS - BYTE_SIZE_BITS - MSG_LENGTH_BITS)) {
         /* Edge case when the chunk has no room for a 1 to be appended */
         if (currentBit > CHUNK_SIZE_BITS - 8) {
             currentBit = 0;
@@ -133,15 +133,15 @@ std::string SHA256::sha256(std::string &input) {
     }
 
 //    if (debug) {
-        for(int i = 0; i < chunk.size(); i++){
-            std::string value = chunk[i].to_string();
-            for(int j = 0; j <value.size(); j++){
-                if(j % 8 == 0){
-                    std::cout<<std::endl;
-                }
-                std::cout<<value[j];
+    for (int i = 0; i < chunk.size(); i++) {
+        std::string value = chunk[i].to_string();
+        for (int j = 0; j < value.size(); j++) {
+            if (j % 8 == 0) {
+                std::cout << std::endl;
             }
+            std::cout << value[j];
         }
+    }
 //    }
 
 
@@ -167,11 +167,11 @@ std::string SHA256::sha256(std::string &input) {
         }
 
         if (debug) {
-            std::cout<<std::endl;
+            std::cout << std::endl;
             for (int j = 0; j < w.size(); j++) {
-                std::cout << j <<" MESSAGE SCHEDULE: " << w[j].to_string() << std::endl;
+                std::cout << j << " MESSAGE SCHEDULE: " << w[j].to_string() << std::endl;
             }
-            std::cout<<"END "<<i<<std::endl;
+            std::cout << "END " << i << std::endl;
         }
 
         /* First round processing */
@@ -214,31 +214,30 @@ std::string SHA256::sha256(std::string &input) {
         h6 = h6.to_ulong() + g.to_ulong();
         h7 = h7.to_ulong() + h.to_ulong();
 
-        std::stringstream stream;
-        stream << std::hex << h0.to_ulong() << h1.to_ulong() << h2.to_ulong() << h3.to_ulong() << h4.to_ulong()
-               << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
-        std::string result(stream.str());
-        std::cout<<result<<std::endl;
-
         if (debug) {
+            std::stringstream stream;
+            stream << std::hex << h0.to_ulong() << h1.to_ulong() << h2.to_ulong() << h3.to_ulong() << h4.to_ulong()
+                   << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
+            std::string result(stream.str());
+            std::cout << result << std::endl;
             std::cout << "AFTER COMPRESSION " << std::endl;
-            std::cout << "H0 "<<h0.to_string() << std::endl;
-            std::cout << "H1 "<<h1.to_string() << std::endl;
-            std::cout << "H2 "<<h2.to_string() << std::endl;
-            std::cout << "H3 "<<h3.to_string() << std::endl;
-            std::cout << "H4 "<<h4.to_string() << std::endl;
-            std::cout << "H5 "<<h5.to_string() << std::endl;
-            std::cout << "H6 "<<h6.to_string() << std::endl;
-            std::cout << "H7 "<<h7.to_string() << std::endl;
+            std::cout << "H0 " << h0.to_string() << std::endl;
+            std::cout << "H1 " << h1.to_string() << std::endl;
+            std::cout << "H2 " << h2.to_string() << std::endl;
+            std::cout << "H3 " << h3.to_string() << std::endl;
+            std::cout << "H4 " << h4.to_string() << std::endl;
+            std::cout << "H5 " << h5.to_string() << std::endl;
+            std::cout << "H6 " << h6.to_string() << std::endl;
+            std::cout << "H7 " << h7.to_string() << std::endl;
 
-            std::cout << "A "<<a.to_string() << std::endl;
-            std::cout << "B "<<b.to_string() << std::endl;
-            std::cout << "C "<<c.to_string() << std::endl;
-            std::cout << "D "<<d.to_string() << std::endl;
-            std::cout << "E "<<e.to_string() << std::endl;
-            std::cout << "F "<<f.to_string() << std::endl;
-            std::cout << "G "<<g.to_string() << std::endl;
-            std::cout << "H "<<h.to_string() << std::endl;
+            std::cout << "A " << a.to_string() << std::endl;
+            std::cout << "B " << b.to_string() << std::endl;
+            std::cout << "C " << c.to_string() << std::endl;
+            std::cout << "D " << d.to_string() << std::endl;
+            std::cout << "E " << e.to_string() << std::endl;
+            std::cout << "F " << f.to_string() << std::endl;
+            std::cout << "G " << g.to_string() << std::endl;
+            std::cout << "H " << h.to_string() << std::endl;
         }
     }
     std::stringstream stream;
