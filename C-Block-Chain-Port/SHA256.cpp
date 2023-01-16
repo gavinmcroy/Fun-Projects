@@ -10,7 +10,7 @@ std::bitset<32> SHA256::rightRotate(std::bitset<32> in, uint32_t rotateAmount) {
 }
 
 std::string SHA256::sha256(std::string &input) {
-    debug = false;
+    debug = true;
     const int CHUNK_SIZE_BITS = 512;
     const int BYTE_SIZE_BITS = 8;
     const int WORD_SIZE_BITS = 32;
@@ -18,6 +18,7 @@ std::string SHA256::sha256(std::string &input) {
 
     /* how many bits is our string */
     const uint64_t size = input.size() * BYTE_SIZE_BITS;
+    std::vector<std::bitset<8>> dataToBinary;
     std::vector<uint8_t> preProcess;
     std::vector<std::bitset<BYTE_SIZE_BITS>> preProcessNew;
     std::vector<std::bitset<CHUNK_SIZE_BITS>> chunk;
@@ -78,10 +79,11 @@ std::string SHA256::sha256(std::string &input) {
         /* Bits will be backwards if done 0-size, must be copied in reverse */
         for (int j = BYTE_SIZE_BITS - 1; j >= 0; j--) {
             /* input.size() can exceed 512, so when it does move to another chunk */
-            if (currentBit > CHUNK_SIZE_BITS) {
+            if (currentBit > CHUNK_SIZE_BITS-1) {
                 currentChunk++;
                 currentBit = 0;
                 chunk[currentChunk][currentBit] = bitValue[j];
+                currentBit++;
             } else {
                 chunk[currentChunk][currentBit] = bitValue[j];
                 currentBit++;
@@ -90,9 +92,9 @@ std::string SHA256::sha256(std::string &input) {
     }
     /* Add single bit If this current chunk doesn't have the room for it,
      * move it to a new chunk */
-    if (currentBit > (CHUNK_SIZE_BITS - 1 - MSG_LENGTH_BITS)) {
+    if (currentBit > (CHUNK_SIZE_BITS - BYTE_SIZE_BITS- MSG_LENGTH_BITS)) {
         /* Edge case when the chunk has no room for a 1 to be appended */
-        if (currentBit > CHUNK_SIZE_BITS - BYTE_SIZE_BITS) {
+        if (currentBit > CHUNK_SIZE_BITS - 8) {
             currentBit = 0;
             currentChunk++;
             chunk[currentChunk].set(currentBit, true);
@@ -130,11 +132,18 @@ std::string SHA256::sha256(std::string &input) {
         chunk[i] = temp;
     }
 
-    if (debug) {
-        for (int i = 0; i < chunk.size(); i++) {
-            std::cout << "CHUNK: " << chunk[i].to_string() << std::endl;
+//    if (debug) {
+        for(int i = 0; i < chunk.size(); i++){
+            std::string value = chunk[i].to_string();
+            for(int j = 0; j <value.size(); j++){
+                if(j % 8 == 0){
+                    std::cout<<std::endl;
+                }
+                std::cout<<value[j];
+            }
         }
-    }
+//    }
+
 
     for (int i = 0; i < chunk.size(); i++) {
         std::vector<std::bitset<WORD_SIZE_BITS>> w;
@@ -158,9 +167,11 @@ std::string SHA256::sha256(std::string &input) {
         }
 
         if (debug) {
+            std::cout<<std::endl;
             for (int j = 0; j < w.size(); j++) {
-                std::cout << "MESSAGE SCHEDULE: " << w[j].to_string() << std::endl;
+                std::cout << j <<" MESSAGE SCHEDULE: " << w[j].to_string() << std::endl;
             }
+            std::cout<<"END "<<i<<std::endl;
         }
 
         /* First round processing */
@@ -171,19 +182,6 @@ std::string SHA256::sha256(std::string &input) {
             s0 = (rightRotate(w[j - 15], 7)) ^ (rightRotate(w[j - 15], 18)) ^ (w[j - 15] >> 3);
             s1 = (rightRotate(w[j - 2], 17)) ^ (rightRotate(w[j - 2], 19)) ^ (w[j - 2] >> 10);
             w[j] = ((w[j - 16]).to_ulong() + s0.to_ulong() + (w[j - 7]).to_ulong() + s1.to_ulong());
-
-            if (debug) {
-                std::cout << "UN-SHIFTED:  " << w[1].to_string() << std::endl;
-                std::cout << "S0 ANSWER:   " << s0.to_string() << std::endl;
-                std::cout << "S1 ANSWER:   " << s1.to_string() << std::endl;
-                std::cout << "FINAL ANSWER " << w[j].to_string() << std::endl;
-            }
-        }
-
-        if (debug) {
-            for (int j = 0; j < 64; j++) {
-                std::cout << "BEFORE COMPRESSION: " << w[j].to_string() << std::endl;
-            }
         }
 
         /* Compression loop */
@@ -216,16 +214,31 @@ std::string SHA256::sha256(std::string &input) {
         h6 = h6.to_ulong() + g.to_ulong();
         h7 = h7.to_ulong() + h.to_ulong();
 
+        std::stringstream stream;
+        stream << std::hex << h0.to_ulong() << h1.to_ulong() << h2.to_ulong() << h3.to_ulong() << h4.to_ulong()
+               << h5.to_ulong() << h6.to_ulong() << h7.to_ulong();
+        std::string result(stream.str());
+        std::cout<<result<<std::endl;
+
         if (debug) {
             std::cout << "AFTER COMPRESSION " << std::endl;
-            std::cout << h0.to_string() << std::endl;
-            std::cout << h1.to_string() << std::endl;
-            std::cout << h2.to_string() << std::endl;
-            std::cout << h3.to_string() << std::endl;
-            std::cout << h4.to_string() << std::endl;
-            std::cout << h5.to_string() << std::endl;
-            std::cout << h6.to_string() << std::endl;
-            std::cout << h7.to_string() << std::endl;
+            std::cout << "H0 "<<h0.to_string() << std::endl;
+            std::cout << "H1 "<<h1.to_string() << std::endl;
+            std::cout << "H2 "<<h2.to_string() << std::endl;
+            std::cout << "H3 "<<h3.to_string() << std::endl;
+            std::cout << "H4 "<<h4.to_string() << std::endl;
+            std::cout << "H5 "<<h5.to_string() << std::endl;
+            std::cout << "H6 "<<h6.to_string() << std::endl;
+            std::cout << "H7 "<<h7.to_string() << std::endl;
+
+            std::cout << "A "<<a.to_string() << std::endl;
+            std::cout << "B "<<b.to_string() << std::endl;
+            std::cout << "C "<<c.to_string() << std::endl;
+            std::cout << "D "<<d.to_string() << std::endl;
+            std::cout << "E "<<e.to_string() << std::endl;
+            std::cout << "F "<<f.to_string() << std::endl;
+            std::cout << "G "<<g.to_string() << std::endl;
+            std::cout << "H "<<h.to_string() << std::endl;
         }
     }
     std::stringstream stream;
