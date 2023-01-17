@@ -10,7 +10,7 @@
 #include <fstream>
 
 class Blockchain {
-
+private:
     typedef std::string Account;
 
     /* TODO Need to assign these values */
@@ -26,6 +26,13 @@ class Blockchain {
         std::vector<Tx> txMemPool;
         std::fstream dbFile;
     } State;
+
+    State * loadGenesis(std::string &filePath);
+
+public:
+
+    State * newStateFromDisc();
+
 
     bool isReward(Tx t) {
         return t.data == "reward";
