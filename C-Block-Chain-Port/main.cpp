@@ -4,9 +4,17 @@
 #include "SHA256.h"
 
 using namespace std::chrono;
-//implemented based on https://blog.boot.dev/cryptography/how-sha-2-works-step-by-step-sha-256/#how-does-the-sha-256-algorithm-work
+
+void timing();
 
 int main() {
+
+
+
+    return 0;
+}
+
+void timing() {
     SHA256 sha256{};
     std::string val2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     std::string val = "A long text A long text A long text A long text A long text "
@@ -25,5 +33,4 @@ int main() {
     auto duration = duration_cast<microseconds>(stop - start);
     std::cout << "TIME: " << duration.count() << std::endl;
     std::cout << "HASH: " << hash << std::endl;
-    return 0;
 }

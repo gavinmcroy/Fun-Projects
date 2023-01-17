@@ -73,8 +73,8 @@ std::string SHA256::sha256(std::string &input) {
     /*  Beginning of Pre-processing stage, convert input into binary, and assign our chunks */
     int currentBit = 0;
     int currentChunk = 0;
-    for (int i = 0; i < input.size(); i++) {
-        auto temp = (uint8_t) input[i];
+    for (char i : input) {
+        auto temp = (uint8_t) i;
         std::bitset<BYTE_SIZE_BITS> bitValue(temp);
         /* Bits will be backwards if done 0-size, must be copied in reverse */
         for (int j = BYTE_SIZE_BITS - 1; j >= 0; j--) {
@@ -122,14 +122,14 @@ std::string SHA256::sha256(std::string &input) {
     }
 
     /* Our bits are actually backwards, so we go ahead and reverse them for each chunk */
-    for (int i = 0; i < chunk.size(); i++) {
+    for (auto & i : chunk) {
         int tempIncr = CHUNK_SIZE_BITS - 1;
         std::bitset<CHUNK_SIZE_BITS> temp;
         for (int j = 0; j < CHUNK_SIZE_BITS; j++) {
-            temp[tempIncr] = chunk[i][j];
+            temp[tempIncr] = i[j];
             tempIncr--;
         }
-        chunk[i] = temp;
+        i = temp;
     }
 
     if (debug) {

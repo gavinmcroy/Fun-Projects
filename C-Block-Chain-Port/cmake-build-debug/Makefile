@@ -128,6 +128,30 @@ C_Block_Chain_Port/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\C_Block_Chain_Port.dir\build.make CMakeFiles/C_Block_Chain_Port.dir/build
 .PHONY : C_Block_Chain_Port/fast
 
+Blockchain.obj: Blockchain.cpp.obj
+.PHONY : Blockchain.obj
+
+# target to build an object file
+Blockchain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C_Block_Chain_Port.dir\build.make CMakeFiles/C_Block_Chain_Port.dir/Blockchain.cpp.obj
+.PHONY : Blockchain.cpp.obj
+
+Blockchain.i: Blockchain.cpp.i
+.PHONY : Blockchain.i
+
+# target to preprocess a source file
+Blockchain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C_Block_Chain_Port.dir\build.make CMakeFiles/C_Block_Chain_Port.dir/Blockchain.cpp.i
+.PHONY : Blockchain.cpp.i
+
+Blockchain.s: Blockchain.cpp.s
+.PHONY : Blockchain.s
+
+# target to generate assembly for a file
+Blockchain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\C_Block_Chain_Port.dir\build.make CMakeFiles/C_Block_Chain_Port.dir/Blockchain.cpp.s
+.PHONY : Blockchain.cpp.s
+
 SHA256.obj: SHA256.cpp.obj
 .PHONY : SHA256.obj
 
@@ -185,6 +209,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... C_Block_Chain_Port
+	@echo ... Blockchain.obj
+	@echo ... Blockchain.i
+	@echo ... Blockchain.s
 	@echo ... SHA256.obj
 	@echo ... SHA256.i
 	@echo ... SHA256.s

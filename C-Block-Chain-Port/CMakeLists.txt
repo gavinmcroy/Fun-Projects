@@ -3,4 +3,4 @@ project(C_Block_Chain_Port)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(C_Block_Chain_Port main.cpp SHA256.cpp SHA256.h FullAdder.h)
+add_executable(C_Block_Chain_Port main.cpp SHA256.cpp SHA256.h Blockchain.cpp Blockchain.h)
