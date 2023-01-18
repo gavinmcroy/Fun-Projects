@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project_1"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_1">
+				<Option output="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Project_1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_1"/>
+					<CompileFile command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_1/fast">
+				<Option output="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Project_1.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../include"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed"/>
+					<Add directory="C:/Users/Gavin T McRoy/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/221.5787.29/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/11.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_1/fast"/>
+					<CompileFile command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/GAVINT~1/AppData/Local/JETBRA~1/Toolbox/apps/CLion/ch-0/221578~1.29/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/StoredWebPages.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/StoredWebPages.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/StoredWords.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/StoredWords.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/StringIntMap.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/StringIntMap.h">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/Utils.cpp">
+			<Option target="Project_1"/>
+		</Unit>
+		<Unit filename="C:/Users/Gavin T McRoy/Documents/GitHub/School-Rep/College-Code/3rd Fall Semester/CPSC-2120/Project-1/Project-1/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
