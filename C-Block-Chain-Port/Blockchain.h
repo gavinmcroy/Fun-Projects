@@ -30,13 +30,9 @@ private:
     State * loadGenesis(std::string &filePath);
 
 public:
-
     State * newStateFromDisc();
 
-
-    bool isReward(Tx t) {
-        return t.data == "reward";
-    }
+    bool isReward(Tx t);
 };
 
 
