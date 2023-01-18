@@ -21,6 +21,12 @@ int main(int args, char *argv[]) {
     std::vector<unsigned char> pixels(xRes * yRes * channels);
 
     input->read_image(TypeDesc::UINT8, &pixels[0]);
+
+    for(int i = 0; i < xRes; i++){
+        
+    }
+
+
     input->close();
 
     auto out = ImageOutput::create(outputName);
@@ -28,7 +34,7 @@ int main(int args, char *argv[]) {
         std::cerr << "Error generating output image " << std::endl;
         exit(1);
     }
-   
+
     out->open(outputName, spec);
     out->write_image(TypeDesc::UINT8, &pixels[0]);
     out->close();
