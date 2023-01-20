@@ -9,7 +9,6 @@
 #include "StringIntMap.h"
 #include "StoredWords.h"
 
-
 using namespace std;
 
 /* Some ANSI terminal commands you can print to clear screen and change colors */
@@ -25,6 +24,14 @@ string color_whiteblue = "\e[37;44m";
 string background_blue = "\e[44;1m";
 string reset_background = "\e[40m";
 
+StoredWebPages webPages(25000);
+StoredWords storedWords(180000);
+StringIntMap webPageIntMap;
+StringIntMap wordIntMap;
+auto *wordOnPage = new StringIntMap;
+std::vector<StoredWebPages::Webpage> pages = webPages.getWebPages();
+std::vector<StoredWords::Word> everyDistinctWordVec = storedWords.getWords();
+
 void predict(const string &query);
 
 string readWebpagesFast(const char *filename);
@@ -32,14 +39,6 @@ string readWebpagesFast(const char *filename);
 void processKeystrokes();
 
 int main() {
-    StoredWebPages webPages(25000);
-    StoredWords storedWords(180000);
-    StringIntMap webPageIntMap;
-    StringIntMap wordIntMap;
-    auto *wordOnPage = new StringIntMap;
-    std::vector<StoredWebPages::Webpage> pages = webPages.getWebPages();
-    std::vector<StoredWords::Word> everyDistinctWordVec = storedWords.getWords();
-
     const char *fileNameMac = "/Users/gavintaylormcroy/Documents/webpages.txt";
     const char *filenameLinux = "/home/gav/Documents/webpages.txt";
     string readInData;
@@ -157,18 +156,9 @@ int main() {
                     outgoing links. As a special case, if page I have no outgoing links,
                     please keep that 90% on the page by increasing new_weight[i] by
                     pages[i].weight * 0.9 */
-
                     int index = pages.at(i).links.at(j) - 1;
-                    try {
-                        pages.at(index).newWeight += (.9 * pages.at(i).weight) / (double) pages.at(
-                                i).numLinks;     // vector::at throws an out-of-range
-                    }
-                    catch (const std::out_of_range &oor) {
-                        std::cerr << "Out of Range error: " << oor.what() << '\n';
-                        std::cout << "INDEX VALUE = " << index << endl;
-                        std::cout << " I = " << i << endl;
-                        std::cout << "J = " << j << endl;
-                    }
+                    pages.at(index).newWeight += (.9 * pages.at(i).weight) / (double) pages.at(
+                            i).numLinks;     // vector::at throws an out-of-range
                 }
             }
         }
@@ -191,7 +181,7 @@ int main() {
         cout << pages.at(tmp).weight << endl;
     }
 
-    //processKeystrokes();
+    processKeystrokes();
     return 0;
 }
 
@@ -228,6 +218,11 @@ void processKeystrokes() {
         cout << clear_screen << color_green << "Search keyword: "
              << color_white << query
              << color_green << "-\n\n";
+
+        int wordIndex = wordIntMap[query];
+        cout << color_yellow << "'" << everyDistinctWordVec.at(wordIndex).numPages << color_green << "' pages match"
+             << endl;
+
         cout << color_yellow << "'" << "Place holder text" << color_green << "' pages match"
              << endl;
         predict(query);
