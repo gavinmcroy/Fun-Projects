@@ -32,6 +32,49 @@ string readWebpagesFast(const char *filename);
 void processKeystrokes();
 
 int main() {
+    StoredWebPages webPages(25000);
+    StoredWords storedWords(180000);
+    StringIntMap webPageIntMap;
+    StringIntMap wordIntMap;
+    auto *wordOnPage = new StringIntMap;
+    // std::vector<StoredWebPages::Webpage> pages = webPages.getWebPages();
+    std::vector<StoredWords::Word> everyDistinctWordVec = storedWords.getWords();
+
+    const char *fileNameMac = "/Users/gavintaylormcroy/Documents";
+    const char *filenameLinux = "/home/gav/Documents/webpages.txt";
+    string readInData;
+
+    cout << color_green << "Reading input..." << endl;
+    istringstream webFile(readWebpagesFast(filenameLinux));
+
+    /* Insert all PAGES and DISTINCT words into separate hash table */
+    int totalWebPages = 0;
+    int totalDistinctWords = 0;
+    while (webFile >> readInData) {
+        if (readInData == "PAGE") {
+            webFile >> readInData;
+            webPageIntMap.insert(readInData, totalWebPages);
+            totalWebPages++;
+        } else if (readInData == "LINK ") {
+            /* This is catching the hyperlink and just trashing it since we are counting total pages */
+            webFile >> readInData;
+        } else {
+            /* Store all the DISTINCT words in a map/hash table THAT containing
+             * the words INDEX/POS for the words INSIDE the vector located in StoredWords */
+            if (!wordIntMap.find(readInData)) {
+                wordIntMap.insert(readInData, totalDistinctWords);
+                /* This is adding the words to the vector */
+                everyDistinctWordVec.emplace_back(readInData);
+                totalDistinctWords++;
+            }
+        }
+    }
+
+    cout << "Indexing..." << endl;
+    /* Reset the file being read */
+    webFile.clear();
+    webFile.seekg(0);
+
     processKeystrokes();
     return 0;
 }
