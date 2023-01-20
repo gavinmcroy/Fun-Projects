@@ -45,7 +45,7 @@ int main() {
     string readInData;
 
     cout << color_green << "Reading input..." << endl;
-    istringstream webFile(readWebpagesFast(filenameLinux));
+    istringstream webFile(readWebpagesFast(fileNameMac));
 
     /* Insert all PAGES and DISTINCT words into separate hash table */
     int totalWebPages = 0;
@@ -139,8 +139,61 @@ int main() {
         }
     }
 
+    /* GOOGLE PAGE RANK */
+    std::cout << "Google page rank" << endl;
 
-    processKeystrokes();
+    for (int x = 0; x < 50; x++) {
+        for (auto &page: pages) {
+            page.newWeight = .1;
+        }
+        for (size_t i = 0; i < pages.size(); i++) {
+            /* Every page that pages.at(j) links too*/
+            if (pages.at(i).links.empty()) {
+                pages.at(i).newWeight += .9 * pages.at(i).weight;
+            } else {
+                for (size_t j = 0; j < pages.at(i).links.size(); j++) {
+                    /*Increase new_weight[j] by 0.9 * pages[i].weight / pages[i].num_links
+                    (this spreads 90% of the weight of a page uniformly across its
+                    outgoing links. As a special case, if page I have no outgoing links,
+                    please keep that 90% on the page by increasing new_weight[i] by
+                    pages[i].weight * 0.9 */
+
+                    int index = pages.at(i).links.at(j) - 1;
+                    try {
+                        pages.at(index).newWeight += (.9 * pages.at(i).weight) / (double) pages.at(
+                                i).numLinks;     // vector::at throws an out-of-range
+                    }
+                    catch (const std::out_of_range &oor) {
+                        std::cerr << "Out of Range error: " << oor.what() << '\n';
+                        std::cout << "INDEX VALUE = " << index << endl;
+                        std::cout << " I = " << i << endl;
+                        std::cout << "J = " << j << endl;
+                    }
+                }
+            }
+        }
+
+        for (size_t i = 0; i < pages.size(); i++) {
+            pages.at(i).weight = pages.at(i).newWeight;
+            /*For each page i, set pages[i].weight = new_weight[i].
+            (note that these are three separate "for each page i" loops, one after
+            the other. also note that weights on pages are never created or destroyed
+            in each iteration of Pagerank --- they are only redistributed, so the
+            total of all the weights should always be 1).*/
+        }
+    }
+
+    cout << "Finished" << endl;
+
+
+    int myLookUp = wordIntMap["0"];
+    for (int i = 0; i < everyDistinctWordVec.at(myLookUp).pages.size(); i++) {
+        int tmp = everyDistinctWordVec.at(myLookUp).pages.at(i);
+        cout << pages.at(tmp).weight << endl;
+    }
+
+    delete wordOnPage;
+    //processKeystrokes();
     return 0;
 }
 

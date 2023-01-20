@@ -154,7 +154,7 @@ void processKeystrokes() {
 }
 
 int main() {
-    const char *filename = "/home/gav/Documents/webpages.txt";
+    const char *filename = "/Users/gavintaylormcroy/Documents";
     string readInData;
 
     cout << color_green << "Reading input..." << endl;
@@ -307,7 +307,7 @@ int main() {
     }
 
     /* Enter loop to ask for query */
-    processKeystrokes();
+   // processKeystrokes();
 
     return 0;
 }
