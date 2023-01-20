@@ -40,7 +40,7 @@ int main() {
     std::vector<StoredWebPages::Webpage> pages = webPages.getWebPages();
     std::vector<StoredWords::Word> everyDistinctWordVec = storedWords.getWords();
 
-    const char *fileNameMac = "/Users/gavintaylormcroy/Documents";
+    const char *fileNameMac = "/Users/gavintaylormcroy/Documents/webpages.txt";
     const char *filenameLinux = "/home/gav/Documents/webpages.txt";
     string readInData;
 
@@ -184,8 +184,6 @@ int main() {
     }
 
     cout << "Finished" << endl;
-
-
     int myLookUp = wordIntMap["0"];
     for (int i = 0; i < everyDistinctWordVec.at(myLookUp).pages.size(); i++) {
         int tmp = everyDistinctWordVec.at(myLookUp).pages.at(i);
