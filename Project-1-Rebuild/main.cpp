@@ -182,15 +182,15 @@ int main() {
             total of all the weights should always be 1).*/
         }
     }
-
     cout << "Finished" << endl;
-    int myLookUp = wordIntMap["0"];
+    delete wordOnPage;
+
+    int myLookUp = wordIntMap["pancake"];
     for (int i = 0; i < everyDistinctWordVec.at(myLookUp).pages.size(); i++) {
         int tmp = everyDistinctWordVec.at(myLookUp).pages.at(i);
         cout << pages.at(tmp).weight << endl;
     }
 
-    delete wordOnPage;
     //processKeystrokes();
     return 0;
 }

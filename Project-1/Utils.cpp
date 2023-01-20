@@ -154,7 +154,7 @@ void processKeystrokes() {
 }
 
 int main() {
-    const char *filename = "/Users/gavintaylormcroy/Documents";
+    const char *filename = "/Users/gavintaylormcroy/Documents/webpages.txt";
     string readInData;
 
     cout << color_green << "Reading input..." << endl;
