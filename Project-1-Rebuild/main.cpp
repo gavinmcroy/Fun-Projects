@@ -37,7 +37,7 @@ int main() {
     StringIntMap webPageIntMap;
     StringIntMap wordIntMap;
     auto *wordOnPage = new StringIntMap;
-    // std::vector<StoredWebPages::Webpage> pages = webPages.getWebPages();
+    std::vector<StoredWebPages::Webpage> pages = webPages.getWebPages();
     std::vector<StoredWords::Word> everyDistinctWordVec = storedWords.getWords();
 
     const char *fileNameMac = "/Users/gavintaylormcroy/Documents";
@@ -70,10 +70,75 @@ int main() {
         }
     }
 
+    /* This is where we begin the building of our data structures */
     cout << "Indexing..." << endl;
     /* Reset the file being read */
     webFile.clear();
     webFile.seekg(0);
+
+
+    /* 26,881 Pages, 184,408 Hyperlinks, 18,896,392 words */
+    /* This builds our webpage vector with all appropriate info */
+    string url;
+    int numLinksOnPageCounter = 0;
+    int numWordsOnPageCounter = 0;
+    int uniqueWordsOnPageCounter = 0;
+    bool firstIteration = true;
+    vector<int> links;
+    vector<string> wordsOccurringInPage;
+    while (webFile >> readInData) {
+        if (readInData == "PAGE") {
+            if (!firstIteration) {
+                /* Reset all the counters by adding the WebPage + all its data */
+                pages.emplace_back(url, numLinksOnPageCounter, numWordsOnPageCounter, links, wordsOccurringInPage);
+                wordOnPage->~StringIntMap();
+                wordOnPage = new StringIntMap();
+                wordsOccurringInPage.clear();
+                links.clear();
+                numLinksOnPageCounter = 0;
+                numWordsOnPageCounter = 0;
+                uniqueWordsOnPageCounter = 0;
+                /* Reset all the counters */
+            }
+            firstIteration = false;
+            /* Read in because you want the PAGE then the url next to it */
+            webFile >> url;
+        }
+            /* Reads a hyperLink, calculates the index at which the hyperLink would exist inside the StringToIntMap
+            * hash table. It then determines if the hyperLink in question exists inside the hash table. If it exists
+            * inside the hash table, a reference value is given that corresponds to the index at which this link
+            * would exist inside the Vector of WebPages. Reference value is given on first file read */
+        else if (readInData == "LINK") {
+            /* Read in because you want LINK then the url next to it */
+            webFile >> readInData;
+            /* If the link is not a dead end */
+            if (webPageIntMap.find(readInData)) {
+                int location = webPageIntMap[readInData];
+                links.push_back(location);
+                numLinksOnPageCounter++;
+            }
+        } /* All other words are processed */
+        else {
+            /* These are the words that OCCUR within a particular page */
+            wordsOccurringInPage.push_back(readInData);
+            numWordsOnPageCounter++;
+            /* This is adding only non-duplicate words from a particular page*/
+            if (!wordOnPage->find(readInData)) {
+                /* A lot is happening here. We are taking the index at which the page exists
+                * in the page structure. Then getting the index at which the word exists in the word structure.
+                * then we are accessing the index at which the word exists, adding the index at which the link exists
+                * to the word struct. Then while inside the word struct we are incrementing num pages to signify
+                * how many pages the word is on*/
+                wordOnPage->insert(readInData, uniqueWordsOnPageCounter);
+                int linkIndex = webPageIntMap[url];
+                int wordIndex = wordIntMap[readInData];
+                everyDistinctWordVec.at(wordIndex).pages.push_back(linkIndex);
+                everyDistinctWordVec.at(wordIndex).numPages++;
+                uniqueWordsOnPageCounter++;
+            }
+        }
+    }
+
 
     processKeystrokes();
     return 0;
