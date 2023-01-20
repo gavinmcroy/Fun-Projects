@@ -3,4 +3,4 @@ project(Project_1_Rebuild)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Project_1_Rebuild main.cpp StringIntMap.cpp StringIntMap.h StoredWords.cpp StoredWords.h)
+add_executable(Project_1_Rebuild main.cpp StringIntMap.cpp StringIntMap.h StoredWords.cpp StoredWords.h StoredWebPages.cpp StoredWebPages.h)

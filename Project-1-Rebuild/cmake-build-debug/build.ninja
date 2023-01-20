@@ -67,6 +67,12 @@ build CMakeFiles/Project_1_Rebuild.dir/StoredWords.cpp.o: CXX_COMPILER__Project_
   OBJECT_DIR = CMakeFiles/Project_1_Rebuild.dir
   OBJECT_FILE_DIR = CMakeFiles/Project_1_Rebuild.dir
 
+build CMakeFiles/Project_1_Rebuild.dir/StoredWebPages.cpp.o: CXX_COMPILER__Project_1_Rebuild_Debug /Users/gavintaylormcroy/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StoredWebPages.cpp || cmake_object_order_depends_target_Project_1_Rebuild
+  DEP_FILE = CMakeFiles/Project_1_Rebuild.dir/StoredWebPages.cpp.o.d
+  FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -std=gnu++2a
+  OBJECT_DIR = CMakeFiles/Project_1_Rebuild.dir
+  OBJECT_FILE_DIR = CMakeFiles/Project_1_Rebuild.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Project_1_Rebuild
@@ -75,7 +81,7 @@ build CMakeFiles/Project_1_Rebuild.dir/StoredWords.cpp.o: CXX_COMPILER__Project_
 #############################################
 # Link the executable Project_1_Rebuild
 
-build Project_1_Rebuild: CXX_EXECUTABLE_LINKER__Project_1_Rebuild_Debug CMakeFiles/Project_1_Rebuild.dir/main.cpp.o CMakeFiles/Project_1_Rebuild.dir/StringIntMap.cpp.o CMakeFiles/Project_1_Rebuild.dir/StoredWords.cpp.o
+build Project_1_Rebuild: CXX_EXECUTABLE_LINKER__Project_1_Rebuild_Debug CMakeFiles/Project_1_Rebuild.dir/main.cpp.o CMakeFiles/Project_1_Rebuild.dir/StringIntMap.cpp.o CMakeFiles/Project_1_Rebuild.dir/StoredWords.cpp.o CMakeFiles/Project_1_Rebuild.dir/StoredWebPages.cpp.o
   FLAGS = -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   OBJECT_DIR = CMakeFiles/Project_1_Rebuild.dir
   POST_BUILD = :

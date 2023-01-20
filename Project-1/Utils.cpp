@@ -150,7 +150,6 @@ void processKeystrokes() {
         } else if (ch != ' ' && ch != '\n') query += ch;
     }
     cout << color_white;
-
 }
 
 int main() {

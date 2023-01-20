@@ -1,9 +1,9 @@
 //
-// Created by Gavin Taylor Mcroy on 9/26/2020 AD.
+// Created by Gavin Taylor Mcroy on 1/20/23.
 //
 
-#ifndef PROJECT_1_STOREDWEBPAGES_H
-#define PROJECT_1_STOREDWEBPAGES_H
+#ifndef PROJECT_1_REBUILD_STOREDWEBPAGES_H
+#define PROJECT_1_REBUILD_STOREDWEBPAGES_H
 
 #include<string>
 #include<utility>
@@ -47,4 +47,4 @@ private:
 };
 
 
-#endif //PROJECT_1_STOREDWEBPAGES_H
+#endif //PROJECT_1_REBUILD_STOREDWEBPAGES_H

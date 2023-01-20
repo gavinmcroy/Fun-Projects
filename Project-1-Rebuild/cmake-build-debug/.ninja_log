@@ -1,3 +1,8 @@
 # ninja log v5
 1	1271	1674230239320144769	CMakeFiles/Project_1_Rebuild.dir/main.cpp.o	f3ff98797c719006
 1273	1342	1674230239395378596	Project_1_Rebuild	3402e8e90020933d
+4	1198	1674236288985647547	CMakeFiles/Project_1_Rebuild.dir/StoredWords.cpp.o	8fcaff52f15fc75d
+5	1292	1674236289079104381	CMakeFiles/Project_1_Rebuild.dir/StoredWebPages.cpp.o	a64dff9631327faf
+4	1353	1674236289138727482	CMakeFiles/Project_1_Rebuild.dir/StringIntMap.cpp.o	fb1e2f649f7e68ef
+3	1429	1674236289213833081	CMakeFiles/Project_1_Rebuild.dir/main.cpp.o	f3ff98797c719006
+1429	1521	1674236289312625187	Project_1_Rebuild	9803006025c039f3
