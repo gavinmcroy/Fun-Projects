@@ -199,7 +199,7 @@ int main() {
     return 0;
 }
 
-/* TODO IMPLEMENT */
+/* TODO This entire map iteration could be sped up */
 void predict(const string &query) {
     int wordIndex = wordIntMap[query];
     std::string ans;
@@ -209,13 +209,12 @@ void predict(const string &query) {
          it != everyDistinctWordVec.at(wordIndex).frequency.end(); it++) {
         if (it->second > max) {
             ans = it->first;
-            max = it ->second;
+            max = it->second;
         }
     }
     cout << color_green << "Next word: '"
          << color_white << ans
          << color_green << "'\n";
-    /* TEST CODE */
 }
 
 string readWebpagesFast(const char *filename) {
@@ -244,12 +243,14 @@ void processKeystrokes() {
              << color_white << query
              << color_green << "-\n";
         predict(query);
+
         /* We begin some engine logic */
         int queryIndex = wordIntMap[query];
         cout << color_yellow << "'" << everyDistinctWordVec.at(queryIndex).numPages << color_green << "' pages match"
              << endl;
         std::cout << std::endl;
 
+        /* TODO This entire iteration could be sped up */
         /* Temporarily store all relevant pages to the search then sort by highest weight */
         std::vector<StoredWebPages::Webpage> pagesOfInterest;
         for (int i = 0; i < everyDistinctWordVec.at(queryIndex).pages.size(); i++) {
@@ -266,6 +267,7 @@ void processKeystrokes() {
             cout << color_red << i + 1 << ". [" << pagesOfInterest.at(i).weight << "] ";
             cout << color_white << pagesOfInterest.at(i).url << std::endl;
 
+            /* TODO This entire iteration could be sped up */
             /* We need to find our search words location within the page */
             for (int j = 0; j < pagesOfInterest.at(i).words.size(); j++) {
                 if (pagesOfInterest.at(i).words[j] == query) {
