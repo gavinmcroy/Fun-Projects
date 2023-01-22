@@ -56,6 +56,7 @@ int main() {
     /* Insert all PAGES and DISTINCT words into separate hash table */
     int totalWebPages = 0;
     int totalDistinctWords = 0;
+    std::string previousWord = "_";
     while (webFile >> readInData) {
         if (readInData == "PAGE") {
             webFile >> readInData;
@@ -72,8 +73,14 @@ int main() {
                 /* This is adding the words to the vector */
                 everyDistinctWordVec.emplace_back(readInData);
                 totalDistinctWords++;
+            }/* we are keeping track of the previous word, although this does add the initial value
+              * it shouldn't affect the output since that would only be one occurance ever */
+            else {
+                int wordIndex = wordIntMap[previousWord];
+                everyDistinctWordVec.at(wordIndex).frequency[readInData]++;
             }
         }
+        previousWord = readInData;
     }
 
     /* This is where we begin the building of our data structures */
@@ -194,8 +201,19 @@ int main() {
 
 /* TODO IMPLEMENT */
 void predict(const string &query) {
+    int wordIndex = wordIntMap[query];
+    std::string ans;
+    int max = 0;
+    map<string, int>::iterator it;
+    for (it = everyDistinctWordVec.at(wordIndex).frequency.begin();
+         it != everyDistinctWordVec.at(wordIndex).frequency.end(); it++) {
+        if (it->second > max) {
+            ans = it->first;
+            max = it ->second;
+        }
+    }
     cout << color_green << "Next word: '"
-         << color_white << "query"
+         << color_white << ans
          << color_green << "'\n";
     /* TEST CODE */
 }
@@ -266,9 +284,7 @@ void processKeystrokes() {
         }
 
         /* We end engine logic */
-//        cout << color_yellow << "'" << "Place holder text" << color_green << "' pages match"
-//             << endl;
-        //predict(query);
+
         cout << flush;
 
         struct termios oldt, newt;

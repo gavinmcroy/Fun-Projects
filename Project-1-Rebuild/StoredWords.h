@@ -8,6 +8,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <map>
 
 class StoredWords {
 public:
@@ -15,6 +16,7 @@ public:
         std::string text;
         int numPages;
         std::vector<int> pages;
+        std::map<std::string,int> frequency;
 
         Word(std::string text, int numPages, std::vector<int> pages) {
             this->text = std::move(text);
