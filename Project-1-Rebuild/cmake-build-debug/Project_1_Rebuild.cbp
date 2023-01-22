@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Project_1_Rebuild"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_1_Rebuild">
+				<Option output="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Project_1_Rebuild" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_1_Rebuild"/>
+					<CompileFile command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Project_1_Rebuild/fast">
+				<Option output="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Project_1_Rebuild" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 Project_1_Rebuild/fast"/>
+					<CompileFile command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j24 -f &quot;/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StoredWebPages.cpp">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StoredWebPages.h">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StoredWords.cpp">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StoredWords.h">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StringIntMap.cpp">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/StringIntMap.h">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/main.cpp">
+			<Option target="Project_1_Rebuild"/>
+		</Unit>
+		<Unit filename="/home/gav/Documents/GitHub/Fun-Projects/Project-1-Rebuild/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

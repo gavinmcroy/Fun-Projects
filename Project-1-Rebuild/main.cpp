@@ -38,13 +38,20 @@ string readWebpagesFast(const char *filename);
 
 void processKeystrokes();
 
+struct greaterThanKey {
+    inline bool operator()(const StoredWebPages::Webpage &struct1, const StoredWebPages::Webpage &struct2) {
+        return (struct1.weight > struct2.weight);
+    }
+};
+
+
 int main() {
     const char *fileNameMac = "/Users/gavintaylormcroy/Documents/webpages.txt";
     const char *filenameLinux = "/home/gav/Documents/webpages.txt";
     string readInData;
 
     cout << color_green << "Reading input..." << endl;
-    istringstream webFile(readWebpagesFast(fileNameMac));
+    istringstream webFile(readWebpagesFast(filenameLinux));
 
     /* Insert all PAGES and DISTINCT words into separate hash table */
     int totalWebPages = 0;
@@ -217,15 +224,51 @@ void processKeystrokes() {
     while (ch != '\n') {
         cout << clear_screen << color_green << "Search keyword: "
              << color_white << query
-             << color_green << "-\n\n";
-
-        int wordIndex = wordIntMap[query];
-        cout << color_yellow << "'" << everyDistinctWordVec.at(wordIndex).numPages << color_green << "' pages match"
-             << endl;
-
-        cout << color_yellow << "'" << "Place holder text" << color_green << "' pages match"
-             << endl;
+             << color_green << "-\n";
         predict(query);
+        /* We begin some engine logic */
+        int queryIndex = wordIntMap[query];
+        cout << color_yellow << "'" << everyDistinctWordVec.at(queryIndex).numPages << color_green << "' pages match"
+             << endl;
+        std::cout << std::endl;
+
+        /* Temporarily store all relevant pages to the search then sort by highest weight */
+        std::vector<StoredWebPages::Webpage> pagesOfInterest;
+        for (int i = 0; i < everyDistinctWordVec.at(queryIndex).pages.size(); i++) {
+            int tmp = everyDistinctWordVec.at(queryIndex).pages.at(i);
+            pagesOfInterest.push_back(pages.at(tmp));
+        }
+        std::sort(pagesOfInterest.begin(), pagesOfInterest.end(), greaterThanKey());
+
+        for (int i = 0; i < pagesOfInterest.size(); i++) {
+            /* Display just 5 results */
+            if (i == 5) {
+                break;
+            }
+            cout << color_red << i + 1 << ". [" << pagesOfInterest.at(i).weight << "] ";
+            cout << color_white << pagesOfInterest.at(i).url << std::endl;
+
+            /* We need to find our search words location within the page */
+            for (int j = 0; j < pagesOfInterest.at(i).words.size(); j++) {
+                if (pagesOfInterest.at(i).words[j] == query) {
+                    /* We got our word, the logic to print the text around the word */
+                    if (j - 5 >= 0 && j + 6 < pagesOfInterest.at(i).words.size()) {
+                        for (int iterator = j - 5; iterator < j + 6; iterator++) {
+                            std::cout << color_blue << pagesOfInterest.at(i).words[iterator] << " ";
+                        }
+                        std::cout << std::endl;
+                        break;
+                    } else {
+                        std::cout << color_blue << "Not enough data to display" << std::endl;
+                    }
+                }
+            }
+        }
+
+        /* We end engine logic */
+//        cout << color_yellow << "'" << "Place holder text" << color_green << "' pages match"
+//             << endl;
+        //predict(query);
         cout << flush;
 
         struct termios oldt, newt;

@@ -35,10 +35,10 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-Ofast -Wall -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk"
+					"fragment" : "-Ofast -Wall -g"
 				},
 				{
-					"fragment" : "-std=gnu++2a"
+					"fragment" : "-std=gnu++23"
 				}
 			],
 			"language" : "CXX",
