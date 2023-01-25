@@ -1,0 +1,23 @@
+/*				REALLOC:
+*	If ptr is null, acts as malloc for size
+*	if size == 0 and ptr is valid, acts as free
+*	if size and ptr both valid
+*		calls malloc on size and memcpys to that location
+*		free old ptr.
+*/
+void *realloc(void *ptr, size_t size) {
+    void *newLocation = ptr;
+
+    if (ptr == NULL) return malloc(size); //spec
+        //if (size == 0 && ptr != NULL) free(ptr); //spec
+    else if (size != 0 && ptr != NULL) {
+        page_t *page = (page_t *) ((uintptr_t) ptr & ((uintptr_t) 0xFFFFFFFFFFFFF000));
+        int currentSize = page->blockSize;
+        if (size > currentSize) {
+            newLocation = malloc(size);
+            memcpy(newLocation, ptr, currentSize); //move to new location
+            //free(ptr);
+        } //don't know what to do otherwise...
+    }
+    return newLocation;
+}

@@ -1,0 +1,7 @@
+Simple allocator implemented using segmented free lists. 
+
+Known Issues: 
+
+Calloc for some reason causes the program to seize up. The reason for this is unknown since its memory obtained comes straight from malloc, then is cleared to 0 with memset. The reason this would cause undefined behavior baffles me. I assume malloc must then have issues as well with it. 
+
+Realloc works, Malloc works in the instances I tested, but I am pretty sure the random barrage of testing fails due solely to calloc. I just have not been able to break either realloc or malloc. 

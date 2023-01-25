@@ -1,3 +1,0 @@
-/home/gav/Documents/GitHub/School-Rep/Project-1-Refactored/cmake-build-debug/CMakeFiles/Project_1.dir
-/home/gav/Documents/GitHub/School-Rep/Project-1-Refactored/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/gav/Documents/GitHub/School-Rep/Project-1-Refactored/cmake-build-debug/CMakeFiles/rebuild_cache.dir
