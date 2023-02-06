@@ -4,13 +4,10 @@ import (
 	"fmt"
 )
 
-const (
-	b = iota
-)
-
 func main() {
 	grades := [...]int{97, 85, 93}
 	students := [...]string{"Lisa", "Ahmed", "Arnold"}
+	students1 := []string{"Lisa", "Ahmed", "Arnold"} //slice instead of array
 	i := 42
 	//x := 42.9999
 	//var y complex64 = 2 + 1i
@@ -28,6 +25,12 @@ func main() {
 
 	//myArray := [...]int{1, 2, 3, 4, 5, 6, 7}
 	//fmt.Println(myArray)
+	var a []int
+	a = append(a, 1)
+	fmt.Println(len(a))
+	fmt.Println(cap(a))
+
+	fmt.Println(students1)
 	myAwesomeStuff()
 
 }
