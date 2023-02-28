@@ -9,9 +9,6 @@ func main() {
 	students := [...]string{"Lisa", "Ahmed", "Arnold"}
 	students1 := []string{"Lisa", "Ahmed", "Arnold"} //slice instead of array
 	i := 42
-	//x := 42.9999
-	//var y complex64 = 2 + 1i
-	//var test int = int(x)
 	//var myVariable string = "Hello everyone"
 	fmt.Printf("%d %T \n", i, i)
 	fmt.Println(grades)
