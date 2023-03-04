@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/gavintaylormcroy/Desktop/MS2/contactHelpers.h
+
+/Users/gavintaylormcroy/Desktop/MS2/contacts.c
+stdio.h
+-
+contacts.h
+/Users/gavintaylormcroy/Desktop/MS2/contacts.h
+contactHelpers.h
+/Users/gavintaylormcroy/Desktop/MS2/contactHelpers.h
+
+/Users/gavintaylormcroy/Desktop/MS2/contacts.h
+
