@@ -1,3 +1,0 @@
-"C:\Users\Gavin McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-1\203.7148.70\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\TSPNearestNeighbor.dir/objects.a
-C:\MinGW\bin\ar.exe cr CMakeFiles\TSPNearestNeighbor.dir/objects.a @CMakeFiles\TSPNearestNeighbor.dir\objects1.rsp
-C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\TSPNearestNeighbor.dir/objects.a -Wl,--no-whole-archive  -o TSPNearestNeighbor.exe -Wl,--out-implib,libTSPNearestNeighbor.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TSPNearestNeighbor.dir\linklibs.rsp

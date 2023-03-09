@@ -1,3 +1,0 @@
-/Users/gavintaylormcroy/Desktop/drunkExperiment/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/gavintaylormcroy/Desktop/drunkExperiment/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/gavintaylormcroy/Desktop/drunkExperiment/cmake-build-debug/CMakeFiles/drunkExperiment.dir

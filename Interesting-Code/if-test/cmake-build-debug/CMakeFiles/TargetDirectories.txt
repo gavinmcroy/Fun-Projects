@@ -1,3 +1,0 @@
-C:/Users/Gavin McRoy/Desktop/tesrt/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/Gavin McRoy/Desktop/tesrt/cmake-build-debug/CMakeFiles/tesrt.dir
-C:/Users/Gavin McRoy/Desktop/tesrt/cmake-build-debug/CMakeFiles/edit_cache.dir

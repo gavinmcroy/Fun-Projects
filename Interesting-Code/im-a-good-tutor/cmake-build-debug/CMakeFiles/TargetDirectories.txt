@@ -1,3 +1,0 @@
-C:/Users/Gavin T McRoy/Desktop/im-a-good-tutor/cmake-build-debug/CMakeFiles/im_a_good_tutor.dir
-C:/Users/Gavin T McRoy/Desktop/im-a-good-tutor/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Gavin T McRoy/Desktop/im-a-good-tutor/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -1,3 +1,0 @@
-/Users/gavintaylormcroy/Desktop/MS2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/gavintaylormcroy/Desktop/MS2/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/gavintaylormcroy/Desktop/MS2/cmake-build-debug/CMakeFiles/MS2.dir
