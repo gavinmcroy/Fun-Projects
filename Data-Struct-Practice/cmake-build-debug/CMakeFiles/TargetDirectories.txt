@@ -1,0 +1,3 @@
+C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Data-Struct-Practice/cmake-build-debug/CMakeFiles/Data_Struct_Practice.dir
+C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Data-Struct-Practice/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/Data-Struct-Practice/cmake-build-debug/CMakeFiles/rebuild_cache.dir

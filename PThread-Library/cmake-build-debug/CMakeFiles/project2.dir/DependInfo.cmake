@@ -1,17 +1,16 @@
+
+# Consider dependencies only in project.
+set(CMAKE_DEPENDS_IN_PROJECT_ONLY OFF)
+
 # The set of languages for which implicit dependencies are needed:
 set(CMAKE_DEPENDS_LANGUAGES
-  "C"
   )
-# The set of files for implicit dependencies of each language:
-set(CMAKE_DEPENDS_CHECK_C
-  "/Users/gavintaylormcroy/Documents/GitHub/School-Rep/project2/helper.c" "/Users/gavintaylormcroy/Documents/GitHub/School-Rep/project2/cmake-build-debug/CMakeFiles/project2.dir/helper.c.o"
-  "/Users/gavintaylormcroy/Documents/GitHub/School-Rep/project2/main.c" "/Users/gavintaylormcroy/Documents/GitHub/School-Rep/project2/cmake-build-debug/CMakeFiles/project2.dir/main.c.o"
-  "/Users/gavintaylormcroy/Documents/GitHub/School-Rep/project2/mythreads.c" "/Users/gavintaylormcroy/Documents/GitHub/School-Rep/project2/cmake-build-debug/CMakeFiles/project2.dir/mythreads.c.o"
-  )
-set(CMAKE_C_COMPILER_ID "AppleClang")
 
-# The include file search paths:
-set(CMAKE_C_TARGET_INCLUDE_PATH
+# The set of dependency files which are needed:
+set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/PThread-Library/helper.c" "CMakeFiles/project2.dir/helper.c.obj" "gcc" "CMakeFiles/project2.dir/helper.c.obj.d"
+  "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/PThread-Library/main.c" "CMakeFiles/project2.dir/main.c.obj" "gcc" "CMakeFiles/project2.dir/main.c.obj.d"
+  "C:/Users/Gavin T McRoy/Documents/GitHub/Fun-Projects/PThread-Library/mythreads.c" "CMakeFiles/project2.dir/mythreads.c.obj" "gcc" "CMakeFiles/project2.dir/mythreads.c.obj.d"
   )
 
 # Targets to which this target links.

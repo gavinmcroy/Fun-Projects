@@ -1,8 +1,13 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/project2.dir/helper.c.o"
-  "CMakeFiles/project2.dir/main.c.o"
-  "CMakeFiles/project2.dir/mythreads.c.o"
-  "project2"
+  "CMakeFiles/project2.dir/helper.c.obj"
+  "CMakeFiles/project2.dir/helper.c.obj.d"
+  "CMakeFiles/project2.dir/main.c.obj"
+  "CMakeFiles/project2.dir/main.c.obj.d"
+  "CMakeFiles/project2.dir/mythreads.c.obj"
+  "CMakeFiles/project2.dir/mythreads.c.obj.d"
+  "libproject2.dll.a"
+  "project2.exe"
+  "project2.exe.manifest"
   "project2.pdb"
 )
 
