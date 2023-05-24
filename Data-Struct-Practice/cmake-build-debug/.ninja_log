@@ -1,0 +1,27 @@
+# ninja log v5
+1	246	7065899739004545	CMakeFiles/Data_Struct_Practice.dir/LinkedList.cpp.obj	67bad2dba3598790
+4	247	7065899739004545	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+247	457	7065899741090569	Data_Struct_Practice.exe	8967d6ded51f2df2
+2	152	7065900033575307	CMakeFiles/Data_Struct_Practice.dir/LinkedList.cpp.obj	67bad2dba3598790
+152	201	7065900034047141	Data_Struct_Practice.exe	8967d6ded51f2df2
+1	147	7065900287012785	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+148	201	7065900287529318	Data_Struct_Practice.exe	8967d6ded51f2df2
+2	156	7065901699322057	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+6	158	7065901699336959	CMakeFiles/Data_Struct_Practice.dir/LinkedList.cpp.obj	67bad2dba3598790
+158	210	7065901699838589	Data_Struct_Practice.exe	8967d6ded51f2df2
+1	154	7065902095302497	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+154	203	7065902095779297	Data_Struct_Practice.exe	8967d6ded51f2df2
+1	148	7065902300198774	CMakeFiles/Data_Struct_Practice.dir/LinkedList.cpp.obj	67bad2dba3598790
+149	199	7065902300685511	Data_Struct_Practice.exe	8967d6ded51f2df2
+1	151	7065910453117179	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+4	152	7065910453132079	CMakeFiles/Data_Struct_Practice.dir/LinkedList.cpp.obj	67bad2dba3598790
+152	203	7065910453613845	Data_Struct_Practice.exe	8967d6ded51f2df2
+2	145	7065910624855109	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+145	195	7065910625333444	Data_Struct_Practice.exe	8967d6ded51f2df2
+1	142	7065910793101189	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+143	194	7065910793602821	Data_Struct_Practice.exe	8967d6ded51f2df2
+4	147	7065911904496045	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+1	151	7065911904530810	CMakeFiles/Data_Struct_Practice.dir/LinkedList.cpp.obj	67bad2dba3598790
+151	198	7065911904987745	Data_Struct_Practice.exe	8967d6ded51f2df2
+2	145	7065912002790912	CMakeFiles/Data_Struct_Practice.dir/main.cpp.obj	cd01fb3765ab66f3
+146	196	7065912003272679	Data_Struct_Practice.exe	8967d6ded51f2df2

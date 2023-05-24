@@ -5,21 +5,23 @@
 #ifndef DATA_STRUCT_PRACTICE_LINKEDLIST_H
 #define DATA_STRUCT_PRACTICE_LINKEDLIST_H
 
+#include <iostream>
+
 
 class LinkedList {
 private:
     typedef struct Node {
         int val;
-        Node *node;
+        Node *next;
 
         Node(int val) {
             val = val;
-            node = nullptr;
+            next = nullptr;
         }
 
         Node() {
             val = 0;
-            node = nullptr;
+            next = nullptr;
         }
     } Node;
 
@@ -31,11 +33,14 @@ public:
         root = nullptr;
     }
 
+    void printValues();
+
     Node *insert(int value);
 
-    Node *remove();
+    /* 0 Based Index */
+    Node *remove(int index);
 
-    Node *size();
+    int size();
 
 
 };
