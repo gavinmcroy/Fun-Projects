@@ -1,0 +1,3 @@
+/Users/gavintaylormcroy/Desktop/annotation-interview/cmake-build-debug/CMakeFiles/Test.dir
+/Users/gavintaylormcroy/Desktop/annotation-interview/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/gavintaylormcroy/Desktop/annotation-interview/cmake-build-debug/CMakeFiles/rebuild_cache.dir
