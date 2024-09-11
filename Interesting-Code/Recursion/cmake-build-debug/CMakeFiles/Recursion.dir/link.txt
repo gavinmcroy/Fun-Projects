@@ -1,0 +1,3 @@
+"C:\Users\Gavin McRoy\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-1\202.6397.106\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\Recursion.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\Recursion.dir/objects.a @CMakeFiles\Recursion.dir\objects1.rsp
+C:\MinGW\bin\g++.exe -g   -Wl,--whole-archive CMakeFiles\Recursion.dir/objects.a -Wl,--no-whole-archive  -o Recursion.exe -Wl,--out-implib,libRecursion.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Recursion.dir\linklibs.rsp
